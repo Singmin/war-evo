@@ -1,0 +1,38 @@
+/* 局内 HUD 的 DOM 部分：右上按钮、提示文字、看广告按钮
+   画布上的 HUD（金币、经验、时代、血条、小地图）在 js/ui/hud.js，位置常量 HUD_LAYOUT 也在那里 */
+#topR { position: absolute; right: 10px; top: 10px; display: flex; gap: 8px; }
+.tb { width: 84px; height: 76px; border-radius: 12px; border: 2px solid var(--edge); background: var(--wood-3); color: #ffe2a6;
+  font-size: var(--fs-m); font-weight: bold; }
+.tb:active { background: #59432f; }
+
+/* 操作提示 / 错误提示：小地图和训练条下面 */
+#info { position: absolute; left: 400px; top: 80px; width: 480px; text-align: center; font-size: var(--fs-s); color: #ffe9a8;
+  text-shadow: 0 1px 3px #000, 0 0 6px #000; pointer-events: none; min-height: 28px; line-height: 1.35; }
+#info.err { color: var(--bad); font-weight: bold; }
+#info.air-info { top: 83px; padding: 7px 12px 8px; border: 2px solid #4a3b29; border-radius: 9px;
+  background: linear-gradient(#251c15d9, #1b150ff0), var(--skin-tex, none); background-color: #251c15;
+  box-shadow: inset 0 1px 0 #e4cca943, 0 2px 4px #1d150d64;
+  font-size: var(--fs-s); line-height: 1.28; color: #f0debf; }
+#info.air-info .air-role { color: #ffdda1; font-size: var(--fs-m); font-weight: bold; }
+
+/* 看广告按钮：我方血条下面（顶栏缩放 HUD_SCALE 后的位置，见 js/ui/hud.js） */
+#adBtns { position: absolute; left: 8px; top: 186px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+/* 青铜小牌：左边圆形播放键，右边两行（奖励 / 看广告）。金币牌金色，回血牌红铜色 */
+.adb { display: flex; align-items: center; gap: 9px; height: 56px; padding: 0 16px 0 7px; border-radius: 30px;
+  border: 2px solid #1b120a; color: #fff6e6; text-align: left; cursor: pointer;
+  background: linear-gradient(#6a4a26, #3c2812 60%, #2a1b0c);
+  box-shadow: inset 0 2px 0 rgba(255,226,160,.35), inset 0 -2px 0 rgba(0,0,0,.4), 0 3px 4px rgba(0,0,0,.6); }
+.adb:active { transform: translateY(2px); box-shadow: inset 0 2px 0 rgba(255,226,160,.25), 0 1px 2px rgba(0,0,0,.6); }
+.adb:disabled { opacity: .7; cursor: default; }
+.adb .play { flex: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 40% 35%, #ffe7a0, #e0a83c 55%, #9a6418); border: 2px solid #1b120a;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.3); }
+.adb .play svg { width: 20px; height: 20px; margin-left: 3px; fill: #3a2408; }
+.adb span { display: flex; flex-direction: column; line-height: 1.15; }
+.adb b { font-size: var(--fs-m); color: #ffd770; text-shadow: 0 1px 0 #000, 0 0 3px #000; white-space: nowrap; }
+.adb small { font-size: var(--fs-xs); color: #e8d6b4; text-shadow: 0 1px 0 #000; white-space: nowrap; }
+.adb.hp { background: linear-gradient(#7a3424, #4a1c12 60%, #2e100a); }
+.adb.hp .play { background: radial-gradient(circle at 40% 35%, #ffc0a8, #e0603c 55%, #8a2a14); }
+.adb.hp b { color: #ffb49a; }
+.adb.pulse { animation: adPulse .45s ease-in-out 3; }
+@keyframes adPulse { 50% { transform: scale(1.12); } }

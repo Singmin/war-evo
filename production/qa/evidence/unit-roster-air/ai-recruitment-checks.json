@@ -1,0 +1,554 @@
+{
+  "checks": [
+    {
+      "name": "easy air stays available with 0 enemy towers",
+      "pass": true
+    },
+    {
+      "name": "easy air stays available with 1 enemy towers",
+      "pass": true
+    },
+    {
+      "name": "easy air stays available with 3 enemy towers",
+      "pass": true
+    },
+    {
+      "name": "normal air stays available with 0 enemy towers",
+      "pass": true
+    },
+    {
+      "name": "normal air stays available with 1 enemy towers",
+      "pass": true
+    },
+    {
+      "name": "normal air stays available with 3 enemy towers",
+      "pass": true
+    },
+    {
+      "name": "hard air stays available with 0 enemy towers",
+      "pass": true
+    },
+    {
+      "name": "hard air stays available with 1 enemy towers",
+      "pass": true
+    },
+    {
+      "name": "hard air stays available with 3 enemy towers",
+      "pass": true
+    },
+    {
+      "name": "more visible archers lowers air preference without excluding it",
+      "pass": true
+    },
+    {
+      "name": "heavy enemies increase artillery weight",
+      "pass": true
+    },
+    {
+      "name": "artillery enemies increase cavalry weight",
+      "pass": true
+    },
+    {
+      "name": "cavalry enemies increase infantry weight",
+      "pass": true
+    },
+    {
+      "name": "enemy air increases archer weight",
+      "pass": true
+    },
+    {
+      "name": "paid queue suppresses repeated unit selection",
+      "pass": true
+    },
+    {
+      "name": "queued archers count toward anti-air coverage",
+      "pass": true
+    },
+    {
+      "name": "saved recruitment plan survives until unit is affordable",
+      "pass": true
+    },
+    {
+      "name": "actual income funds planned air and training spawns it",
+      "pass": true
+    },
+    {
+      "name": "plan for old era is discarded",
+      "pass": true
+    },
+    {
+      "name": "expired plan is discarded",
+      "pass": true
+    },
+    {
+      "name": "air at gate interrupts expensive plan and buys archer",
+      "pass": true
+    },
+    {
+      "name": "ground at gate with no frontline interrupts air plan",
+      "pass": true
+    },
+    {
+      "name": "pressure stops waiting for unaffordable expensive support",
+      "pass": true
+    },
+    {
+      "name": "emergency spends evolution savings on anti-air before evolving",
+      "pass": true
+    },
+    {
+      "name": "normal queue stays short for tactical response",
+      "pass": true
+    },
+    {
+      "name": "hard AI can extend queue during opposing evolution",
+      "pass": true
+    },
+    {
+      "name": "empty opening plans only a unit reachable within opening budget",
+      "pass": true
+    },
+    {
+      "name": "dead units are excluded from tactical analysis",
+      "pass": true
+    },
+    {
+      "name": "era 0 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 1 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 2 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 3 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 4 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 5 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 6 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 7 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 8 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 9 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 10 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 11 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 12 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 13 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 14 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 15 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "era 16 respects real prices",
+      "pass": true
+    },
+    {
+      "name": "easy seed 42 paid match varies army and keeps queue short",
+      "pass": true,
+      "result": {
+        "diff": "easy",
+        "seed": 42,
+        "seconds": 233.48333333341128,
+        "over": true,
+        "winner": 1,
+        "purchases": [
+          11,
+          6,
+          4,
+          1,
+          2,
+          4
+        ],
+        "maxQueue": 2,
+        "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+      }
+    },
+    {
+      "name": "easy seed 1234 paid match varies army and keeps queue short",
+      "pass": true,
+      "result": {
+        "diff": "easy",
+        "seed": 1234,
+        "seconds": 216.7666666667313,
+        "over": true,
+        "winner": 1,
+        "purchases": [
+          10,
+          3,
+          3,
+          2,
+          2,
+          4
+        ],
+        "maxQueue": 2,
+        "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+      }
+    },
+    {
+      "name": "normal seed 42 paid match varies army and keeps queue short",
+      "pass": true,
+      "result": {
+        "diff": "normal",
+        "seed": 42,
+        "seconds": 235.7833333334131,
+        "over": true,
+        "winner": 1,
+        "purchases": [
+          8,
+          6,
+          3,
+          2,
+          5,
+          0
+        ],
+        "maxQueue": 2,
+        "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+      }
+    },
+    {
+      "name": "normal seed 1234 paid match varies army and keeps queue short",
+      "pass": true,
+      "result": {
+        "diff": "normal",
+        "seed": 1234,
+        "seconds": 70.2999999999973,
+        "over": true,
+        "winner": 1,
+        "purchases": [
+          2,
+          2,
+          1,
+          1,
+          2,
+          1
+        ],
+        "maxQueue": 2,
+        "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+      }
+    },
+    {
+      "name": "hard seed 42 paid match varies army and keeps queue short",
+      "pass": true,
+      "result": {
+        "diff": "hard",
+        "seed": 42,
+        "seconds": 261.4166666667576,
+        "over": true,
+        "winner": 1,
+        "purchases": [
+          8,
+          10,
+          6,
+          4,
+          2,
+          1
+        ],
+        "maxQueue": 2,
+        "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+      }
+    },
+    {
+      "name": "hard seed 1234 paid match varies army and keeps queue short",
+      "pass": true,
+      "result": {
+        "diff": "hard",
+        "seed": 1234,
+        "seconds": 321.2500000000365,
+        "over": true,
+        "winner": 1,
+        "purchases": [
+          16,
+          7,
+          3,
+          5,
+          3,
+          4
+        ],
+        "maxQueue": 2,
+        "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+      }
+    },
+    {
+      "name": "easy actually purchases air in representative paid matches",
+      "pass": true
+    },
+    {
+      "name": "normal actually purchases air in representative paid matches",
+      "pass": true
+    },
+    {
+      "name": "hard actually purchases air in representative paid matches",
+      "pass": true
+    }
+  ],
+  "distributions": [
+    {
+      "diff": "easy",
+      "towers": 0,
+      "decisions": 10000,
+      "counts": [
+        3256,
+        964,
+        2343,
+        1672,
+        533,
+        1232
+      ],
+      "airPercent": 12.32
+    },
+    {
+      "diff": "easy",
+      "towers": 1,
+      "decisions": 10000,
+      "counts": [
+        3347,
+        1019,
+        2438,
+        1703,
+        566,
+        927
+      ],
+      "airPercent": 9.27
+    },
+    {
+      "diff": "easy",
+      "towers": 3,
+      "decisions": 10000,
+      "counts": [
+        3448,
+        1046,
+        2526,
+        1768,
+        591,
+        621
+      ],
+      "airPercent": 6.21
+    },
+    {
+      "diff": "normal",
+      "towers": 0,
+      "decisions": 10000,
+      "counts": [
+        2766,
+        1177,
+        2037,
+        1914,
+        597,
+        1509
+      ],
+      "airPercent": 15.09
+    },
+    {
+      "diff": "normal",
+      "towers": 1,
+      "decisions": 10000,
+      "counts": [
+        2870,
+        1230,
+        2111,
+        1969,
+        662,
+        1158
+      ],
+      "airPercent": 11.58
+    },
+    {
+      "diff": "normal",
+      "towers": 3,
+      "decisions": 10000,
+      "counts": [
+        2984,
+        1265,
+        2229,
+        2045,
+        694,
+        783
+      ],
+      "airPercent": 7.83
+    },
+    {
+      "diff": "hard",
+      "towers": 0,
+      "decisions": 10000,
+      "counts": [
+        2416,
+        1290,
+        2136,
+        2038,
+        632,
+        1488
+      ],
+      "airPercent": 14.88
+    },
+    {
+      "diff": "hard",
+      "towers": 1,
+      "decisions": 10000,
+      "counts": [
+        2499,
+        1344,
+        2220,
+        2106,
+        697,
+        1134
+      ],
+      "airPercent": 11.34
+    },
+    {
+      "diff": "hard",
+      "towers": 3,
+      "decisions": 10000,
+      "counts": [
+        2599,
+        1403,
+        2322,
+        2173,
+        733,
+        770
+      ],
+      "airPercent": 7.7
+    }
+  ],
+  "matches": [
+    {
+      "diff": "easy",
+      "seed": 42,
+      "seconds": 233.48333333341128,
+      "over": true,
+      "winner": 1,
+      "purchases": [
+        11,
+        6,
+        4,
+        1,
+        2,
+        4
+      ],
+      "maxQueue": 2,
+      "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+    },
+    {
+      "diff": "easy",
+      "seed": 1234,
+      "seconds": 216.7666666667313,
+      "over": true,
+      "winner": 1,
+      "purchases": [
+        10,
+        3,
+        3,
+        2,
+        2,
+        4
+      ],
+      "maxQueue": 2,
+      "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+    },
+    {
+      "diff": "normal",
+      "seed": 42,
+      "seconds": 235.7833333334131,
+      "over": true,
+      "winner": 1,
+      "purchases": [
+        8,
+        6,
+        3,
+        2,
+        5,
+        0
+      ],
+      "maxQueue": 2,
+      "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+    },
+    {
+      "diff": "normal",
+      "seed": 1234,
+      "seconds": 70.2999999999973,
+      "over": true,
+      "winner": 1,
+      "purchases": [
+        2,
+        2,
+        1,
+        1,
+        2,
+        1
+      ],
+      "maxQueue": 2,
+      "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+    },
+    {
+      "diff": "hard",
+      "seed": 42,
+      "seconds": 261.4166666667576,
+      "over": true,
+      "winner": 1,
+      "purchases": [
+        8,
+        10,
+        6,
+        4,
+        2,
+        1
+      ],
+      "maxQueue": 2,
+      "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+    },
+    {
+      "diff": "hard",
+      "seed": 1234,
+      "seconds": 321.2500000000365,
+      "over": true,
+      "winner": 1,
+      "purchases": [
+        16,
+        7,
+        3,
+        5,
+        3,
+        4
+      ],
+      "maxQueue": 2,
+      "scope": "AI controls enemy; scripted player recruits using same weights without free gold"
+    }
+  ]
+}

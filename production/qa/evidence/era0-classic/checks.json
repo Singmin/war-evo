@@ -1,0 +1,45 @@
+{
+  "baseline": "before-group-chibi-redesign",
+  "defaultUnits": [
+    "club_hd",
+    "slinger",
+    "wolf",
+    "mammoth",
+    "boulder"
+  ],
+  "era0Meta": [
+    {
+      "cw": 104,
+      "ch": 70,
+      "ax": 54,
+      "y": 0,
+      "s": 0.88
+    },
+    {
+      "cw": 40,
+      "ch": 35,
+      "ax": 20,
+      "y": 210
+    },
+    {
+      "cw": 48,
+      "ch": 39,
+      "ax": 22,
+      "y": 315
+    },
+    {
+      "cw": 68,
+      "ch": 55,
+      "ax": 30,
+      "y": 432
+    },
+    {
+      "cw": 42,
+      "ch": 43,
+      "ax": 20,
+      "y": 597
+    }
+  ],
+  "other16AtlasesAndMetaUnchanged": true,
+  "DLCUnchanged": true
+}

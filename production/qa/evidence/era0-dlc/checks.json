@@ -1,0 +1,28 @@
+{
+  "originalAtlasExactRestoration": true,
+  "allEraMetadataExactRestoration": true,
+  "other16AtlasesUnchanged": true,
+  "dlcCellsChecked": 180,
+  "dlcDefaultEnabled": false,
+  "originalSHA256": "e1c573c92fbf801ad123e4b2a760bc13e67250d3e1607928a05cdfe114dfae92",
+  "runtimeChecks": {
+    "originalDoesNotFetchDLC": true,
+    "atomicImageAndMetadataSwitch": true,
+    "otherEraFallback": true,
+    "networkImageManifestFailuresKeepOriginal": true,
+    "retryAfterFailure": true,
+    "savedDLCStartup": true,
+    "savedDLCStartupFailureRevertsAndPersists": true
+  },
+  "browserChecks": {
+    "defaultOriginal": true,
+    "DLCSelectionSurvivesReload": true,
+    "DLCInBattle": true,
+    "switchBackInSameBattle": true,
+    "unitIconsUpdate": true,
+    "originalSelectionSurvivesReload": true,
+    "consoleErrors": 0,
+    "finalSelection": "original"
+  },
+  "motion": "single-pose-preview"
+}

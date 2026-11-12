@@ -1,0 +1,52 @@
+/* 主题：颜色、字号、通用按钮和面板。改配色 / 字号只改这里的变量
+   画面按 1280×720 设计再整体缩放；手机横屏大约缩到一半，所以正文字号不低于 20px */
+:root {
+  /* 木质面板 */
+  --wood-0: #14110f;      /* 页面最底色 */
+  --wood-1: #261c14;      /* 深木 */
+  --wood-2: #2a2019;      /* 面板底 */
+  --wood-3: #3a2c20;      /* 按钮底 */
+  --wood-4: #5a4430;      /* 亮木 */
+  --edge: #6b5338;        /* 描边 */
+  --edge-hi: #8a6a46;     /* 亮描边 */
+  /* 文字 */
+  --text: #f4ead8;
+  --text-dim: #d9c8ad;
+  --text-mute: #a8957a;
+  /* 强调色 */
+  --gold: #ffd34d;        /* 金币、选中、可升级 */
+  --accent: #e89a2c;      /* 主按钮 */
+  --accent-hi: #ffd28a;
+  --tech: #5fd4ff;        /* 经验、科技点 */
+  --good: #9be36b;
+  --bad: #ff6b5b;
+  --me: #ffd27a;          /* 拾光派 */
+  --foe: #c9a7ff;         /* 余烬派 */
+  /* 字号 */
+  --fs-xs: 18px;
+  --fs-s: 21px;
+  --fs-m: 24px;
+  --fs-l: 30px;
+  --fs-xl: 44px;
+  --font: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--wood-0); overflow: hidden; touch-action: none;
+  -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
+  font-family: var(--font); color: var(--text); }
+button { font-family: inherit; cursor: pointer; }
+
+.row { display: flex; gap: 14px; }
+.big { min-width: 240px; height: 72px; padding: 0 22px; border-radius: 16px; border: 3px solid var(--edge-hi);
+  background: linear-gradient(#6a4f34, #46331f); color: #fff1d4; font-size: var(--fs-l); font-weight: bold; }
+.big:active { filter: brightness(1.2); }
+.big.pri { background: linear-gradient(var(--accent), #b4620f); border-color: var(--accent-hi); }
+.chip { min-width: 130px; height: 58px; border-radius: 29px; border: 2px solid #7b6043; background: #2e231a; color: #e8d6b8; font-size: var(--fs-m); }
+.chip.on { background: var(--accent); color: #2a1606; border-color: var(--accent-hi); font-weight: bold; }
+.chip:disabled { opacity: .4; }
+.panel { background: var(--wood-2); border: 2px solid var(--edge); border-radius: 16px; padding: 20px 30px; min-width: 520px; }
+.panel table { width: 100%; border-collapse: collapse; font-size: var(--fs-m); }
+.panel td, .panel th { padding: 8px 12px; text-align: center; border-bottom: 1px solid #4a3a2b; }
+.panel label { display: flex; align-items: center; justify-content: space-between; gap: 24px; font-size: var(--fs-m); margin: 12px 0; }
+.panel input[type=range] { width: 260px; }

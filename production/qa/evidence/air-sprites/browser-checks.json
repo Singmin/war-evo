@@ -1,0 +1,26 @@
+{
+  "matrix": {
+    "eraPackCases": 34,
+    "attacks": 34,
+    "crashes": 34,
+    "flash": 34
+  },
+  "selected": {
+    "selectedId": "u5",
+    "gold": 2100,
+    "text": "飞行支援 · 只攻击地面单位和基地\n射手、塔和大招可对空 · 对基地伤害减半\n生命 459 · 攻击 105",
+    "count": 7,
+    "fit": true,
+    "titleFits": true
+  },
+  "queue": {
+    "gold": 1390,
+    "queue": {
+      "type": 5,
+      "age": 9
+    },
+    "price": 710
+  },
+  "assetBrowser": 102,
+  "errors": []
+}

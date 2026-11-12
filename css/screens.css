@@ -1,0 +1,15 @@
+/* 覆盖页面：开始页、暂停、设置、战绩、结算 */
+.scr { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  background: rgba(12,9,7,.72); z-index: 10; }
+.scr.on { display: flex; }
+.scr h1 { margin: 0; font-size: 84px; letter-spacing: 14px; color: #ffcf5a; text-shadow: 0 4px 0 #8a4b12, 0 0 30px #ff9a3c66; }
+.scr h2 { margin: 0 0 6px; font-size: 52px; color: #ffcf5a; }
+.scr p { margin: 0; color: var(--text-dim); font-size: var(--fs-m); }
+
+/* 暂停页：双方科技 */
+#pauseCards { font-size: var(--fs-s); color: #bfae92; max-width: 900px; text-align: center; line-height: 1.4; }
+/* 结算页 */
+#resStats { font-size: var(--fs-m); line-height: 1.7; text-align: center; }
+
+#adStatus { position: fixed; z-index: 30; left: 50%; top: 18%; transform: translateX(-50%); max-width: 85vw;
+  padding: 8px 14px; border-radius: 8px; background: #211911; color: #ffe3b6; font-size: 14px; text-align: center; pointer-events: none; }

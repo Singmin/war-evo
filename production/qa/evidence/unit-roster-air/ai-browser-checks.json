@@ -1,0 +1,115 @@
+{
+  "reports": [
+    {
+      "diff": "easy",
+      "seconds": 45.89999999999868,
+      "purchases": [
+        2,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "enemyAir": [
+        {
+          "type": 5,
+          "x": 1739.1666666666667,
+          "hp": 70
+        }
+      ],
+      "enemyGold": 15.199999999995903,
+      "ending": {
+        "seconds": 256.4166666667621,
+        "over": true,
+        "winner": 1,
+        "purchases": [
+          11,
+          8,
+          5,
+          3,
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "diff": "normal",
+      "seconds": 21.100000000000083,
+      "purchases": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "enemyAir": [
+        {
+          "type": 5,
+          "x": 1739.1666666666667,
+          "hp": 70
+        }
+      ],
+      "enemyGold": 30.80000000000013,
+      "ending": {
+        "seconds": 70.2999999999973,
+        "over": true,
+        "winner": 1,
+        "purchases": [
+          3,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "diff": "hard",
+      "seconds": 34.533333333332656,
+      "purchases": [
+        2,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "enemyAir": [
+        {
+          "type": 5,
+          "x": 1739.1666666666667,
+          "hp": 70
+        }
+      ],
+      "enemyGold": 11.099999999998273,
+      "ending": {
+        "seconds": 327.8166666666972,
+        "over": true,
+        "winner": 1,
+        "purchases": [
+          23,
+          8,
+          6,
+          2,
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "response": {
+    "queue": [
+      {
+        "type": 1,
+        "age": 0
+      }
+    ],
+    "gold": 65,
+    "plan": null
+  },
+  "errors": [],
+  "scope": "all purchases use real income, prices, queues and spawn rules; accelerated fixed-step runs in Chromium"
+}

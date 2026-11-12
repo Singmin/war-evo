@@ -1,0 +1,744 @@
+[
+  {
+    "name": "40 simulated minute AI-versus-AI soak: stable, no victory observed",
+    "pass": true,
+    "over": false,
+    "winner": -1,
+    "seconds": 2400.000000002948,
+    "frames": 144000,
+    "airSeen": true,
+    "kills": 630,
+    "losses": 591,
+    "eras": [
+      4,
+      11
+    ],
+    "sides": [
+      {
+        "gold": 2128.010416665329,
+        "exp": 17680,
+        "pts": 14,
+        "hp": 5530.710833333351,
+        "queue": [
+          {
+            "type": 2,
+            "age": 4
+          },
+          {
+            "type": 1,
+            "age": 4
+          },
+          {
+            "type": 3,
+            "age": 4
+          }
+        ],
+        "era": 4
+      },
+      {
+        "gold": 824.1031666644851,
+        "exp": 1639,
+        "pts": 17,
+        "hp": 6070.39024390244,
+        "queue": [
+          {
+            "type": 4,
+            "age": 11
+          },
+          {
+            "type": 4,
+            "age": 11
+          },
+          {
+            "type": 1,
+            "age": 11
+          }
+        ],
+        "era": 11
+      }
+    ],
+    "units": [
+      {
+        "type": 0,
+        "side": 1,
+        "x": 964.8333333333076,
+        "hp": 716,
+        "range": 30
+      },
+      {
+        "type": 3,
+        "side": 1,
+        "x": 906.8333333333076,
+        "hp": 2288.448000000002,
+        "range": 40
+      },
+      {
+        "type": 2,
+        "side": 1,
+        "x": 1017.8333333333076,
+        "hp": 590,
+        "range": 30
+      },
+      {
+        "type": 2,
+        "side": 1,
+        "x": 1077.8333333333076,
+        "hp": 590,
+        "range": 30
+      },
+      {
+        "type": 3,
+        "side": 1,
+        "x": 1142.8333333333076,
+        "hp": 2556,
+        "range": 40
+      },
+      {
+        "type": 3,
+        "side": 0,
+        "x": 773.5833333333227,
+        "hp": 2343,
+        "range": 40
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 1200.8333333333076,
+        "hp": 716,
+        "range": 30
+      },
+      {
+        "type": 4,
+        "side": 0,
+        "x": 528.2500000000039,
+        "hp": 490,
+        "range": 340
+      },
+      {
+        "type": 4,
+        "side": 1,
+        "x": 1252.8333333333076,
+        "hp": 328,
+        "range": 340
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 1304.8333333333076,
+        "hp": 716,
+        "range": 30
+      },
+      {
+        "type": 4,
+        "side": 0,
+        "x": 470.25000000000387,
+        "hp": 490,
+        "range": 340
+      },
+      {
+        "type": 1,
+        "side": 1,
+        "x": 1349.8333333333076,
+        "hp": 262,
+        "range": 220
+      },
+      {
+        "type": 1,
+        "side": 0,
+        "x": 419.25000000000387,
+        "hp": 262,
+        "range": 220
+      },
+      {
+        "type": 1,
+        "side": 1,
+        "x": 1393.8333333333076,
+        "hp": 262,
+        "range": 220
+      },
+      {
+        "type": 4,
+        "side": 0,
+        "x": 368.25000000000244,
+        "hp": 490,
+        "range": 340
+      },
+      {
+        "type": 4,
+        "side": 1,
+        "x": 1444.8333333333076,
+        "hp": 328,
+        "range": 340
+      },
+      {
+        "type": 4,
+        "side": 0,
+        "x": 310.2500000000007,
+        "hp": 490,
+        "range": 340
+      },
+      {
+        "type": 4,
+        "side": 1,
+        "x": 1502.8333333333076,
+        "hp": 328,
+        "range": 340
+      },
+      {
+        "type": 1,
+        "side": 1,
+        "x": 1553.8333333333076,
+        "hp": 262,
+        "range": 220
+      },
+      {
+        "type": 1,
+        "side": 1,
+        "x": 1597.8333333333076,
+        "hp": 262,
+        "range": 220
+      },
+      {
+        "type": 4,
+        "side": 0,
+        "x": 252.24999999999898,
+        "hp": 490,
+        "range": 340
+      },
+      {
+        "type": 4,
+        "side": 0,
+        "x": 194.24999999999898,
+        "hp": 490,
+        "range": 340
+      },
+      {
+        "type": 0,
+        "side": 0,
+        "x": 173,
+        "hp": 551,
+        "range": 30
+      },
+      {
+        "type": 1,
+        "side": 1,
+        "x": 1641.8333333333076,
+        "hp": 262,
+        "range": 220
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 1686.8333333333076,
+        "hp": 716,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 1732.8333333333076,
+        "hp": 716,
+        "range": 30
+      },
+      {
+        "type": 1,
+        "side": 1,
+        "x": 1748,
+        "hp": 262,
+        "range": 220
+      }
+    ],
+    "elapsedMs": 3189
+  },
+  {
+    "name": "desktop menu order",
+    "pass": true,
+    "menu": [
+      {
+        "name": "骨棒战士",
+        "price": "15 金"
+      },
+      {
+        "name": "投石手",
+        "price": "25 金"
+      },
+      {
+        "name": "狼骑兵",
+        "price": "40 金"
+      },
+      {
+        "name": "巨石投手",
+        "price": "70 金"
+      },
+      {
+        "name": "驯鹰人",
+        "price": "85 金"
+      },
+      {
+        "name": "猛犸骑手",
+        "price": "100 金"
+      },
+      {
+        "name": "返回",
+        "price": ""
+      }
+    ]
+  },
+  {
+    "name": "all six physical number keys follow visual order",
+    "pass": true
+  },
+  {
+    "name": "tower number shortcuts remain independent",
+    "pass": true
+  },
+  {
+    "name": "17 eras x 2 skins: spawn, icon, hit, death and render",
+    "pass": true,
+    "eras": [
+      {
+        "era": 0,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 1,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 2,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 3,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 4,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 5,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 6,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 7,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 8,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 9,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 10,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 11,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 12,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 13,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 14,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 15,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 16,
+        "pack": "original",
+        "passed": true
+      },
+      {
+        "era": 0,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 1,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 2,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 3,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 4,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 5,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 6,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 7,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 8,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 9,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 10,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 11,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 12,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 13,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 14,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 15,
+        "pack": "chibi-tribe",
+        "passed": true
+      },
+      {
+        "era": 16,
+        "pack": "chibi-tribe",
+        "passed": true
+      }
+    ],
+    "airSource": "original/0",
+    "groundSource": "chibi-tribe/0"
+  },
+  {
+    "name": "812x375 landscape: seven buttons fit one row",
+    "pass": true,
+    "layout": {
+      "bar": {
+        "left": 72.66666412353516,
+        "right": 739.3332901000977,
+        "top": 320.83331298828125,
+        "bottom": 375
+      },
+      "buttons": [
+        {
+          "left": 79.95832824707031,
+          "right": 167.4583282470703,
+          "top": 324.21875,
+          "bottom": 370.05206298828125,
+          "label": "防化兵",
+          "labelWidth": 34.50520324707031,
+          "textWidth": 54.6875
+        },
+        {
+          "left": 172.66665649414062,
+          "right": 260.1666564941406,
+          "top": 324.21875,
+          "bottom": 370.05206298828125,
+          "label": "伽马射手",
+          "labelWidth": 46.004241943359375,
+          "textWidth": 54.6875
+        },
+        {
+          "left": 265.375,
+          "right": 352.8749694824219,
+          "top": 324.21875,
+          "bottom": 370.05206298828125,
+          "label": "核动力车",
+          "labelWidth": 46.00421142578125,
+          "textWidth": 54.68748092651367
+        },
+        {
+          "left": 358.08331298828125,
+          "right": 445.58331298828125,
+          "top": 324.21875,
+          "bottom": 370.05206298828125,
+          "label": "战术核炮",
+          "labelWidth": 46.004241943359375,
+          "textWidth": 54.6875
+        },
+        {
+          "left": 450.7916564941406,
+          "right": 538.2916259765625,
+          "top": 324.21875,
+          "bottom": 370.05206298828125,
+          "label": "核动力轰炸机",
+          "labelWidth": 53.564453125,
+          "textWidth": 54.68748092651367
+        },
+        {
+          "left": 543.5,
+          "right": 631,
+          "top": 324.21875,
+          "bottom": 370.05206298828125,
+          "label": "反应堆坦克",
+          "labelWidth": 49.01531982421875,
+          "textWidth": 54.6875
+        },
+        {
+          "left": 670.5833129882812,
+          "right": 732.0416870117188,
+          "top": 324.21875,
+          "bottom": 370.05206298828125,
+          "label": "返回",
+          "labelWidth": 23.00616455078125,
+          "textWidth": 28.64585229905985
+        }
+      ]
+    }
+  },
+  {
+    "name": "full scripted-player vs normal AI browser match reaches result with air units",
+    "pass": true,
+    "over": true,
+    "winner": 1,
+    "seconds": 225.18333333340468,
+    "frames": 13511,
+    "airSeen": true,
+    "kills": 35,
+    "losses": 46,
+    "eras": [
+      0,
+      1
+    ],
+    "sides": [
+      {
+        "gold": 15.550000000003841,
+        "exp": 40,
+        "pts": 7,
+        "hp": 0,
+        "queue": [],
+        "era": 0
+      },
+      {
+        "gold": 118.10333333334512,
+        "exp": 150,
+        "pts": 2,
+        "hp": 1574.4,
+        "queue": [
+          {
+            "type": 0,
+            "age": 1
+          },
+          {
+            "type": 0,
+            "age": 1
+          },
+          {
+            "type": 0,
+            "age": 1
+          }
+        ],
+        "era": 1
+      }
+    ],
+    "units": [
+      {
+        "type": 0,
+        "side": 1,
+        "x": 200.3333333333644,
+        "hp": 67.80000000000001,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 246.33333333336537,
+        "hp": 119,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 292.3333333333656,
+        "hp": 89,
+        "range": 30
+      },
+      {
+        "type": 1,
+        "side": 1,
+        "x": 389.33333333336486,
+        "hp": 34,
+        "range": 220
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 434.33333333336486,
+        "hp": 104,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 480.33333333336486,
+        "hp": 104,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 526.3333333333649,
+        "hp": 104,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 572.3333333333649,
+        "hp": 89,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 618.3333333333649,
+        "hp": 104,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 664.3333333333649,
+        "hp": 104,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 710.3333333333649,
+        "hp": 104,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 756.3333333333668,
+        "hp": 119,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 802.3333333333668,
+        "hp": 89,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 848.3333333333694,
+        "hp": 111.5,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 894.3333333333694,
+        "hp": 134,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 940.333333333372,
+        "hp": 134,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 986.333333333372,
+        "hp": 134,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 1032.333333333374,
+        "hp": 134,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 1078.333333333374,
+        "hp": 134,
+        "range": 30
+      },
+      {
+        "type": 0,
+        "side": 1,
+        "x": 1124.333333333374,
+        "hp": 134,
+        "range": 30
+      }
+    ],
+    "elapsedMs": 279.90000000596046
+  },
+  {
+    "name": "browser page errors",
+    "pass": true,
+    "errors": []
+  }
+]

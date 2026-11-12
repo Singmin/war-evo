@@ -1,0 +1,45 @@
+[
+  {
+    "scenario": "archer-infantry",
+    "prices": [
+      255,
+      255
+    ],
+    "seconds": 11.433333333333481,
+    "survivors": [
+      0,
+      10
+    ],
+    "baseHp": [
+      1000,
+      1000
+    ],
+    "airHp": [],
+    "scope": "fixed initial armies, no reinforcements, towers, technologies or specials"
+  },
+  {
+    "scenario": "heavy-artillery",
+    "prices": [
+      510,
+      510
+    ],
+    "seconds": 56.066666666664766,
+    "survivors": [
+      6,
+      5
+    ],
+    "baseHp": [
+      0,
+      728
+    ],
+    "airHp": [
+      70,
+      70,
+      70,
+      70,
+      70,
+      70
+    ],
+    "scope": "fixed initial armies, no reinforcements, towers, technologies or specials"
+  }
+]

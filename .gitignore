@@ -1,0 +1,23 @@
+# Build outputs (H5 zips, test QR codes)
+dist/
+
+# Local backups and ephemeral session state
+production/backups/
+production/session-state/
+production/session-logs/
+
+# Third-party raw asset pack (processed assets live in assets/)
+Tiny Swords (Free Pack)/
+__MACOSX/
+
+# Local-only config
+project.local.yaml
+CLAUDE.local.md
+.claude/settings.local.json
+.env*
+
+# Python / OS junk
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

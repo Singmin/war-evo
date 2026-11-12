@@ -1,0 +1,20 @@
+{
+  "cells_checked": 180,
+  "solid_border_contacts": [],
+  "faction_shapes_match": true,
+  "non_team_colors_preserved": true,
+  "source_team_recolored_pixels": [
+    433,
+    106,
+    135,
+    457,
+    624
+  ],
+  "other_eras_unchanged": true,
+  "atlas_size": [
+    3264,
+    2388
+  ],
+  "atlas_bytes": 213312,
+  "motion": "single-pose-preview"
+}

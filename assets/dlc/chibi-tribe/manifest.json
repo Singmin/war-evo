@@ -1,0 +1,54 @@
+{
+  "id": "chibi-tribe",
+  "name": "部落纪·大头圆脸 DLC",
+  "version": "8ce076d288",
+  "defaultEnabled": false,
+  "motion": "single-pose-preview",
+  "eras": {
+    "0": {
+      "file": "era0.webp",
+      "units": [
+        {
+          "cw": 176,
+          "ch": 140,
+          "ax": 112,
+          "y": 0,
+          "s": 0.52,
+          "preview": "concept-v4"
+        },
+        {
+          "cw": 160,
+          "ch": 128,
+          "ax": 102,
+          "y": 420,
+          "s": 0.5,
+          "preview": "concept-v4"
+        },
+        {
+          "cw": 208,
+          "ch": 160,
+          "ax": 104,
+          "y": 804,
+          "s": 0.47,
+          "preview": "concept-v4"
+        },
+        {
+          "cw": 272,
+          "ch": 208,
+          "ax": 136,
+          "y": 1284,
+          "s": 0.47,
+          "preview": "concept-v4"
+        },
+        {
+          "cw": 192,
+          "ch": 160,
+          "ax": 122,
+          "y": 1908,
+          "s": 0.52,
+          "preview": "concept-v4"
+        }
+      ]
+    }
+  }
+}

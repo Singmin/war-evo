@@ -1,0 +1,60 @@
+{
+  "checks": 180,
+  "atlas": [
+    2688,
+    2016
+  ],
+  "atlas_bytes": 72394,
+  "units": [
+    {
+      "type": 0,
+      "cell": [
+        160,
+        112
+      ],
+      "old_height": 54,
+      "new_height": 79,
+      "max_game_height_difference": 1.173
+    },
+    {
+      "type": 1,
+      "cell": [
+        144,
+        112
+      ],
+      "old_height": 48,
+      "new_height": 70,
+      "max_game_height_difference": 1.173
+    },
+    {
+      "type": 2,
+      "cell": [
+        160,
+        128
+      ],
+      "old_height": 63,
+      "new_height": 93,
+      "max_game_height_difference": 0.88
+    },
+    {
+      "type": 3,
+      "cell": [
+        224,
+        176
+      ],
+      "old_height": 89,
+      "new_height": 132,
+      "max_game_height_difference": 0.88
+    },
+    {
+      "type": 4,
+      "cell": [
+        160,
+        144
+      ],
+      "old_height": 58,
+      "new_height": 86,
+      "max_game_height_difference": 0.88
+    }
+  ]
+}

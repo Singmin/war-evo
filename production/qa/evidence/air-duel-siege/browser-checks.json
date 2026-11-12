@@ -1,0 +1,66 @@
+{
+  "matrix": {
+    "cases": 34,
+    "spriteDrawn": 34,
+    "icons": 34,
+    "attackFrames": 34,
+    "flashRows": 34,
+    "crashes": 34,
+    "fails": []
+  },
+  "rules": {
+    "groundCannotHitAir": true,
+    "airHitsGround": true,
+    "archerHitsAir": true,
+    "airFightsAir": {
+      "bothHurt": true,
+      "stoppedAtRange": true,
+      "gap": 118,
+      "range": 120
+    },
+    "airDuelEnds": {
+      "survivors": 0
+    },
+    "artilleryStillCannotHitAir": true,
+    "baseDamage": {
+      "lost": 40,
+      "perHit": 8,
+      "wholeHits": true
+    }
+  },
+  "lineupZoom": 0.6666666666666666,
+  "battle": {
+    "airHurt": 1,
+    "projs": 1,
+    "units": 5
+  },
+  "crash": {
+    "t": 0.5,
+    "alt": 150
+  },
+  "airDuelShot": {
+    "airShots": 2,
+    "sidesShooting": 2,
+    "hurtSides": [
+      0,
+      1
+    ]
+  },
+  "desktopInfo": "飞行支援 · 可攻击地面兵、空军和基地\n射手、空军、塔和大招可对空 · 对基地伤害减半\n生命 459 · 攻击 105",
+  "desktopQueue": "[{\"type\":5,\"age\":4}]",
+  "desktopSpawned": true,
+  "phone": {
+    "selectedId": "u5",
+    "queueAfterFirstTap": 0,
+    "buttons": 7,
+    "oneRow": true,
+    "inView": true,
+    "info": "飞行支援 · 可攻击地面兵、空军和基地\n射手、空军、塔和大招可对空 · 对基地伤害减半\n生命 459 · 攻击 105",
+    "infoInView": true,
+    "name": "翼龙",
+    "nameFits": true,
+    "queueAfterSecondTap": 1,
+    "spawned": true
+  },
+  "errors": []
+}

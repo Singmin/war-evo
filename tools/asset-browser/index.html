@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="data:,">
+  <title>文明跃迁 · 素材档案</title>
+  <link rel="stylesheet" href="browser.css?v=20261110-history3">
+</head>
+<body>
+  <a class="skip" href="#content">跳到素材</a>
+  <header class="masthead">
+    <div><span class="eyebrow">文明跃迁 / 开发工具</span><h1>素材档案<span class="edition">第一期</span></h1></div>
+    <div class="header-info"><span class="readonly">只读浏览</span><p id="inventory">正在读取素材…</p></div>
+  </header>
+  <nav id="tabs" class="tabs" aria-label="素材分类">
+    <button data-tab="units" aria-current="page">兵种图鉴 <span>01</span></button>
+    <button data-tab="bases">基地 <span>02</span></button>
+    <button data-tab="fx">特效 <span>03</span></button>
+    <button data-tab="textures">材质 <span>04</span></button>
+    <button data-tab="projectiles">弹道总表 <span>05</span></button>
+    <button data-tab="health">体检 <span id="health-badge">…</span></button>
+    <button data-tab="packs">素材包 <span>07</span></button>
+    <button data-tab="history">历代外观 <span>08</span></button>
+  </nav>
+  <div class="workspace">
+    <aside aria-label="时代筛选"><div class="aside-title">时代索引 <span id="era-count"></span></div><div id="eras"></div><p class="aside-note">共同起源 → 三条路线<br>机械 · 生物 · 火药</p></aside>
+    <main>
+      <form class="toolbar">
+        <label class="search">搜索素材<input id="search" type="search" placeholder="名称、编号或特效名" autocomplete="off"></label>
+        <label>像素缩放<select id="zoom" aria-label="像素缩放"><option value="1">1×</option><option value="2" selected>2×</option><option value="4">4×</option></select></label>
+        <label>播放速度<select id="speed" aria-label="播放速度"><option value="0">暂停</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+        <label class="check"><input id="anchors" type="checkbox">锚点</label>
+        <label class="check"><input id="bounds" type="checkbox">帧边框</label>
+      </form>
+      <section class="section-head"><div><h2 id="page-title">兵种图鉴</h2><p id="page-note">正在读取图集和元数据…</p></div><span id="result-count" class="count"></span></section>
+      <div id="status" role="status" aria-live="polite">正在加载素材，请稍候。</div>
+      <div id="content" tabindex="-1" aria-label="素材列表"></div>
+      <footer>本地素材工具 · 图片与元数据来自游戏目录 · 不写回数据</footer>
+    </main>
+  </div>
+  <dialog id="unit-detail" aria-labelledby="detail-title"><div id="detail-content"></div></dialog>
+  <!-- 只运行无副作用的数据脚本；skins.js 由 browser.js 读取文本。 -->
+  <script src="../../js/core/data.js"></script>
+  <script src="../../js/render/sprite_meta.js?v=20261111-air-sprites"></script>
+  <script src="../../js/render/fx_meta.js"></script>
+  <script src="../../js/render/base_meta.js"></script>
+  <!-- 外部素材包清单，由 scan_packs.py 生成；缺失时素材包页签会提示 -->
+  <script src="packs.js"></script>
+  <!-- 历代兵种外观清单（手写）；缺失时「历代外观」页签会提示 -->
+  <script src="generations.js?v=20261110b"></script>
+  <script src="browser.js?v=20261111-air-sprites"></script>
+</body>
+</html>

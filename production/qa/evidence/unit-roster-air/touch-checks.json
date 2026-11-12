@@ -1,0 +1,5 @@
+{
+  "touch": "actual touch events: first tap selects, second tap queues air; training spawns air",
+  "projectiles": "archer plus all three towers target an airborne unit",
+  "errors": []
+}

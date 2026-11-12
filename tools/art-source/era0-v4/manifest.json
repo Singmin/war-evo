@@ -1,0 +1,63 @@
+{
+  "available": true,
+  "default": false,
+  "version": "concept-v4",
+  "motion": "single-pose-preview",
+  "units": [
+    {
+      "id": "club",
+      "name": "骨棒战士",
+      "file": "club.png",
+      "cell_width": 176,
+      "cell_height": 140,
+      "anchor_x": 112,
+      "native_height": 90,
+      "draw_scale": 0.52,
+      "death": "fall"
+    },
+    {
+      "id": "slinger",
+      "name": "投石手",
+      "file": "slinger.png",
+      "cell_width": 160,
+      "cell_height": 128,
+      "anchor_x": 102,
+      "native_height": 82,
+      "draw_scale": 0.5,
+      "death": "fall"
+    },
+    {
+      "id": "wolf",
+      "name": "狼骑兵",
+      "file": "wolf.png",
+      "cell_width": 208,
+      "cell_height": 160,
+      "anchor_x": 104,
+      "native_height": 116,
+      "draw_scale": 0.47,
+      "death": "slump"
+    },
+    {
+      "id": "mammoth",
+      "name": "猛犸骑手",
+      "file": "mammoth.png",
+      "cell_width": 272,
+      "cell_height": 208,
+      "anchor_x": 136,
+      "native_height": 164,
+      "draw_scale": 0.47,
+      "death": "slump"
+    },
+    {
+      "id": "boulder",
+      "name": "巨石投手",
+      "file": "boulder.png",
+      "cell_width": 192,
+      "cell_height": 160,
+      "anchor_x": 122,
+      "native_height": 98,
+      "draw_scale": 0.52,
+      "death": "fall"
+    }
+  ]
+}

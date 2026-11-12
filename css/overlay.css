@@ -1,0 +1,67 @@
+/* 暂停、设置、战绩、结算：和开始页同一套青铜风格（css/menu.css）。
+   只作用在 .ovl 上，科技树和广告占位的 .big 不受影响 */
+.scr.ovl { gap: 18px;
+  background: radial-gradient(ellipse 70% 85% at 50% 50%, rgba(10,7,4,.6) 0%, rgba(6,4,2,.88) 100%); }
+
+/* 标题：金属浮雕字（同开始页标题，小一号） */
+.ovl h2 { margin: 0; font-size: 68px; font-weight: 900; letter-spacing: 10px; line-height: 1.1; text-shadow: none;
+  background: linear-gradient(#fff6d0 0%, #ffd34d 40%, #e89a2c 54%, #8a4b12 58%, #d98a2a 78%, #ffcf5a 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: 1.5px #4a2406;
+  filter: drop-shadow(0 2px 0 #b4620f) drop-shadow(0 4px 0 #2a1606) drop-shadow(0 8px 10px rgba(0,0,0,.7));
+  animation: min .4s ease-out; }
+/* 失败：红铜色 */
+.ovl h2.lose { background-image: linear-gradient(#ffe0d0 0%, #ff8a6b 40%, #c4442a 54%, #5a1608 58%, #b4402a 78%, #ff7a5c 100%);
+  -webkit-text-stroke-color: #3a0e04; }
+
+/* 面板 / 按钮底板：青铜底板 */
+.ovl .panel, .ovl .oplate { background: linear-gradient(rgba(8,7,6,.55), rgba(5,4,3,.78)), url("../assets/ui/textures/bronze.webp");
+  border: 3px solid rgba(0,0,0,.7); border-radius: 6px; color: #f3e6cc; text-shadow: 0 1px 0 #000;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.08), 0 8px 24px rgba(0,0,0,.6); animation: min .4s ease-out; }
+.ovl .oplate { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px 26px; }
+.ovl .panel th { color: var(--gold); }
+.ovl .panel td, .ovl .panel th { border-bottom-color: rgba(0,0,0,.45); }
+
+/* 按钮：青铜按钮图（同开始页 .mm） */
+.ovl .big { min-width: 260px; height: 72px; padding: 0 26px 7px; border: none; border-radius: 0;
+  background: url("../assets/ui/textures/btn_bronze.webp") center / 100% 100% no-repeat;
+  color: #fff6e6; font-size: 30px; font-weight: bold; letter-spacing: 4px;
+  text-shadow: 0 1px 0 #000, 0 0 3px #000, 0 0 5px rgba(0,0,0,.8);
+  transform: translateY(-3px); filter: drop-shadow(0 4px 3px rgba(0,0,0,.7)); transition: transform .06s, filter .12s; }
+.ovl .big:hover  { filter: brightness(1.12) drop-shadow(0 4px 3px rgba(0,0,0,.7)); }
+.ovl .big:active { transform: translateY(2px); filter: brightness(.92) drop-shadow(0 1px 1px rgba(0,0,0,.7)); }
+.ovl .big.pri { min-width: 300px; height: 84px; font-size: 36px; letter-spacing: 6px; color: #ffe08a;
+  filter: drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 8px #ffd34d99) drop-shadow(0 4px 3px rgba(0,0,0,.7)); }
+
+/* 设置页的速度选项：窄青铜按钮，选中金边 + 下划线（同开始页难度） */
+#setSpritePack { max-width: 360px; padding: 9px 12px; font: inherit; font-size: 22px;
+  color: var(--text); background: var(--wood-1); border: 2px solid var(--edge); border-radius: 4px; }
+#setSpritePack:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+#setSpritePack:disabled { opacity: .65; }
+#spritePackStatus { max-width: 580px; min-height: 26px; margin: 6px 0 0;
+  color: var(--text-dim); font-size: 18px; line-height: 1.5; }
+.ovl .chip { position: relative; min-width: 92px; height: 54px; border: none; border-radius: 0; padding: 0 12px 5px;
+  background: url("../assets/ui/textures/btn_bronze_s.webp") center / 100% 100% no-repeat;
+  color: #fff6e6; font-size: 26px; font-weight: bold; text-shadow: 0 1px 0 #000, 0 0 3px #000;
+  filter: grayscale(.5) brightness(.72) drop-shadow(0 3px 2px rgba(0,0,0,.7)); }
+.ovl .chip.on { color: #ffe08a; transform: translateY(-3px);
+  filter: drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 6px #ffd34d99) drop-shadow(0 4px 3px rgba(0,0,0,.7)); }
+.ovl .chip.on::after { content: ''; position: absolute; left: 30%; right: 30%; bottom: -8px; height: 4px; border-radius: 2px;
+  background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+
+/* 音量滑条：深色凹槽 + 金色把手 */
+.ovl input[type=range] { -webkit-appearance: none; appearance: none; height: 30px; background: transparent; }
+.ovl input[type=range]::-webkit-slider-runnable-track { height: 10px; border-radius: 5px; background: #1a120b; box-shadow: inset 0 2px 3px #000, 0 1px 0 rgba(255,255,255,.12); }
+.ovl input[type=range]::-moz-range-track { height: 10px; border-radius: 5px; background: #1a120b; }
+.ovl input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; margin-top: -10px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff1b0, #ffcf5a 45%, #a8620f); border: 2px solid #3a2006; box-shadow: 0 2px 4px #000; }
+.ovl input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: #ffcf5a; border: 2px solid #3a2006; }
+
+#pauseCards { color: #d8c7a8; text-shadow: 0 1px 0 #000; }
+@media (prefers-reduced-motion: reduce) { .ovl h2, .ovl .panel, .ovl .oplate { animation: none; } }
+
+/* 结算页：看广告复活（js/ui/ads.js updateReviveUI） */
+#resRevive[hidden], #btnReviveHalf[hidden] { display: none; }
+.ovl .big.revive { display: flex; flex-direction: column; align-items: center; justify-content: center; letter-spacing: 2px; font-size: 28px; }
+.ovl .big.pri.revive { font-size: 30px; min-width: 340px; }
+.ovl .big.revive small { font-size: 18px; letter-spacing: 1px; color: #e8d6b4; font-weight: normal; }
+.ovl .big.revive:disabled { opacity: .7; cursor: default; }

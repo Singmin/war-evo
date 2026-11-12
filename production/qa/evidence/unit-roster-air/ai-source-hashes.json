@@ -1,0 +1,14 @@
+[
+  {
+    "file": "js/core/data.js",
+    "sha256": "A407E461CAE4CBBC575D13E55F4CC9D4F2779D89BA3E28D501E97803F15662DD"
+  },
+  {
+    "file": "js/core/ai.js",
+    "sha256": "B7F7DEF108840F2B6FB148CC84FF46D36A2F581472BBF0D2EC4E7DAB4493EBC3"
+  },
+  {
+    "file": "design/quick-specs/unit-roster-air.md",
+    "sha256": "C536BF84BB69CC1C9BB00358FFFB9314B91A8430CE7DB79231AEA3AC6BA5434A"
+  }
+]

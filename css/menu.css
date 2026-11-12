@@ -1,0 +1,64 @@
+/* 开始页：标题 + 青铜底板按钮，叠在背后的 AI 对 AI 演示局上（js/ui/attract.js）
+   视觉方向：art-director 2026-11-08。中间一条（约 y 200–540）不遮挡，战斗本身就是主视觉 */
+#scrMenu { justify-content: space-between; padding: 34px 0 26px; gap: 0;
+  background:
+    linear-gradient(rgba(10,7,4,.78) 0, rgba(10,7,4,.35) 150px, transparent 230px),
+    linear-gradient(transparent 470px, rgba(10,7,4,.55) 580px, rgba(8,6,4,.85) 720px),
+    radial-gradient(ellipse 85% 75% at 50% 52%, transparent 55%, rgba(0,0,0,.45) 100%); }
+
+/* ---------- 标题 ---------- */
+.mtitle { position: relative; text-align: center; animation: min .6s ease-out; }
+#scrMenu .mtitle h1 { position: relative; margin: 0; font-size: 116px; font-weight: 900; letter-spacing: 12px; line-height: 1.05;
+  text-shadow: none;
+  background: linear-gradient(#fff6d0 0%, #ffd34d 38%, #e89a2c 52%, #8a4b12 56%, #d98a2a 75%, #ffcf5a 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 2px #4a2406;
+  filter: drop-shadow(0 2px 0 #b4620f) drop-shadow(0 4px 0 #6b3a10) drop-shadow(0 7px 0 #2a1606)
+          drop-shadow(0 12px 14px rgba(0,0,0,.75)); }
+.mtitle::before { content: ''; position: absolute; left: 50%; top: 58px; width: 760px; height: 170px; margin-left: -380px;
+  background: radial-gradient(ellipse at center, rgba(255,170,60,.38), rgba(255,140,40,0) 70%);
+  pointer-events: none; animation: mglow 3.2s ease-in-out infinite alternate; }
+/* 两派对峙的小标语 */
+#scrMenu .mtag { margin: 6px 0 0; display: flex; align-items: center; justify-content: center; gap: 16px;
+  font-size: 30px; font-weight: bold; letter-spacing: 6px; }
+.mtag .me  { color: var(--me);  text-shadow: 0 2px 0 #000, 0 0 12px rgba(255,180,60,.6); }
+.mtag .foe { color: var(--foe); text-shadow: 0 2px 0 #000, 0 0 12px rgba(160,110,255,.6); }
+.mtag i { width: 150px; height: 4px; transform: skewX(-30deg);
+  background: linear-gradient(90deg, var(--me) 0 47%, transparent 47% 53%, var(--foe) 53%); box-shadow: 0 1px 0 #000; }
+
+/* ---------- 底部青铜底板（同底栏 #bar 的做法）---------- */
+.mplate { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 14px 26px 16px;
+  background: linear-gradient(rgba(8,7,6,.55), rgba(5,4,3,.75)), url("../assets/ui/textures/bronze.webp");
+  border: 3px solid rgba(0,0,0,.7); border-radius: 6px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.08), 0 8px 24px rgba(0,0,0,.6);
+  animation: min .6s ease-out; }
+.mrow, .mdiff { display: flex; gap: 14px; align-items: flex-end; }
+
+/* ---------- 按钮：一套青铜按钮图 ---------- */
+.mm { position: relative; min-width: 220px; height: 74px; padding: 0 26px 7px; border: none; border-radius: 0;
+  background: url("../assets/ui/textures/btn_bronze.webp") center / 100% 100% no-repeat;
+  color: #fff6e6; font-size: 30px; font-weight: bold; letter-spacing: 4px; cursor: pointer;
+  text-shadow: 0 1px 0 #000, 0 0 3px #000, 0 0 5px rgba(0,0,0,.8);
+  transform: translateY(-3px); filter: drop-shadow(0 4px 3px rgba(0,0,0,.7));
+  transition: transform .06s, filter .12s; }
+.mm:hover  { filter: brightness(1.12) drop-shadow(0 4px 3px rgba(0,0,0,.7)); }
+.mm:active { transform: translateY(2px); filter: brightness(.92) drop-shadow(0 1px 1px rgba(0,0,0,.7)); }
+.mm.pri { min-width: 320px; height: 92px; font-size: 40px; letter-spacing: 8px; color: #ffe08a;
+  filter: drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 8px #ffd34d99) drop-shadow(0 4px 3px rgba(0,0,0,.7));
+  animation: mbreathe 1.1s ease-in-out infinite alternate; will-change: transform; }
+.mm.pri:active { animation: none; transform: translateY(2px); }
+/* 难度：窄按钮，没选中的压暗；选中的金边 + 下划线（不只靠亮度区分） */
+.mm.s { min-width: 128px; height: 58px; font-size: 28px; letter-spacing: 2px;
+  background-image: url("../assets/ui/textures/btn_bronze_s.webp");
+  filter: grayscale(.5) brightness(.72) drop-shadow(0 3px 2px rgba(0,0,0,.7)); }
+.mm.s:hover { filter: grayscale(.3) brightness(.88) drop-shadow(0 3px 2px rgba(0,0,0,.7)); }
+.mm.s.on { color: #ffe08a; transform: translateY(-5px);
+  filter: drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 6px #ffd34d99) drop-shadow(0 4px 3px rgba(0,0,0,.7)); }
+.mm.s.on::after { content: ''; position: absolute; left: 30%; right: 30%; bottom: -9px; height: 4px; border-radius: 2px;
+  background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+
+/* ---------- 动效：只动 opacity / transform（手机上动 filter 会卡）---------- */
+@keyframes mglow    { from { opacity: .55; transform: scaleX(.94); } to { opacity: 1; transform: scaleX(1.04); } }
+@keyframes mbreathe { from { transform: translateY(-3px) scale(1); } to { transform: translateY(-3px) scale(1.035); } }
+@keyframes min      { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .mtitle::before, .mm.pri, .mtitle, .mplate { animation: none; } }

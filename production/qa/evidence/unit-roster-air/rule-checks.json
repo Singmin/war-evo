@@ -1,0 +1,167 @@
+[
+  {
+    "name": "17 eras: six names, stats, prices, and technology discounts",
+    "pass": true
+  },
+  {
+    "name": "counter ring remains intact; only archers counter air",
+    "pass": true
+  },
+  {
+    "name": "archer counter is applied once at impact",
+    "pass": true
+  },
+  {
+    "name": "archer vs air is exactly 1.6x",
+    "pass": true
+  },
+  {
+    "name": "non-counter ranged hit uses base damage",
+    "pass": true
+  },
+  {
+    "name": "melee and artillery cannot target air",
+    "pass": true
+  },
+  {
+    "name": "artillery splash damages ground but leaves air intact",
+    "pass": true
+  },
+  {
+    "name": "tower 0 can target and damage air",
+    "pass": true
+  },
+  {
+    "name": "tower 1 can target and damage air",
+    "pass": true
+  },
+  {
+    "name": "tower 2 can target and damage air",
+    "pass": true
+  },
+  {
+    "name": "heavy tower splash damages ground and air",
+    "pass": true
+  },
+  {
+    "name": "special can damage air",
+    "pass": true
+  },
+  {
+    "name": "air attacks base at half damage",
+    "pass": true
+  },
+  {
+    "name": "ground passes beneath enemy air",
+    "pass": true
+  },
+  {
+    "name": "air stops and attacks front ground unit",
+    "pass": true
+  },
+  {
+    "name": "archer chooses closer air over front ground",
+    "pass": true
+  },
+  {
+    "name": "archer chooses closer ground over air",
+    "pass": true
+  },
+  {
+    "name": "opposing air passes through without attacking",
+    "pass": true
+  },
+  {
+    "name": "friendly air retains at least SPACING",
+    "pass": true,
+    "note": "Corrected assertion: spacing is a minimum; units may stop farther apart when both reach attack range. Verified moving and stopped formations."
+  },
+  {
+    "name": "air spawn ignores a full ground gate stack",
+    "pass": true
+  },
+  {
+    "name": "ground spawn ignores air gate stack",
+    "pass": true
+  },
+  {
+    "name": "moving friendly air blocks spawning in same layer",
+    "pass": true
+  },
+  {
+    "name": "population cap counts both layers",
+    "pass": true
+  },
+  {
+    "name": "dead units do not block population or spawn",
+    "pass": true
+  },
+  {
+    "name": "air projectile retarget excludes air and uses actual ground counter",
+    "pass": true
+  },
+  {
+    "name": "archer projectile retarget recalculates counter once",
+    "pass": true
+  },
+  {
+    "name": "archer projectile can retarget air",
+    "pass": true
+  },
+  {
+    "name": "projectile height includes air altitude",
+    "pass": true
+  },
+  {
+    "name": "home damage reduction and regen apply to air",
+    "pass": true
+  },
+  {
+    "name": "air death reward and effects retain height",
+    "pass": true
+  },
+  {
+    "name": "all-unit technology march affects air",
+    "pass": true
+  },
+  {
+    "name": "all-unit technology omni affects air",
+    "pass": true
+  },
+  {
+    "name": "all-unit technology rage affects air",
+    "pass": true
+  },
+  {
+    "name": "all-unit technology conquest affects air",
+    "pass": true
+  },
+  {
+    "name": "aviation era speed bonus applies to air",
+    "pass": true
+  },
+  {
+    "name": "normal AI prioritizes anti-air",
+    "pass": true
+  },
+  {
+    "name": "hard AI prioritizes anti-air",
+    "pass": true
+  },
+  {
+    "name": "AI includes queued archers in anti-air coverage",
+    "pass": true
+  },
+  {
+    "name": "AI occasionally trains air vs undefended opponent",
+    "pass": true
+  },
+  {
+    "name": "easy AI can select sixth unit",
+    "pass": true
+  },
+  {
+    "name": "hard era decision counts air as ranged",
+    "pass": true
+  }
+]

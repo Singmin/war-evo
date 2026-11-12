@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="screen-orientation" content="landscape">
+<meta name="x5-orientation" content="landscape">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>文明跃迁</title>
+<!-- 改了 css/js 之后把下面所有 ?v= 的版本号一起改掉，玩家浏览器才会拿新文件（不然会用缓存里的旧版） -->
+<link rel="stylesheet" href="css/theme.css?v=20261112-tech8-tree-wide">
+<link rel="stylesheet" href="css/layout.css?v=20261112-tech8-tree-wide">
+<link rel="stylesheet" href="css/hud.css?v=20261112-tech8-tree-wide">
+<link rel="stylesheet" href="css/bar.css?v=20261112-tech8-tree-wide">
+<link rel="stylesheet" href="css/screens.css?v=20261112-tech8-tree-wide">
+<link rel="stylesheet" href="css/menu.css?v=20261112-tech8-tree-wide">
+<link rel="stylesheet" href="css/overlay.css?v=20261112-tech8-tree-wide">
+<link rel="stylesheet" href="css/tree.css?v=20261112-tech8-tree-wide">
+<link rel="stylesheet" href="css/skins.css?v=20261112-tech8-tree-wide">
+</head>
+<body>
+<div class="ad" id="adTop" hidden><span>广告</span><button type="button" aria-label="关闭顶部广告">×</button></div>
+<div class="ad" id="adBottom" hidden><span>广告</span><button type="button" aria-label="关闭底部广告">×</button></div>
+
+<div id="game">
+  <canvas id="cv"></canvas>
+  <div id="info"></div>
+  <div id="topR">
+    <button class="tb" id="btnSpeed">×1</button>
+    <button class="tb" id="btnPause">❚❚</button>
+  </div>
+  <!-- 激励广告：领取金币 / 基地血少时回血 -->
+  <div id="adBtns">
+    <button class="adb" id="btnAdGold" style="display:none"></button>
+    <button class="adb hp" id="btnAdHp" style="display:none"></button>
+  </div>
+  <div id="bar"></div>
+
+  <!-- 开始页 -->
+  <div class="scr on" id="scrMenu">
+    <div class="mtitle"><h1>文明跃迁</h1>
+      <p class="mtag"><b class="me">拾光派</b><i></i><b class="foe">余烬派</b></p></div>
+    <div class="mplate">
+      <div class="mdiff">
+        <button class="mm s" data-diff="easy">简单</button>
+        <button class="mm s on" data-diff="normal">普通</button>
+        <button class="mm s" data-diff="hard">困难</button>
+      </div>
+      <div class="mrow">
+        <button class="mm" id="btnSetM">设置</button>
+        <button class="mm pri" id="btnStart">开始战斗</button>
+        <button class="mm" id="btnStats">战绩</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 暂停 -->
+  <div class="scr ovl" id="scrPause">
+    <h2>暂停</h2>
+    <div class="oplate">
+      <button class="big pri" id="btnResume">继续</button>
+      <button class="big" id="btnRestart">重新开始</button>
+      <button class="big" id="btnSetP">设置</button>
+      <button class="big" id="btnHome">回开始页</button>
+    </div>
+    <div id="pauseCards"></div>
+  </div>
+
+  <!-- 科技树 -->
+  <div class="scr" id="scrTree" role="dialog" aria-modal="true" aria-labelledby="treeTitle" tabindex="-1">
+    <header id="treeHead">
+      <h2 id="treeTitle">科技树</h2>
+      <span class="treeResource treePoints">科技点 <strong id="treePts"></strong></span>
+      <span class="treeResource treeGold">金币 <strong id="treeGold"></strong></span>
+      <span id="treeExp"><span id="treeExpTxt"></span><i><em id="treeExpFill"></em></i></span>
+      <span id="treeNote"></span>
+      <span id="treeHint">游戏已暂停</span>
+      <button type="button" id="btnTreeClose" aria-label="关闭科技树">✕</button>
+    </header>
+    <div id="treeBody">
+      <nav id="treeMap" aria-labelledby="treeMapTitle">
+        <header class="treeMapHead"><h3 id="treeMapTitle">时代路线</h3><span>← 左右滑动 →</span></header>
+        <div id="treeMapScroll"><div id="treeMapCanvas"></div></div>
+      </nav>
+      <section id="treeDetails" aria-labelledby="treeDetailTitle">
+        <div id="treeInfo"></div>
+        <footer id="treeFooter">
+          <div id="treeAction" hidden>
+            <div id="treeReason" role="status"></div>
+            <button type="button" id="btnTreeBuy" aria-describedby="treeReason"></button>
+          </div>
+          <button type="button" class="adb" id="btnTreeAd" hidden></button>
+        </footer>
+      </section>
+    </div>
+  </div>
+
+  <!-- 设置 -->
+  <div class="scr ovl" id="scrSettings">
+    <h2>设置</h2>
+    <div class="panel">
+      <label>音乐音量 <input type="range" min="0" max="1" step="0.05" id="setMusic"></label>
+      <label>音效音量 <input type="range" min="0" max="1" step="0.05" id="setSfx"></label>
+      <label>默认速度
+        <span class="row">
+          <button class="chip" data-spd="1">×1</button>
+          <button class="chip" data-spd="1.5">×1.5</button>
+          <button class="chip" data-spd="2">×2</button>
+          <button class="chip" data-spd="3">×3</button>
+        </span>
+      </label>
+      <label for="setSpritePack">兵种外观
+        <select id="setSpritePack" aria-describedby="spritePackStatus">
+          <option value="original">老像素原版（默认）</option>
+          <option value="chibi-tribe">部落纪·大头圆脸 DLC</option>
+        </select>
+      </label>
+      <p id="spritePackStatus" role="status" aria-live="polite">默认使用 Q 版改造前的老像素角色。</p>
+    </div>
+    <button class="big" id="btnSetBack">返回</button>
+  </div>
+
+  <!-- 战绩 -->
+  <div class="scr ovl" id="scrStats">
+    <h2>战绩</h2>
+    <div class="panel"><table id="statsTable"></table></div>
+    <button class="big" id="btnStatsBack">返回</button>
+  </div>
+
+  <!-- 结算 -->
+  <div class="scr ovl" id="scrResult">
+    <h2 id="resTitle">胜利</h2>
+    <div class="panel" id="resStats"></div>
+    <div class="row" id="resRevive" hidden>
+      <button class="big pri revive" id="btnReviveAd"></button>
+      <button class="big revive" id="btnReviveHalf" hidden>半血复活<small>现在就复活</small></button>
+    </div>
+    <div class="row">
+      <button class="big pri" id="btnAgain">再来一局</button>
+      <button class="big" id="btnHome2">回开始页</button>
+    </div>
+  </div>
+</div>
+
+<div id="adStatus" role="status" hidden></div>
+<div id="rotate"><div class="ph"></div><div>请把手机横过来玩</div></div>
+
+<!-- 脚本按角色拆分（见 README「代码结构」），顺序不能乱：数据 → 规则 → 画面 → 界面 → 主循环 -->
+<script src="js/boot.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/core/data.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/core/save.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/core/audio.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/core/state.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/core/sim.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/core/ai.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/ui/theme.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/view.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/sprite_meta.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/sprites.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/fx_meta.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/fx.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/base_meta.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/bases.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/backdrop.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/world.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/render/arms.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/ui/hud.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/ui/skins.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/ui/icons.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/ui/bar.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/input.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/ui/screens.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/ui/tree.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/ui/ads.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/ui/attract.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/main.js?v=20261112-tech8-tree-wide"></script>
+</body>
+</html>
