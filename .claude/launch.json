@@ -20,6 +20,41 @@
         "8766"
       ],
       "port": 8766
+    },
+    {
+      "name": "game-8771",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8771"
+      ],
+      "port": 8771,
+      "autoPort": false
+    },
+    {
+      "name": "game-8773",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8773"
+      ],
+      "port": 8773,
+      "autoPort": false
+    },
+    {
+      "name": "stage-8772",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8772",
+        "--directory",
+        "dist/stage-20261112/wenming-yueqian"
+      ],
+      "port": 8772,
+      "autoPort": false
     }
   ]
 }

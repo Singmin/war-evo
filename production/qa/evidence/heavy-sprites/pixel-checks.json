@@ -1,0 +1,366 @@
+{
+  "backup": "C:\\Users\\Singmin\\Desktop\\code\\wenming-yueqian\\production\\backups\\heavy-sprites-20261112-174429",
+  "unchanged_non_heavy_cells": 3060,
+  "non_heavy_rgba_pixels": 9289224,
+  "unchanged_pixels_outside_heavy_rows": 13687200,
+  "verified_heavy_cells": 612,
+  "eras": [
+    {
+      "era": 0,
+      "name": "猛犸骑手",
+      "cell": [
+        68,
+        55
+      ],
+      "ax": 30,
+      "old_stance_world_px": [
+        93.3,
+        84.5
+      ],
+      "new_stance_world_px": [
+        98.6,
+        86.2
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 1,
+      "name": "战车",
+      "cell": [
+        80,
+        47
+      ],
+      "ax": 36,
+      "old_stance_world_px": [
+        95.0,
+        73.9
+      ],
+      "new_stance_world_px": [
+        112.6,
+        73.9
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 2,
+      "name": "蒸汽坦克",
+      "cell": [
+        72,
+        51
+      ],
+      "ax": 36,
+      "old_stance_world_px": [
+        96.8,
+        73.9
+      ],
+      "new_stance_world_px": [
+        95.0,
+        77.4
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 3,
+      "name": "电磁战车",
+      "cell": [
+        74,
+        55
+      ],
+      "ax": 36,
+      "old_stance_world_px": [
+        88.0,
+        79.2
+      ],
+      "new_stance_world_px": [
+        98.6,
+        63.4
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 4,
+      "name": "机甲",
+      "cell": [
+        56,
+        59
+      ],
+      "ax": 26,
+      "old_stance_world_px": [
+        68.6,
+        77.4
+      ],
+      "new_stance_world_px": [
+        70.4,
+        93.3
+      ],
+      "collision_world_px": [
+        46,
+        64
+      ]
+    },
+    {
+      "era": 5,
+      "name": "驯象",
+      "cell": [
+        70,
+        69
+      ],
+      "ax": 30,
+      "old_stance_world_px": [
+        93.3,
+        102.1
+      ],
+      "new_stance_world_px": [
+        105.6,
+        107.4
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 6,
+      "name": "巨兽",
+      "cell": [
+        68,
+        57
+      ],
+      "ax": 30,
+      "old_stance_world_px": [
+        81.0,
+        65.1
+      ],
+      "new_stance_world_px": [
+        102.1,
+        77.4
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 7,
+      "name": "盾车",
+      "cell": [
+        64,
+        43
+      ],
+      "ax": 34,
+      "old_stance_world_px": [
+        81.0,
+        58.1
+      ],
+      "new_stance_world_px": [
+        88.0,
+        63.4
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 8,
+      "name": "登陆炮艇",
+      "cell": [
+        66,
+        57
+      ],
+      "ax": 30,
+      "old_stance_world_px": [
+        96.8,
+        93.3
+      ],
+      "new_stance_world_px": [
+        102.1,
+        84.5
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 9,
+      "name": "反应堆坦克",
+      "cell": [
+        76,
+        53
+      ],
+      "ax": 36,
+      "old_stance_world_px": [
+        93.3,
+        59.8
+      ],
+      "new_stance_world_px": [
+        105.6,
+        73.9
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 10,
+      "name": "守卫巨像",
+      "cell": [
+        52,
+        61
+      ],
+      "ax": 24,
+      "old_stance_world_px": [
+        52.8,
+        82.7
+      ],
+      "new_stance_world_px": [
+        73.9,
+        98.6
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 11,
+      "name": "树人",
+      "cell": [
+        50,
+        61
+      ],
+      "ax": 22,
+      "old_stance_world_px": [
+        56.3,
+        81.0
+      ],
+      "new_stance_world_px": [
+        73.9,
+        102.1
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 12,
+      "name": "雷霆巨兽",
+      "cell": [
+        70,
+        59
+      ],
+      "ax": 30,
+      "old_stance_world_px": [
+        81.0,
+        63.4
+      ],
+      "new_stance_world_px": [
+        100.3,
+        73.9
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 13,
+      "name": "甲虫盾",
+      "cell": [
+        70,
+        43
+      ],
+      "ax": 34,
+      "old_stance_world_px": [
+        91.5,
+        59.8
+      ],
+      "new_stance_world_px": [
+        100.3,
+        66.9
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 14,
+      "name": "装甲列车",
+      "cell": [
+        80,
+        43
+      ],
+      "ax": 36,
+      "old_stance_world_px": [
+        107.4,
+        63.4
+      ],
+      "new_stance_world_px": [
+        119.7,
+        65.1
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 15,
+      "name": "轰炸飞艇",
+      "cell": [
+        78,
+        61
+      ],
+      "ax": 40,
+      "old_stance_world_px": [
+        114.4,
+        65.1
+      ],
+      "new_stance_world_px": [
+        116.2,
+        75.7
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    },
+    {
+      "era": 16,
+      "name": "堡垒车",
+      "cell": [
+        78,
+        61
+      ],
+      "ax": 35,
+      "old_stance_world_px": [
+        117.9,
+        95.0
+      ],
+      "new_stance_world_px": [
+        112.6,
+        96.8
+      ],
+      "collision_world_px": [
+        46,
+        44
+      ]
+    }
+  ]
+}

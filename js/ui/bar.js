@@ -8,6 +8,47 @@ let curSlot = 0, lastPtr = 'mouse', menuName = 'root', menuDefs = [], selectedId
 document.addEventListener('pointerdown', e => { lastPtr = e.pointerType || 'mouse'; audioInit(); }, true);
 
 const me = () => G.sides[0];
+/** 采矿场按钮（经济，3 级，升时代保留） */
+const mineDef = () => ({ id: 'mine', label: () => me().mine ? `采矿场 Lv${me().mine}` : '采矿场',
+  sub: () => me().mine >= 3 ? '已满级 +45%' : `+15%  ${MINE_COST[me().mine]}金`,
+  info: () => me().mine >= 3 ? `采矿场已满级：每秒金币 +45%（现在 ${incomeOf(me()).toFixed(1)}/秒）` :
+    `${me().mine ? '升级' : '建造'}采矿场 Lv${me().mine + 1}：花 ${MINE_COST[me().mine]} 金币，每秒金币 ${incomeOf(me()).toFixed(1)} → ${incomeOf(me(), me().mine + 1).toFixed(1)}；升级时代后保留`,
+  ok: () => me().mine < 3 && me().gold >= MINE_COST[me().mine], act: () => actMine(me()) });
+/** 练兵场按钮（军事，3 级，之后训练的兵生命和攻击加成；design/quick-specs/training-ground.md） */
+const drillDef = () => {
+  const dMax = DRILL_COST.length, dPct = l => Math.round(DRILL_BONUS * l * 100);
+  return { id: 'drill', label: () => me().drill ? `练兵场 Lv${me().drill}` : '练兵场',
+    sub: () => me().drill >= dMax ? `已满级 +${dPct(dMax)}%` : `+${dPct(1)}%  ${DRILL_COST[me().drill]}金`,
+    info: () => {
+      const l = me().drill, a = unitStats(0, me().era, me(), l);
+      if (l >= dMax) return `练兵场已满级：新训练的兵生命和攻击 +${dPct(l)}%（${a.name} 生命 ${a.hp} 攻击 ${a.atk}）`;
+      const b = unitStats(0, me().era, me(), l + 1);
+      return `${l ? '升级' : '建造'}练兵场 Lv${l + 1}：花 ${DRILL_COST[l]} 金币，之后训练的兵生命和攻击 +${dPct(l + 1)}%（${a.name} 生命 ${a.hp}→${b.hp} 攻击 ${a.atk}→${b.atk}）；已在场上的兵不变，升级时代后保留`;
+    },
+    ok: () => me().drill < dMax && me().gold >= DRILL_COST[me().drill], act: () => actDrill(me()) };
+};
+// 大招按钮：右上角敌方血条下面（#btnSpecial），就绪时闪烁；鼠标悬停时在提示栏显示说明
+const spDef = { id: 'special',
+  info: () => `大招「${SPECIAL_NAMES[me().era]}」：弹幕扫过整个战场，落下 ${specialShells(me())} 发，每发 ${Math.round(specialHit(me()))} 伤害，${me().mod.spLock ? '每发锁定敌兵' : '随机落点'}（重装最多掉 40% 生命）；冷却 ${SPECIAL_CD - me().mod.spCd} 秒（快捷键 Q）`,
+  ok: () => me().specialCd <= 0 && !me().special, act: () => actSpecial(me()) };
+const spBtn = document.getElementById('btnSpecial');
+if (spBtn) {
+  spBtn.innerHTML = `<i class="ic">${iconSvg('special')}</i><span><b></b><small></small></span>`;
+  spDef.bEl = spBtn.querySelector('b'); spDef.sEl = spBtn.querySelector('small');
+  spBtn.addEventListener('mouseenter', () => { if (lastPtr === 'mouse') hoverDef = spDef; });
+  spBtn.addEventListener('mouseleave', () => { if (hoverDef === spDef) hoverDef = null; });
+  spBtn.addEventListener('click', () => { if (S.screen === 'play' && G) runAct(spDef); });   // 大招一点就放，不走"先选中再确认"
+}
+/** 每 0.1 秒刷新大招按钮：名字、冷却秒数、冷却扇形、就绪闪烁 */
+function refreshSpecialBtn() {
+  if (!spBtn || !G) return;
+  const sd = me(), cdMax = SPECIAL_CD - sd.mod.spCd, f = sd.specialCd > 0 ? Math.min(1, sd.specialCd / cdMax) : 0, ready = spDef.ok();
+  const name = SPECIAL_NAMES[sd.era], sub = sd.special ? '释放中' : f > 0 ? `${Math.ceil(sd.specialCd)} 秒` : '就绪';
+  if (spDef.bEl.textContent !== name) spDef.bEl.textContent = name;
+  if (spDef.sEl.textContent !== sub) spDef.sEl.textContent = sub;
+  spBtn.style.setProperty('--cd', (f * 360).toFixed(1) + 'deg');
+  spBtn.classList.toggle('cool', f > 0); spBtn.classList.toggle('ready', ready); spBtn.classList.toggle('off', !ready);
+}
 function buildMenu(name) {
   const d = [];
   const nav = (id, label, target, sub) => d.push({ id, nav: true, label: () => label, sub: sub || (() => ''), info: () => '', ok: () => true, act: () => setMenu(target) });
@@ -15,17 +56,11 @@ function buildMenu(name) {
     nav('m-units', '兵种 ▸', 'units', () => `队列 ${me().queue.length}/5`);
     nav('m-towers', '建塔 ▸', 'towers', () => `塔位 ${me().slots - me().towers.filter(Boolean).length} 空`);
     nav('m-sell', '改塔 ▸', 'sell', () => `强化 / 卖掉`);
-    d.push({ id: 'mine', label: () => me().mine ? `采矿场 Lv${me().mine}` : '采矿场',
-      sub: () => me().mine >= 3 ? '已满级 +45%' : `+15%  ${MINE_COST[me().mine]}金`,
-      info: () => me().mine >= 3 ? `采矿场已满级：每秒金币 +45%（现在 ${incomeOf(me()).toFixed(1)}/秒）` :
-        `${me().mine ? '升级' : '建造'}采矿场 Lv${me().mine + 1}：花 ${MINE_COST[me().mine]} 金币，每秒金币 ${incomeOf(me()).toFixed(1)} → ${incomeOf(me(), me().mine + 1).toFixed(1)}；升级时代后保留`,
-      ok: () => me().mine < 3 && me().gold >= MINE_COST[me().mine], act: () => actMine(me()) });
+    d.push(mineDef(), drillDef());
     d.push({ id: 'tree', nav: true, label: () => '科技树 ★', ready: () => canTech(me()),
       sub: () => me().evolveT > 0 ? `跃迁 ${me().evolveT.toFixed(1)} 秒` : `科技点 ${me().pts}`,
       info: () => '', ok: () => true, act: () => openTree() });
-    d.push({ id: 'special', label: () => SPECIAL_NAMES[me().era], sub: () => me().specialCd > 0 ? `${Math.ceil(me().specialCd)} 秒` : '就绪',
-      info: () => `大招「${SPECIAL_NAMES[me().era]}」：弹幕扫过整个战场，落下 ${specialShells(me())} 发，每发 ${Math.round(specialHit(me()))} 伤害，${me().mod.spLock ? '每发锁定敌兵' : '随机落点'}（重装最多掉 40% 生命）；冷却 ${SPECIAL_CD - me().mod.spCd} 秒`,
-      ok: () => me().specialCd <= 0 && !me().special, act: () => actSpecial(me()) });
+    // 大招按钮不在底栏，在右上角敌方血条下面（spDef / #btnSpecial）
     // 机械线专属：强化大招（走机械线之前隐藏）
     d.push({ id: 'spUpg', show: () => me().route === 'mech', label: () => `强化大招${me().spLvl ? ' Lv' + me().spLvl : ''}`,
       sub: () => spUpgCost(me()) === null ? '已满级' : `${spUpgCost(me())} 金`,
@@ -129,20 +164,34 @@ function refreshMenu() {
       def.icEl.innerHTML = tw ? `<img class="tw" alt="" src="${towerIcon(tw.type, tw.age, tw.lvl)}">`
         : usrc ? `<img class="un" alt="" src="${usrc}">` : iconSvg(BAR_ICON[def.id]);
     }
-    // 大招按钮：冷却时图标上盖一层顺时针转开的暗色扇形
-    if (def.id === 'special') {
-      const cdMax = SPECIAL_CD - me().mod.spCd, f = me().specialCd > 0 ? Math.min(1, me().specialCd / cdMax) : 0;
-      el.style.setProperty('--cd', (f * 360).toFixed(1) + 'deg'); el.classList.toggle('cool', f > 0);
-    }
   }
+  refreshSpecialBtn();
   // 触屏提示跟随已选卡片，浏览器补发的 mouseleave 不会把它收起。
   const infoDef = lastPtr === 'mouse' ? hoverDef : menuDefs.find(def => def.id === selectedId);
   if (errT > 0) { infoEl.textContent = errMsg; infoEl.className = 'err'; }
-  else if (infoDef && infoDef.id === 'u5') {
-    const s = unitStats(5, me().era, me());
-    const details = `<div class="air-role">飞行支援 · 可攻击地面兵、空军和基地</div>` +
-      `<div>射手、空军、塔和大招可对空 · 对基地伤害减半</div><div>生命 ${s.hp} · 攻击 ${s.atk}</div>`;
-    if (infoEl.innerHTML !== details) infoEl.innerHTML = details;
+  else if (infoDef && infoDef.info()) {
+    // 所有提示栏都用飞行支援那种多行卡片样式（css/hud.css 的 #info.air-info），不再走单行纯文本
+    const html = infoCardHtml(infoDef);
+    if (infoEl.innerHTML !== html) infoEl.innerHTML = html;
     infoEl.className = 'air-info';
-  } else { infoEl.textContent = infoDef ? infoDef.info() : (towerKeyT > 0 ? '按 1 / 2 / 3 选择防御塔' : ''); infoEl.className = ''; }
+  } else { infoEl.textContent = towerKeyT > 0 ? '按 1 / 2 / 3 选择防御塔' : ''; infoEl.className = ''; }
+}
+/** 提示栏卡片内容：第一行 = 高亮标题，中间 = 说明，最后一行 = 数据 */
+function infoCardHtml(def) {
+  const um = /^u(\d)$/.exec(def.id);
+  if (um) {
+    const t = +um[1], s = unitStats(t, me().era, me());
+    if (t === 5) {
+      return `<div class="air-role">飞行支援 · 可攻击地面兵、空军和基地</div>` +
+        `<div>射手、空军、塔和大招可对空 · 对基地伤害减半</div><div>生命 ${s.hp} · 攻击 ${s.atk}</div>`;
+    }
+    // 兵种：TYPE_DESC 是「类型：说明」格式，拆成标题行（名字 · 价格 — 类型）和说明行
+    const i = TYPE_DESC[t].indexOf('：');
+    const label = i < 0 ? TYPE_DESC[t] : TYPE_DESC[t].slice(0, i);
+    const detail = i < 0 ? '' : TYPE_DESC[t].slice(i + 1);
+    return `<div class="air-role">${s.name} · ${s.price} 金币 — ${label}</div>` +
+      (detail ? `<div>${detail}</div>` : '') + `<div>生命 ${s.hp} · 攻击 ${s.atk}</div>`;
+  }
+  // 兵种以外的按钮（塔、采矿场、大招等）：同样的卡片框，内容保持原来的整段说明
+  return `<div>${def.info()}</div>`;
 }

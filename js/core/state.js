@@ -3,19 +3,22 @@
 // =====================================================================
 // 对局状态
 // =====================================================================
-const S = { screen: 'menu', prev: 'menu', diff: 'normal', speed: save.settings.speed };
+const hasResults = ['easy', 'normal', 'hard'].some(k => save.stats[k].win > 0 || save.stats[k].loss > 0);
+const S = { screen: 'menu', prev: 'menu', diff: hasResults ? 'normal' : 'easy', speed: save.settings.speed };
 let G = null;
 
 function mkSide(s) {
   return { s, gold: START_GOLD, exp: 0, age: 0, baseHp: BASE_HP[0], queue: [], trainT: 0, evolveT: 0, slots: 1,
-    towers: [null, null, null, null], specialCd: 0, special: null, baseDmgAcc: 0, flash: 0, mod: mkMod(), mine: 0,
-    era: 0, pts: 0, got: 0, path: [0], perks: [], route: null, nextEra: -1, spLvl: 0 };   // got：本时代已经拿到几个科技点；spLvl：机械线大招强化等级
+    towers: [null, null, null, null], specialCd: 0, special: null, baseDmgAcc: 0, flash: 0, mod: mkMod(), mine: 0, drill: 0,
+    era: 0, eraStartedAt: 0, pts: 0, got: 0, lastAiPointAt: 0,
+    path: [0], perks: [], route: null, nextEra: -1, spLvl: 0 };   // got：本时代已经拿到几个科技点；spLvl：机械线大招强化等级
 }
 function newGame(diff) {
   G = {
     t: 0, diff, sides: [mkSide(0), mkSide(1)], units: [], projs: [], shells: [], spores: [], fx: [], texts: [],
     camX: 0, zoom: 1, freeze: 0, echo: null, toast: null, kills: 0, losses: 0, over: false, winner: -1, overT: 0,
-    aiT: 0, aiSave: 0, shake: 0, specialView: null, nextId: 1, adPt: 0, adGold: 0, adHp: 0, adGoldT: 0, adHpT: 0,
+    aiT: 0, aiAdjustment: diff === 'normal' ? save.stats.normal.aiAdjustment / 10 : 0,
+    shake: 0, specialView: null, nextId: 1, adPt: 0, adGold: 0, adHp: 0, adGoldT: 0, adHpT: 0,
     shieldT: 0, revived: false, reviveAds: 0,   // 失败看广告复活（js/ui/ads.js）
   };
 }
@@ -63,6 +66,15 @@ function actMine(sd) {
   sd.gold -= c; sd.mine++;
   return null;
 }
+/** 建造 / 升级练兵场。成功返回 null，失败返回原因文字。 */
+function actDrill(sd) {
+  if (G.over) return '对局已结束';
+  if (sd.drill >= DRILL_COST.length) return '练兵场已经是最高级';
+  const c = DRILL_COST[sd.drill];
+  if (sd.gold < c) return '金币不足';
+  sd.gold -= c; sd.drill++;
+  return null;
+}
 function actExpand(sd) {
   if (sd.slots >= 4) return '塔位已经扩到最多（4 个）';
   const c = SLOT_COST[sd.slots];
@@ -71,9 +83,18 @@ function actExpand(sd) {
   sd.growAt = G.t;   // 画面用：新的一节从这一刻开始升起来（js/render/arms.js drawSlots）
   return null;
 }
-// AI 落后时代时享受追赶加成（玩家永远按原价）
-function aiBehind(sd) { return sd.s === 1 && sd.age < G.sides[0].age ? CATCH_UP[G.diff] : null; }
-function evolveGold(sd) { const b = aiBehind(sd); return Math.round(EVOLVE[sd.age].gold * (b ? b.evolve : 1)); }
+const isAiSide = sd => sd.s === 1 || G.demo;
+// 动态难度只缩放高于基础值的追赶加成。
+function aiBehind(sd) {
+  if (sd.s !== 1 || sd.age >= G.sides[0].age) return null;
+  const b = CATCH_UP[G.diff], strength = G.demo ? 1 : 1 + G.aiAdjustment;
+  if (strength === 1) return b;
+  return { exp: 1 + (b.exp - 1) * strength, gold: 1 + (b.gold - 1) * strength };
+}
+function evolveGold(sd) {
+  const cost = EVOLVE[sd.age].gold;
+  return isAiSide(sd) ? Math.ceil(cost * 0.5) : cost;
+}
 // ---------- 科技树：进入时代 / 点科技 ----------
 const eraChildren = era => AGES.map((_, e) => e).filter(e => ERA_PARENTS[e].includes(era));
 function eraBlock(sd, e) {
@@ -107,12 +128,17 @@ function actPerk(sd, id) {
   sd.pts -= pk.cost; sd.perks.push(id); pk.ap(sd.mod);
   return null;
 }
-function addExp(sd, v) {
-  if (sd.evolveT > 0) return;
-  sd.exp += v;
+function settleTechPoints(sd) {
   let need;
   while (sd.exp >= (need = ptNeed(sd))) { sd.exp -= need; sd.pts++; sd.got++; }
 }
+function addExp(sd, v) {
+  if (sd.evolveT > 0) return;
+  sd.exp += v;
+  // 玩家当场结算。AI 的经验先攒着，改在每帧开头结点数，好赶在花钱之前跃迁。
+  if (!isAiSide(sd)) settleTechPoints(sd);
+}
+function grantAiTechPoint(sd) { settleTechPoints(sd); }
 const techSummary = sd => [sd.route ? ROUTES[sd.route].name : null, ...sd.perks.map(id => perkById(id).name)].filter(Boolean).join('、') || '无';
 // ---------- 机械线：大招强化（玩家和 AI 共用）----------
 /** 一次大招的炮弹数（含科技和机械线强化） */

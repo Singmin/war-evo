@@ -1,0 +1,304 @@
+{
+  "browser": "HeadlessChrome/156.0.8078.4",
+  "views": [
+    {
+      "width": 1280,
+      "height": 720,
+      "input": "mouse",
+      "geometry": [
+        [
+          "#btnSpeed",
+          1094,
+          10,
+          84,
+          76
+        ],
+        [
+          "#btnPause",
+          1186,
+          10,
+          84,
+          76
+        ],
+        [
+          "#btnAdGold",
+          8,
+          186,
+          184,
+          56
+        ],
+        [
+          "#btnAdHp",
+          8,
+          250,
+          201.375,
+          56
+        ],
+        [
+          "#btnSpecial",
+          1102,
+          186,
+          170,
+          72
+        ],
+        [
+          "#bar .mb",
+          14,
+          622.5,
+          168,
+          88
+        ]
+      ],
+      "pixelIcons": true,
+      "ready": {
+        "animation": "hudBlink",
+        "timing": "steps(2)",
+        "width": "8px",
+        "filter": "none"
+      },
+      "cooldown": [
+        "180.0deg",
+        "conic-gradient(rgba(0, 0, 0, 0.667) 180deg, rgba(0, 0, 0, 0) 0deg)"
+      ],
+      "speed": [
+        1.5,
+        "×1.5"
+      ],
+      "pauseAndResume": true,
+      "mockAds": [
+        "gold reward",
+        "HP reward",
+        "incomplete ad without reward",
+        "outside TapTap disabled"
+      ]
+    },
+    {
+      "width": 812,
+      "height": 375,
+      "input": "touch",
+      "geometry": [
+        [
+          "#btnSpeed",
+          642.4583129882812,
+          5.2083330154418945,
+          43.75,
+          39.58333206176758
+        ],
+        [
+          "#btnPause",
+          690.375,
+          5.2083330154418945,
+          43.75,
+          39.58333206176758
+        ],
+        [
+          "#btnAdGold",
+          76.83332824707031,
+          96.875,
+          95.83332824707031,
+          29.166664123535156
+        ],
+        [
+          "#btnAdHp",
+          76.83332824707031,
+          130.2083282470703,
+          104.8828125,
+          29.166671752929688
+        ],
+        [
+          "#btnSpecial",
+          646.625,
+          96.875,
+          88.54168701171875,
+          37.5
+        ],
+        [
+          "#bar .mb",
+          79.95832824707031,
+          324.21875,
+          87.5,
+          45.83331298828125
+        ]
+      ],
+      "pixelIcons": true,
+      "ready": {
+        "animation": "hudBlink",
+        "timing": "steps(2)",
+        "width": "8px",
+        "filter": "none"
+      },
+      "cooldown": [
+        "180.0deg",
+        "conic-gradient(rgba(0, 0, 0, 0.667) 180deg, rgba(0, 0, 0, 0) 0deg)"
+      ],
+      "speed": [
+        1.5,
+        "×1.5"
+      ],
+      "pauseAndResume": true,
+      "mockAds": [
+        "gold reward",
+        "HP reward",
+        "incomplete ad without reward",
+        "outside TapTap disabled"
+      ]
+    }
+  ],
+  "skins": [
+    {
+      "era": 0,
+      "name": "部落纪",
+      "key": "stone",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 1,
+      "name": "青铜纪",
+      "key": "bronze",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 2,
+      "name": "蒸汽纪",
+      "key": "rivet",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 3,
+      "name": "电气纪",
+      "key": "copper",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 4,
+      "name": "机甲纪",
+      "key": "armor",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 5,
+      "name": "驯兽纪",
+      "key": "hide",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 6,
+      "name": "生化纪",
+      "key": "bio",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 7,
+      "name": "火药纪",
+      "key": "oak",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 8,
+      "name": "帆船纪",
+      "key": "canvas",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 9,
+      "name": "核能纪",
+      "key": "hazard",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 10,
+      "name": "智械纪",
+      "key": "circuit",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 11,
+      "name": "共生纪",
+      "key": "bark",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 12,
+      "name": "巨兽纪",
+      "key": "scales",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 13,
+      "name": "蜂群纪",
+      "key": "honey",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 14,
+      "name": "铁甲舰纪",
+      "key": "hull",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 15,
+      "name": "航空纪",
+      "key": "alu",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    },
+    {
+      "era": 16,
+      "name": "远征纪",
+      "key": "alloy",
+      "sameTexture": true,
+      "bottomMaterial": true,
+      "animated": true,
+      "canvasCache": true
+    }
+  ],
+  "errors": [],
+  "networkErrors": []
+}

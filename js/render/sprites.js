@@ -63,7 +63,10 @@ function unitFrame(u) {
   if (u.swing > 0) return F.atk + (u.swing > 0.125 ? 2 : 3);              // 出手、收势（攻击生效后 0.25 秒）
   if (!u.walking && (!u.air || u.aiming) && u.cd < 0.35) return F.atk + (u.cd > 0.17 ? 0 : 1); // 蓄力、瞄准
   if (u.air) return F.walk + (Math.floor((G.t + u.id * 0.13) * 8) % 4); // 盘旋时也继续振翅或运转
-  if (u.walking) return F.walk + Math.floor(u.anim * 8) % 4;
+  if (u.walking) {
+    const stride = u.type === 2 && spriteMeta(u.age, u.type)?.articulated ? 10 : 8;
+    return F.walk + Math.floor(u.anim * stride) % 4;
+  }
   return F.walk + 1;
 }
 
@@ -105,6 +108,10 @@ function unitBounce(u) {
 function drawUnitSprite(u) {
   const sheet = spriteSheet(u.age, u.type), m = spriteMeta(u.age, u.type);
   if (!sheet || !m) return false;
+  if (m.articulated) {
+    blitSprite(sheet, m, unitFrame(u), u.hit > 0 ? 2 : u.side);
+    return true;
+  }
   const b = unitBounce(u);
   ctx.save();
   ctx.translate(0, -b.lift); ctx.rotate(b.lean); ctx.scale(b.sx, b.sy);

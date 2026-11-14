@@ -59,8 +59,8 @@ const SPRITE_GENERATIONS = {
         { cw: 224, ch: 176, ax: 96, y: 1056, s: 0.5866666666666667 },
         { cw: 160, ch: 144, ax: 102, y: 1584, s: 0.5866666666666667 }
       ] },
-    { id: 'classic', name: '经典老像素', date: '2026-11-10', status: 'current', live: true,
-      note: '游戏默认外观。骨棒战士换回低清画法，五个兵种同一像素密度；其余四个和「经典·高清骨棒」相同。' },
+    { id: 'classic', name: '默认像素·侧面步兵', date: '2026-11-12', status: 'current', live: true,
+      note: '游戏默认图集。步兵采用右侧面原生像素画，包含 12 帧走路、攻击和死亡动作。' },
     { id: 'chibi-v4', name: '大头圆脸 v4', date: '2026-11-10', status: 'dlc',
       note: '部落纪·大头圆脸 DLC，设置里可切换。单姿势样稿的轻量动效，还没有独立逐帧动作。',
       manifest: 'assets/dlc/chibi-tribe/manifest.json' }

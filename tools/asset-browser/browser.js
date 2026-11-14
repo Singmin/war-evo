@@ -26,7 +26,7 @@
   const groundFx = new Set(['dirt', 'big', 'acid', 'spore', 'grenade', 'boom', 'barrel', 'nuke', 'strike', 'thunder', 'meteor', 'pillar', 'emp', 'slam', 'burn', 'puddle', 'burst']);
   const defaultFx = ['blunt', 'spark', 'crit', 'flash', 'dirt', 'big'];
   let skins = [], skinError = '', issues = [], refs = new Map();
-  let selection = null, animTime = 0, lastTime = 0;
+  let selection = null, detailAnimation = null, animTime = 0, lastTime = 0;
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target));
   }, { rootMargin: '160px' });
@@ -109,7 +109,10 @@
     if (desc.card) holder.style.padding = '0';
     const canvas = el('canvas'); canvas.setAttribute('role', 'img'); canvas.setAttribute('aria-label', label);
     holder.append(canvas); wrap.append(holder);
-    previews.set(canvas, desc); observer.observe(canvas); draw(canvas, desc);
+    previews.set(canvas, desc);
+    if (wrap.classList.contains('detail-preview')) detailAnimation = canvas;
+    else observer.observe(canvas);
+    draw(canvas, desc);
     return wrap;
   }
   function gensOf(era) { return generations[era] || []; }
@@ -123,7 +126,14 @@
     const source = genSource(era, genId), m = source.units?.[type];
     if (!m || !source.path) return { missing: true, w: 70, h: 55 };
     return { path: source.path, w: m.cw, h: m.ch, px: m.ax, py: m.ch - 1,
-      frame: () => ({ x: (frame ?? (SPRITE_FRAMES[action] + Math.floor(animTime * (action === 'die' ? 1 / 0.12 : 8)) % 4)) * m.cw, y: m.y + row * m.ch }) };
+      frame: () => ({ x: (frame ?? animatedUnitFrame(action)) * m.cw, y: m.y + row * m.ch }) };
+  }
+  function animatedUnitFrame(action) {
+    if (action === 'all') {
+      const t = animTime % 1.3; // 四帧走路 8 fps，四帧攻击和四帧死亡 10 fps。
+      return t < .5 ? Math.floor(t * 8) : Math.min(11, 4 + Math.floor((t - .5) * 10));
+    }
+    return SPRITE_FRAMES[action] + Math.floor(animTime * (action === 'die' ? 1 / 0.12 : 8)) % 4;
   }
   // 卡片裁去四帧共有的透明余量；原图、详情和逐帧视图始终保留完整画格。
   function unitCardDesc(era, type) {
@@ -192,6 +202,8 @@
     if (lastTime && !document.hidden) animTime += Math.min((time - lastTime) / 1000, 0.1) * state.speed;
     lastTime = time;
     visible.forEach(canvas => { const desc = previews.get(canvas); if (desc) draw(canvas, desc); });
+    const detail = dialog.open && previews.get(detailAnimation);
+    if (detail) draw(detailAnimation, detail);
     requestAnimationFrame(animate);
   }
 
@@ -216,6 +228,7 @@
   }
   function openUnit(era, type, gen = null, row = 0, action = 'walk') {
     selection = { era, type, row, action, gen }; renderDetail(); dialog.showModal();
+    dialog.scrollTop = 0;
   }
   function renderDetail() {
     dropPreviews($('detail-content'));
@@ -224,10 +237,13 @@
     const head = el('div', 'detail-head'), title = el('h2', '', `${AGES[era]} · ${name}`); title.id = 'detail-title';
     head.append(title, button('关闭 ×', () => dialog.close()));
     const main = el('div', 'detail-main'), controls = el('div', 'detail-controls');
+    const meta = genSource(era, gen).units?.[type];
     const unitActions = UNIT_BASE[type].air ? { walk: '飞行', atk: '攻击', die: '坠落' } : actions;
-    Object.entries(unitActions).forEach(([key, label]) => {
-      const b = button(label, () => { selection.action = key; renderDetail(); }, action === key ? 'active' : '');
-      b.setAttribute('aria-pressed', String(action === key)); controls.append(b);
+    const playbackActions = meta?.articulated ? { ...unitActions, all: '连续 12 帧' } : unitActions;
+    const playback = Object.hasOwn(playbackActions, action) ? action : 'walk';
+    Object.entries(playbackActions).forEach(([key, label]) => {
+      const b = button(label, () => { selection.action = key; renderDetail(); }, playback === key ? 'active' : '');
+      b.setAttribute('aria-pressed', String(playback === key)); controls.append(b);
     });
     const sideLabel = el('label', '', '阵营 '), sideSelect = el('select'); sideSelect.setAttribute('aria-label', '阵营');
     sides.forEach((label, i) => { const option = el('option', '', label); option.value = i; sideSelect.append(option); });
@@ -241,8 +257,7 @@
       genSelect.addEventListener('change', () => { selection.gen = genSelect.value; renderDetail(); });
       genLabel.style.marginLeft = '0'; genLabel.append(genSelect); controls.append(genLabel);
     }
-    const meta = genSource(era, gen).units?.[type];
-    main.append(controls, canvasPreview(unitDesc(era, type, row, action, null, gen), `${name}${sides[row]}${unitActions[action]}动画`, 'preview checker detail-preview'),
+    main.append(controls, canvasPreview(unitDesc(era, type, row, playback, null, gen), `${name}${sides[row]}${playbackActions[playback]}动画`, 'preview checker detail-preview'),
       el('p', 'detail-description', `${TYPE_SHORT[type]} / ${TYPE_DESC[type]}。源格子 ${meta?.cw ?? '?'} × ${meta?.ch ?? '?'} px；锚点 (${meta?.ax ?? '?'}, ${(meta?.ch ?? 1) - 1})；游戏绘制倍数 ${meta?.s || SPRITE_SCALE}。预览按原始像素缩放。`));
     if (meta?.preview === 'concept-v4') {
       main.append(el('p', 'detail-description', '样稿接入预览版：保留已确认原图，走路与攻击使用整张角色的轻量起伏、前倾和伸缩，死亡使用倒地过渡；尚未制作独立的迈腿和武器挥动逐帧动画。'));
@@ -262,7 +277,11 @@
     }
     scroll.append(strip); main.append(scroll); root.append(head, main);
   }
-  dialog.addEventListener('close', () => { dropPreviews($('detail-content')); selection = null; });
+  dialog.addEventListener('close', () => {
+    if (dialog.open) return;
+    dropPreviews($('detail-content'));
+    selection = detailAnimation = null;
+  });
 
   function block(era, id, suffix = '') {
     const root = el('section', 'asset-block'); root.id = id; root.style.setProperty('--route', route(era).col);

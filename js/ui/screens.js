@@ -3,14 +3,16 @@
 // =====================================================================
 // 页面切换
 // =====================================================================
-const scrs = ['scrMenu', 'scrPause', 'scrSettings', 'scrStats', 'scrResult', 'scrTree'];
+const scrs = ['scrMenu', 'scrPause', 'scrSettings', 'scrStats', 'scrResult', 'scrTree', 'scrGuide'];
 function show(name) {
   S.prev = S.screen; S.screen = name;
-  const map = { menu: 'scrMenu', pause: 'scrPause', settings: 'scrSettings', stats: 'scrStats', result: 'scrResult', tree: 'scrTree' };
+  const map = { menu: 'scrMenu', pause: 'scrPause', settings: 'scrSettings', stats: 'scrStats', result: 'scrResult', tree: 'scrTree', guide: 'scrGuide' };
   for (const id of scrs) document.getElementById(id).classList.toggle('on', map[name] === id);
-  document.getElementById('bar').style.visibility = name === 'menu' || name === 'stats' || (name === 'settings' && !G) ? 'hidden' : 'visible';
+  document.getElementById('bar').style.visibility = name === 'menu' || name === 'stats' || name === 'tree' || (name === 'settings' && !G) ? 'hidden' : 'visible';
+  document.getElementById('info').style.visibility = name === 'tree' ? 'hidden' : '';
   document.getElementById('topR').style.visibility = name === 'play' ? 'visible' : 'hidden';
   document.getElementById('adBtns').style.visibility = name === 'play' ? 'visible' : 'hidden';
+  $('sideActions').style.visibility = name === 'play' ? 'visible' : 'hidden';
   syncAdBanners();
 }
 function startGame() {
@@ -26,9 +28,11 @@ function startGame() {
     } catch (e) { /* 不支持全屏时沿用当前窗口 */ }
   }
   newGame(S.diff);
+  guideClear();
   S.speed = save.settings.speed; updateSpeedBtn();
   setMenu('root');
-  show('play');
+  // 第一次玩：先看一页图解，点「知道了」才开打（js/ui/guide.js）
+  if (guideIntroDue()) openGuide(false); else show('play');
 }
 function pause() {
   if (S.screen === 'play' && G && !G.over) {
@@ -70,6 +74,7 @@ function syncSettingsUI() {
   $('setSpritePack').value = save.settings.spritePack;
   $('spritePackStatus').textContent = save.settings.spritePack === 'chibi-tribe'
     ? '仅替换部落纪五个兵种；当前为单姿势动效预览。' : '默认使用 Q 版改造前的老像素角色。';
+  $('btnGuideReset').textContent = '重新显示';
 }
 
 $('setSpritePack').addEventListener('change', async e => {
@@ -87,10 +92,12 @@ $('setSpritePack').addEventListener('change', async e => {
     $('spritePackStatus').textContent = 'DLC 暂时无法载入，已保留当前外观，请稍后重试。';
   } finally { select.disabled = false; }
 });
-document.querySelectorAll('[data-diff]').forEach(b => b.addEventListener('click', () => {
-  S.diff = b.dataset.diff;
-  document.querySelectorAll('[data-diff]').forEach(x => x.classList.toggle('on', x === b));
-}));
+const diffButtons = document.querySelectorAll('[data-diff]');
+function syncDifficulty() {
+  diffButtons.forEach(b => b.classList.toggle('on', b.dataset.diff === S.diff));
+}
+diffButtons.forEach(b => b.addEventListener('click', () => { S.diff = b.dataset.diff; syncDifficulty(); }));
+syncDifficulty();
 document.querySelectorAll('[data-spd]').forEach(b => b.addEventListener('click', () => { save.settings.speed = +b.dataset.spd; persist(); syncSettingsUI(); }));
 $('setMusic').addEventListener('input', e => { save.settings.music = +e.target.value; persist(); });
 $('setSfx').addEventListener('input', e => { save.settings.sfx = +e.target.value; persist(); sfx('buy'); });

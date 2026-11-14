@@ -6,6 +6,12 @@ production/backups/
 production/session-state/
 production/session-logs/
 
+# QA harness browser profiles (auto-generated cache, not evidence)
+production/qa/evidence/**/scratch/
+
+# Local debug logs
+debug.log
+
 # Third-party raw asset pack (processed assets live in assets/)
 Tiny Swords (Free Pack)/
 __MACOSX/

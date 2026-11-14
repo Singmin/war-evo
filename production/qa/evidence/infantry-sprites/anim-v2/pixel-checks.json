@@ -1,0 +1,291 @@
+{
+  "backup": "C:\\Users\\Singmin\\Desktop\\code\\wenming-yueqian\\production\\backups\\infantry-anim-20261112-214502",
+  "scale": 1.76,
+  "unchanged_non_infantry_cells": 3060,
+  "unchanged_non_infantry_rgba_pixels": 10584720,
+  "unchanged_rgba_pixels_outside_infantry": 14435856,
+  "verified_infantry_cells": 612,
+  "approved_step_01_matches": 17,
+  "metadata_layout_unchanged": true,
+  "game_data_unchanged": true,
+  "dlc_unchanged": true,
+  "strike_distance_minimum": 0.5,
+  "eras": [
+    {
+      "era": 0,
+      "name": "骨棒战士",
+      "strike_distance": 0.6502,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 1,
+      "name": "铜剑兵",
+      "strike_distance": 0.6039,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 2,
+      "name": "刺刀兵",
+      "strike_distance": 0.6751,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 3,
+      "name": "电棍卫",
+      "strike_distance": 0.6418,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 4,
+      "name": "光刃士",
+      "strike_distance": 0.6371,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 5,
+      "name": "兽皮战士",
+      "strike_distance": 0.6481,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 6,
+      "name": "变异战士",
+      "strike_distance": 0.6235,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 7,
+      "name": "长枪兵",
+      "strike_distance": 0.7077,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 8,
+      "name": "水手刀客",
+      "strike_distance": 0.6101,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 9,
+      "name": "防化兵",
+      "strike_distance": 0.673,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 10,
+      "name": "机器人兵",
+      "strike_distance": 0.636,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        3,
+        3,
+        3
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 11,
+      "name": "藤甲战士",
+      "strike_distance": 0.656,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 12,
+      "name": "兽王卫",
+      "strike_distance": 0.6421,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 13,
+      "name": "工蜂卫",
+      "strike_distance": 0.686,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 14,
+      "name": "陆战队",
+      "strike_distance": 0.6813,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 15,
+      "name": "伞兵",
+      "strike_distance": 0.6547,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    },
+    {
+      "era": 16,
+      "name": "佣兵",
+      "strike_distance": 0.64,
+      "grounded_frames": 12,
+      "distinct_walk_frames": 4,
+      "final_death_grounded": true,
+      "opaque_components_after_release": [
+        2,
+        2,
+        2
+      ],
+      "faction_only_frames": 12,
+      "approved_step_01_matches": true
+    }
+  ],
+  "verified_gifs": 51,
+  "atlas_version": "25d827dc10",
+  "atlas_sha256": {
+    "era0.webp": "6888e5fe090d020db1ad29842f5608826e4b3c68d23c058ee438a41a926929c5",
+    "era1.webp": "bfa6932fc4329866d91f9578909ac50b51916d668058709cd73519ca70dc202b",
+    "era10.webp": "84ec3b833a224a19dfb393477122603a7c3f7005b4b23aa8a4a0d9999f7cb77b",
+    "era11.webp": "5f0e7ed60a6ab6988988ef66a8b9f804e16a2f8999e753326967da0b3f239a48",
+    "era12.webp": "13fbe3281561f39a8548dc12b31233e3bb6468938ee3ccf170c7eb5af8bd1b33",
+    "era13.webp": "20a2078e27311fcc54dbad1793da79d0e938c866eaa823908afd168389c7c23b",
+    "era14.webp": "de6ae2a2b061d39154cc8256ba3b9e65bacbea90beca5fc9ef34033fac96f8ed",
+    "era15.webp": "ad205fe28ce019859ef718ad33f66ec76520b5a7524fdbb48665ac36b003c781",
+    "era16.webp": "b7731ceadcf47358739832551e0272d38b4bf5c15a1f91613bc47d6005b37355",
+    "era2.webp": "ec190837c6ee35c68324680cc84eb53b2ca9ecdd865e4e9721e62d724bfb268d",
+    "era3.webp": "fbf4740eefa2b64b1a371c4b73a1e3d07d437c672679143469bedf36203bece4",
+    "era4.webp": "49f8b0b649dcccd423b474e26c769f127e31e8777168da0bc03705b7570df240",
+    "era5.webp": "5d15c8ce380bdae71ac654f4678d808417d2de153cbf43d8dbb414a411a2d40c",
+    "era6.webp": "32b4645bc744f984476f1eed4cce41e4947560764ccf7f09572f09ff1b2e6d7b",
+    "era7.webp": "ae82666c22966e5d4bcdfb395c8416eb8c507853ec605a1249195cb821d5153d",
+    "era8.webp": "f541dbf82e1790072f2cb78874d19a44c0c39ba2c73b2910db5ff974a8d66d17",
+    "era9.webp": "98735299ef638fadff96d60465a32c30a7d31f2a7979103430ad35ca58b1d791"
+  }
+}

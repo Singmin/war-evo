@@ -35,6 +35,9 @@ function frame(now) {
   }
 }
 function frameBody(now) {
+  guideTick(now);   // 新手指引的光圈和气泡（js/ui/guide.js）；离开对局画面时它自己收起
+  // 正在播激励视频：不模拟也不重画（画布保留最后一帧），减少内存/GPU 压力，避免低端机被系统杀掉
+  if (S.screen === 'ad') { lastT = now; return; }
   updateSkin();   // 我方升级时代 → 顶栏、底栏换材质
   const rdt = Math.min(0.1, (now - lastT) / 1000); lastT = now;
   if (G && S.screen === 'play') {

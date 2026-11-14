@@ -1,0 +1,13 @@
+{
+  "note": "放宽后普通难度双方 AI，各 600 秒模拟时间，8 局（浏览器内 step() 直跑，不渲染）。first = [玩家侧 AI, 敌方 AI] 首次建练兵场的秒数，null = 未建。放宽前同样模拟 0 次建造。",
+  "runs": [
+    {"first":[261,null],"t":600,"winner":-1,"ages":[2,2]},
+    {"first":[null,180],"t":600,"winner":-1,"ages":[1,1]},
+    {"first":[null,null],"t":133,"winner":1,"ages":[0,0]},
+    {"first":[254,null],"t":600,"winner":-1,"ages":[2,2]},
+    {"first":[null,460],"t":600,"winner":-1,"ages":[0,1]},
+    {"first":[391,324],"t":600,"winner":-1,"ages":[1,1]},
+    {"first":[null,377],"t":600,"winner":-1,"ages":[0,2]},
+    {"first":[null,376],"t":600,"winner":-1,"ages":[0,2]}
+  ]
+}

@@ -1,0 +1,429 @@
+{
+  "checks": [
+    {
+      "name": "大招按钮在右上半区",
+      "ok": true,
+      "detail": {
+        "btn": [
+          1102,
+          186,
+          1272,
+          258
+        ],
+        "gw": 1280,
+        "cls": "ready",
+        "bar": [
+          "兵种 ▸",
+          "建塔 ▸",
+          "改塔 ▸",
+          "采矿场",
+          "练兵场",
+          "科技树 ★"
+        ],
+        "barOverflow": false
+      }
+    },
+    {
+      "name": "就绪时 ready 类（闪烁）",
+      "ok": true,
+      "detail": "ready"
+    },
+    {
+      "name": "底栏无大招、采矿场和练兵场单独一格",
+      "ok": true,
+      "detail": [
+        "兵种 ▸",
+        "建塔 ▸",
+        "改塔 ▸",
+        "采矿场",
+        "练兵场",
+        "科技树 ★"
+      ]
+    },
+    {
+      "name": "底栏不溢出",
+      "ok": true
+    },
+    {
+      "name": "冷却显示秒数且不闪烁",
+      "ok": true,
+      "detail": {
+        "cls": "cool off",
+        "txt": "陨石雨25 秒"
+      }
+    },
+    {
+      "name": "练兵场说明含生命攻击预览",
+      "ok": true,
+      "detail": "建造练兵场 Lv1：花 200 金币，之后训练的兵生命和攻击 +6%（骨棒战士 生命 60→64 攻击 10→11）；已在场上的兵不变，升级时代后保留"
+    },
+    {
+      "name": "点击大招按钮释放",
+      "ok": true
+    },
+    {
+      "name": "R 建练兵场、G 建采矿场",
+      "ok": true,
+      "detail": [
+        1,
+        1
+      ]
+    },
+    {
+      "name": "机械线 7 个按钮不溢出",
+      "ok": true,
+      "detail": {
+        "n": 7,
+        "over": false
+      }
+    },
+    {
+      "name": "手机上大招按钮在屏幕内",
+      "ok": true,
+      "detail": {
+        "r": [
+          646.625,
+          96.875,
+          735.1666870117188,
+          134.375
+        ],
+        "vw": 812,
+        "vh": 375
+      }
+    },
+    {
+      "name": "触屏点一下释放大招",
+      "ok": true
+    },
+    {
+      "name": "both 简单 AI 不建练兵场",
+      "ok": true,
+      "detail": {
+        "t": 314.7,
+        "over": true,
+        "winner": 1,
+        "drill": [
+          0,
+          0
+        ],
+        "mine": [
+          0,
+          0
+        ],
+        "firstMine": [
+          null,
+          null
+        ],
+        "firstDrill": [
+          null,
+          null
+        ],
+        "age": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "name": "both normal AI 练兵场不超过规则上限",
+      "ok": true,
+      "detail": {
+        "t": 600,
+        "over": false,
+        "winner": -1,
+        "drill": [
+          0,
+          1
+        ],
+        "mine": [
+          0,
+          1
+        ],
+        "firstMine": [
+          null,
+          595.2
+        ],
+        "firstDrill": [
+          null,
+          340.8
+        ],
+        "age": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "name": "both hard AI 练兵场不超过规则上限",
+      "ok": true,
+      "detail": {
+        "t": 600,
+        "over": false,
+        "winner": -1,
+        "drill": [
+          1,
+          0
+        ],
+        "mine": [
+          1,
+          0
+        ],
+        "firstMine": [
+          320,
+          null
+        ],
+        "firstDrill": [
+          493.9,
+          null
+        ],
+        "age": [
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "name": "idle 简单 AI 不建练兵场",
+      "ok": true,
+      "detail": {
+        "t": 61.5,
+        "over": true,
+        "winner": 1,
+        "drill": [
+          0,
+          0
+        ],
+        "mine": [
+          0,
+          0
+        ],
+        "firstMine": [
+          null,
+          null
+        ],
+        "firstDrill": [
+          null,
+          null
+        ],
+        "age": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "idle normal AI 练兵场不超过规则上限",
+      "ok": true,
+      "detail": {
+        "t": 67.6,
+        "over": true,
+        "winner": 1,
+        "drill": [
+          0,
+          0
+        ],
+        "mine": [
+          0,
+          0
+        ],
+        "firstMine": [
+          null,
+          null
+        ],
+        "firstDrill": [
+          null,
+          null
+        ],
+        "age": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "idle hard AI 练兵场不超过规则上限",
+      "ok": true,
+      "detail": {
+        "t": 80.8,
+        "over": true,
+        "winner": 1,
+        "drill": [
+          0,
+          0
+        ],
+        "mine": [
+          0,
+          0
+        ],
+        "firstMine": [
+          null,
+          null
+        ],
+        "firstDrill": [
+          null,
+          null
+        ],
+        "age": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "页面无异常",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "ai_both_easy": {
+    "t": 314.7,
+    "over": true,
+    "winner": 1,
+    "drill": [
+      0,
+      0
+    ],
+    "mine": [
+      0,
+      0
+    ],
+    "firstMine": [
+      null,
+      null
+    ],
+    "firstDrill": [
+      null,
+      null
+    ],
+    "age": [
+      0,
+      1
+    ]
+  },
+  "ai_both_normal": {
+    "t": 600,
+    "over": false,
+    "winner": -1,
+    "drill": [
+      0,
+      1
+    ],
+    "mine": [
+      0,
+      1
+    ],
+    "firstMine": [
+      null,
+      595.2
+    ],
+    "firstDrill": [
+      null,
+      340.8
+    ],
+    "age": [
+      0,
+      2
+    ]
+  },
+  "ai_both_hard": {
+    "t": 600,
+    "over": false,
+    "winner": -1,
+    "drill": [
+      1,
+      0
+    ],
+    "mine": [
+      1,
+      0
+    ],
+    "firstMine": [
+      320,
+      null
+    ],
+    "firstDrill": [
+      493.9,
+      null
+    ],
+    "age": [
+      1,
+      1
+    ]
+  },
+  "ai_idle_easy": {
+    "t": 61.5,
+    "over": true,
+    "winner": 1,
+    "drill": [
+      0,
+      0
+    ],
+    "mine": [
+      0,
+      0
+    ],
+    "firstMine": [
+      null,
+      null
+    ],
+    "firstDrill": [
+      null,
+      null
+    ],
+    "age": [
+      0,
+      0
+    ]
+  },
+  "ai_idle_normal": {
+    "t": 67.6,
+    "over": true,
+    "winner": 1,
+    "drill": [
+      0,
+      0
+    ],
+    "mine": [
+      0,
+      0
+    ],
+    "firstMine": [
+      null,
+      null
+    ],
+    "firstDrill": [
+      null,
+      null
+    ],
+    "age": [
+      0,
+      0
+    ]
+  },
+  "ai_idle_hard": {
+    "t": 80.8,
+    "over": true,
+    "winner": 1,
+    "drill": [
+      0,
+      0
+    ],
+    "mine": [
+      0,
+      0
+    ],
+    "firstMine": [
+      null,
+      null
+    ],
+    "firstDrill": [
+      null,
+      null
+    ],
+    "age": [
+      0,
+      0
+    ]
+  },
+  "errors": []
+}

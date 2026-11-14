@@ -1,38 +1,97 @@
-/* 局内 HUD 的 DOM 部分：右上按钮、提示文字、看广告按钮
-   画布上的 HUD（金币、经验、时代、血条、小地图）在 js/ui/hud.js，位置常量 HUD_LAYOUT 也在那里 */
-#topR { position: absolute; right: 10px; top: 10px; display: flex; gap: 8px; }
-.tb { width: 84px; height: 76px; border-radius: 12px; border: 2px solid var(--edge); background: var(--wood-3); color: #ffe2a6;
-  font-size: var(--fs-m); font-weight: bold; }
-.tb:active { background: #59432f; }
+/* 局内 DOM HUD。画布部分和 HUD_LAYOUT 见 js/ui/hud.js。 */
+#game {
+  --hud-ink: #1a120b;
+  --hud-rim: #fff4d752;
+  --hud-shadow: #000a;
+  --hud-type-edge: -1px 0 0 var(--hud-ink), 1px 0 0 var(--hud-ink), 0 -1px 0 var(--hud-ink), 0 1px 0 var(--hud-ink);
+  --hud-bevel: inset 2px 2px 0 var(--hud-rim), inset -2px -2px 0 #0008;
+  --hud-steps: polygon(
+    8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px,
+    calc(100% - 4px) 8px, 100% 8px, 100% calc(100% - 8px),
+    calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px),
+    calc(100% - 8px) 100%, 8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px),
+    4px calc(100% - 8px), 0 calc(100% - 8px), 0 8px, 4px 8px, 4px 4px, 8px 4px
+  );
+}
+
+/* --capsule-shift：让开宿主右上角胶囊按钮的左移量，js/ui/hud.js 的 syncTopButtons 算 */
+#topR { position: absolute; right: calc(10px + var(--capsule-shift, 0px)); top: 10px; display: flex; gap: 8px; }
+.tb { width: 84px; height: 76px; border: 2px solid var(--hud-ink); color: #ffe2a6;
+  font-size: var(--fs-m); font-weight: bold; text-shadow: var(--hud-type-edge); }
+#btnPause svg { display: block; width: 24px; height: 24px; margin: auto; color: var(--me); }
+
+.tb, #info.air-info, .adb::before, #btnSpecial::before, #btnGameGuide::before {
+  /* 和画布面板共用同一张时代贴图、底色与压暗色。 */
+  background: linear-gradient(var(--hud-skin-shade, transparent), var(--hud-skin-shade, transparent)), var(--skin-tex, none);
+  background-color: var(--hud-skin-base, #3a2c20);
+  image-rendering: pixelated;
+  box-shadow: var(--hud-bevel), 0 4px 0 var(--hud-shadow);
+}
+.tb:active { transform: translateY(2px); box-shadow: var(--hud-bevel), 0 2px 0 var(--hud-shadow); }
+.tb:focus-visible, .adb:focus-visible, #btnSpecial:focus-visible, #btnGameGuide:focus-visible, #bar .mb:focus-visible {
+  outline: 2px solid var(--gold); outline-offset: 2px;
+}
 
 /* 操作提示 / 错误提示：小地图和训练条下面 */
 #info { position: absolute; left: 400px; top: 80px; width: 480px; text-align: center; font-size: var(--fs-s); color: #ffe9a8;
-  text-shadow: 0 1px 3px #000, 0 0 6px #000; pointer-events: none; min-height: 28px; line-height: 1.35; }
+  text-shadow: var(--hud-type-edge); pointer-events: none; min-height: 28px; line-height: 1.35; }
 #info.err { color: var(--bad); font-weight: bold; }
-#info.air-info { top: 83px; padding: 7px 12px 8px; border: 2px solid #4a3b29; border-radius: 9px;
-  background: linear-gradient(#251c15d9, #1b150ff0), var(--skin-tex, none); background-color: #251c15;
-  box-shadow: inset 0 1px 0 #e4cca943, 0 2px 4px #1d150d64;
+#info.air-info { top: 83px; padding: 7px 12px 8px; border: 2px solid var(--hud-ink);
   font-size: var(--fs-s); line-height: 1.28; color: #f0debf; }
 #info.air-info .air-role { color: #ffdda1; font-size: var(--fs-m); font-weight: bold; }
 
-/* 看广告按钮：我方血条下面（顶栏缩放 HUD_SCALE 后的位置，见 js/ui/hud.js） */
+/* 两侧按钮只裁切底板，保留矩形点击区域。 */
 #adBtns { position: absolute; left: 8px; top: 186px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
-/* 青铜小牌：左边圆形播放键，右边两行（奖励 / 看广告）。金币牌金色，回血牌红铜色 */
-.adb { display: flex; align-items: center; gap: 9px; height: 56px; padding: 0 16px 0 7px; border-radius: 30px;
-  border: 2px solid #1b120a; color: #fff6e6; text-align: left; cursor: pointer;
-  background: linear-gradient(#6a4a26, #3c2812 60%, #2a1b0c);
-  box-shadow: inset 0 2px 0 rgba(255,226,160,.35), inset 0 -2px 0 rgba(0,0,0,.4), 0 3px 4px rgba(0,0,0,.6); }
-.adb:active { transform: translateY(2px); box-shadow: inset 0 2px 0 rgba(255,226,160,.25), 0 1px 2px rgba(0,0,0,.6); }
+.adb, #btnSpecial, #btnGameGuide {
+  position: relative; isolation: isolate; display: flex; align-items: center;
+  border: 2px solid transparent; background: none; cursor: pointer; text-shadow: var(--hud-type-edge);
+}
+.adb::before, #btnSpecial::before, #btnGameGuide::before {
+  content: ''; position: absolute; inset: -2px; z-index: -1; pointer-events: none;
+  clip-path: var(--hud-steps); border: 2px solid var(--hud-ink);
+  box-shadow: var(--hud-bevel), inset 0 -4px 0 var(--hud-shadow);
+}
+.adb:active:not(:disabled), #btnSpecial:active, #btnGameGuide:active { transform: translateY(2px); }
+.adb { gap: 8px; height: 56px; padding: 0 16px 0 8px; color: #fff6e6; text-align: left; }
 .adb:disabled { opacity: .7; cursor: default; }
-.adb .play { flex: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  background: radial-gradient(circle at 40% 35%, #ffe7a0, #e0a83c 55%, #9a6418); border: 2px solid #1b120a;
-  box-shadow: inset 0 -2px 0 rgba(0,0,0,.3); }
-.adb .play svg { width: 20px; height: 20px; margin-left: 3px; fill: #3a2408; }
+.adb .play, #btnSpecial .ic {
+  flex: none; display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--hud-ink); background: #251c16;
+  box-shadow: inset 2px 2px 0 #0008, inset -2px -2px 0 #fff3;
+  color: var(--me);
+}
+.adb .play { width: 40px; height: 40px; }
+.adb .play svg { width: 24px; height: 24px; }
 .adb span { display: flex; flex-direction: column; line-height: 1.15; }
-.adb b { font-size: var(--fs-m); color: #ffd770; text-shadow: 0 1px 0 #000, 0 0 3px #000; white-space: nowrap; }
-.adb small { font-size: var(--fs-xs); color: #e8d6b4; text-shadow: 0 1px 0 #000; white-space: nowrap; }
-.adb.hp { background: linear-gradient(#7a3424, #4a1c12 60%, #2e100a); }
-.adb.hp .play { background: radial-gradient(circle at 40% 35%, #ffc0a8, #e0603c 55%, #8a2a14); }
+.adb b { font-size: var(--fs-m); color: #ffd770; white-space: nowrap; }
+.adb small { font-size: var(--fs-xs); color: #e8d6b4; white-space: nowrap; }
+.adb.hp .play { color: #ffb49a; }
 .adb.hp b { color: #ffb49a; }
-.adb.pulse { animation: adPulse .45s ease-in-out 3; }
-@keyframes adPulse { 50% { transform: scale(1.12); } }
+
+/* 冷却扇形使用硬色阶；就绪时只改变金边透明度。 */
+#sideActions { position: absolute; right: 8px; top: var(--side-actions-top, 186px); display: flex;
+  flex-direction: column; align-items: flex-end; gap: 8px; }
+#btnSpecial { flex-direction: row-reverse; gap: 10px;
+  height: 72px; padding: 0 10px 0 20px; color: #ffeccb; }
+#btnGameGuide { height: 58px; padding: 0 14px; color: #ffeccb; font-size: var(--fs-s); font-weight: bold; }
+#btnSpecial .ic { position: relative; width: 54px; height: 54px; }
+#btnSpecial .ic svg { width: 36px; height: 36px; }
+#btnSpecial.cool .ic::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: conic-gradient(#000a var(--cd, 0deg), transparent 0); }
+#btnSpecial span { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.15; }
+#btnSpecial b { font-size: var(--fs-m); white-space: nowrap; }
+#btnSpecial small { font-size: var(--fs-xs); color: var(--gold); white-space: nowrap; }
+#btnSpecial.off .ic { color: #c3ad85; }
+#btnSpecial.ready .ic { border-color: var(--gold); color: var(--gold); }
+
+#btnSpecial::after, .adb::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  clip-path: var(--hud-steps); border: 8px solid var(--gold); opacity: 0;
+}
+#btnSpecial.ready::after { animation: hudBlink .6s steps(2, end) infinite alternate; will-change: opacity; }
+.adb.pulse::after { animation: hudBlink .45s steps(2, end) 3 alternate; }
+@keyframes hudBlink { from { opacity: .24; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  #btnSpecial.ready::after, .adb.pulse::after { animation: none; opacity: 1; }
+}

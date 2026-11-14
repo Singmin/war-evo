@@ -1,0 +1,104 @@
+[
+  {
+    "diff": "normal",
+    "age": 0,
+    "adjustment": 0.3,
+    "event": "start",
+    "game": 252.01666666675936,
+    "real": 84.21369999999553
+  },
+  {
+    "diff": "normal",
+    "age": 0,
+    "adjustment": 0.3,
+    "event": "complete",
+    "game": 255.03333333342843,
+    "real": 85.22779999999702
+  },
+  {
+    "diff": "hard",
+    "age": 0,
+    "event": "start",
+    "game": 306.00000000005036,
+    "real": 102.20869999999553
+  },
+  {
+    "diff": "hard",
+    "age": 0,
+    "event": "complete",
+    "game": 309.0166666667143,
+    "real": 103.22260000000149
+  },
+  {
+    "diff": "easy",
+    "age": 0,
+    "event": "start",
+    "game": 432.0166666666024,
+    "real": 144.21469999999553
+  },
+  {
+    "diff": "easy",
+    "age": 0,
+    "event": "complete",
+    "game": 435.03333333326634,
+    "real": 145.215
+  },
+  {
+    "diff": "normal",
+    "age": 0,
+    "adjustment": -0.3,
+    "event": "start",
+    "game": 468.0166666665697,
+    "real": 156.2206000000015
+  },
+  {
+    "diff": "normal",
+    "age": 0,
+    "adjustment": -0.3,
+    "event": "complete",
+    "game": 471.0333333332336,
+    "real": 157.2206000000015
+  },
+  {
+    "diff": "normal",
+    "age": 3,
+    "event": "start",
+    "game": 719.9999999996738,
+    "real": 240.206
+  },
+  {
+    "diff": "normal",
+    "age": 1,
+    "event": "start",
+    "game": 720.0166666663405,
+    "real": 240.219
+  },
+  {
+    "diff": "normal",
+    "age": 2,
+    "event": "start",
+    "game": 720.0166666663405,
+    "real": 240.219
+  },
+  {
+    "diff": "normal",
+    "age": 3,
+    "event": "complete",
+    "game": 723.0166666663378,
+    "real": 241.21989999999852
+  },
+  {
+    "diff": "normal",
+    "age": 1,
+    "event": "complete",
+    "game": 723.0333333330044,
+    "real": 241.22
+  },
+  {
+    "diff": "normal",
+    "age": 2,
+    "event": "complete",
+    "game": 723.0333333330044,
+    "real": 241.22
+  }
+]

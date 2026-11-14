@@ -1,0 +1,35 @@
+/* 新手指引（js/ui/guide.js）：局内光圈和气泡、开局图解、设置页的「重新显示」 */
+
+/* 光圈：套在要点的按钮外面，不挡点击 */
+#guideRing { position: absolute; z-index: 12; pointer-events: none; border: 5px solid var(--gold);
+  box-shadow: 0 0 0 2px var(--hud-ink), 0 0 14px 2px #ffd34daa;
+  animation: hudBlink .5s steps(2, end) infinite alternate; }
+#guideRing[hidden], #guideTip[hidden], #guideTip i[hidden] { display: none; }
+
+/* 气泡：一句话 + 跳过。只有「跳过指引」能点，其余部分点击会穿过去 */
+#guideTip { position: absolute; z-index: 12; display: flex; align-items: center; gap: 14px; max-width: 620px;
+  padding: 9px 10px 9px 16px; pointer-events: none; white-space: nowrap;
+  background: #251c16; border: 3px solid var(--gold); color: #fff3d2; font-size: var(--fs-m); font-weight: bold;
+  text-shadow: var(--hud-type-edge); box-shadow: 0 0 0 2px var(--hud-ink), 0 5px 0 var(--hud-shadow); }
+#btnGuideSkip { pointer-events: auto; flex: none; height: 40px; padding: 0 10px; border: 2px solid var(--hud-ink);
+  background: var(--wood-3); color: var(--text-dim); font-size: var(--fs-xs); box-shadow: var(--hud-bevel); }
+#btnGuideSkip:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+/* 小箭头：气泡在按钮上方时朝下，在下方（.below）时朝上 */
+#guideTip i { position: absolute; bottom: -11px; width: 16px; height: 16px; background: #251c16;
+  border: solid var(--gold); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+#guideTip.below i { bottom: auto; top: -11px; border-width: 3px 0 0 3px; }
+
+/* 开局图解 */
+#guideIntro { min-width: 620px; padding: 14px 30px 16px; }
+.guideRow { display: flex; align-items: center; gap: 16px; padding: 7px 0; font-size: var(--fs-m); }
+.guideRow .ic { flex: none; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;
+  background: #251c16; border: 2px solid #1a120b; color: var(--me); box-shadow: inset 2px 2px 0 #0008, inset -2px -2px 0 #fff3; }
+.guideRow .ic svg { width: 36px; height: 36px; }
+.guideRow b { flex: none; width: 96px; color: var(--gold); }
+#guideIntro .guideGoal { margin: 10px 0 0; padding-top: 12px; border-top: 2px solid rgba(0,0,0,.45);
+  text-align: center; color: #fff6e6; font-size: var(--fs-l); font-weight: bold; }
+
+/* 设置页：普通 .chip 没选中时是暗的，这个按钮要看起来能点 */
+#btnGuideReset { min-width: 190px; filter: drop-shadow(0 3px 2px rgba(0,0,0,.7)); }
+
+@media (prefers-reduced-motion: reduce) { #guideRing { animation: none; } }

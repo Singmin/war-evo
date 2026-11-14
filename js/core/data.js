@@ -6,7 +6,7 @@
 const W = 1280, H = 720, WORLD = 1920, GROUND_Y = 590, STEP = 1 / 60;
 const BASE_L = 160, BASE_R = WORLD - 160;    // 两边基地的门口 x
 const MIN_ZOOM = W / WORLD;                    // 缩到最小时整个战场一屏装下
-const MAX_UNITS = 20, QUEUE_MAX = 5, SPACING = 24;
+const MAX_UNITS = 15, QUEUE_MAX = 5, SPACING = 24;
 const AIR_ALT = 150, AIR_BASE_DMG = 0.5; // 飞行高度（世界像素）；空军攻基地的伤害倍数
 const UNIT_ORDER = [0, 1, 2, 4, 5, 3];  // 只改显示和快捷键顺序，兵种编号不变
 // 堵门出兵：门口的兵被敌人顶住（站着不动）时，新兵照样出来，叠在门口；门口 SPAWN_ZONE 像素内最多叠 SPAWN_STACK 个
@@ -140,9 +140,9 @@ const BEAM_T = 0.12;   // 瞬发类从开火到命中的秒数
 const UNIT_BASE = [
   { price: 15, hp: 60, atk: 10, range: 30, rate: 1.0, speed: 80, train: 1.5, w: 22, h: 44 },                          // 步兵
   { price: 25, hp: 40, atk: 8, range: 220, rate: 1.2, speed: 80, train: 2.0, w: 20, h: 42, ranged: true },            // 射手
-  { price: 40, hp: 90, atk: 14, range: 30, rate: 0.9, speed: 140, train: 2.5, w: 36, h: 48 },                         // 骑兵
+  { price: 40, hp: 60, atk: 28, range: 30, rate: 0.9, speed: 140, train: 2.5, w: 36, h: 48 },                         // 骑兵
   { price: 100, hp: 300, atk: 28, range: 40, rate: 1.5, speed: 55, train: 4.0, w: 46, h: 44 },                        // 重装
-  { price: 70, hp: 50, atk: 22, range: 340, rate: 3.0, speed: 55, train: 3.5, w: 34, h: 34, ranged: true, splash: 50 }, // 炮兵
+  { price: 70, hp: 50, atk: 16.5, range: 340, minRange: 80, rate: 3.0, speed: 55, train: 3.5, w: 34, h: 34, ranged: true, splash: 50 }, // 炮兵
   { price: 85, hp: 70, atk: 16, range: 120, rate: 1.2, speed: 110, train: 3.5, w: 34, h: 30, ranged: true, air: true }, // 空军
 ];
 const TOWER_BASE = [
@@ -150,35 +150,33 @@ const TOWER_BASE = [
   { price: 160, atk: 14, range: 340, rate: 1.0, splash: 0 },
   { price: 280, atk: 30, range: 380, rate: 2.0, splash: 60 },
 ];
-const EVOLVE = [{ gold: 230 }, { gold: 430 }, { gold: 780 }, { gold: 1300 }];   // 进入下一个时代的金币（按当前第几个时代）
-// 科技点：击杀得经验，经验攒满一格得 1 点（经验条清零重攒）
+const EVOLVE = [{ gold: 540 }, { gold: 1290 }, { gold: 2340 }, { gold: 3900 }];   // 玩家进入下一个时代的金币
+// 科技点：击杀得经验，经验攒满一格立刻得 1 点（经验条清零重攒）。玩家和 AI 同一套，不再按时钟拖延发点。
 // 每个时代的前 PT_FREE 点（够跃迁）按 PT_EXP 算；之后每多 1 点，这一格要的经验多 PT_STEP 倍（按比例变贵），跃迁后重置
-// 例：青铜纪 200 → 第 5 点 400、第 6 点 600……想多点科技就得晚点跃迁
-// 2026-11-12：前期科技点来得太快（4 点约 56 秒就满，要等到约 216 秒才有钱跃迁），前三个时代调高：120/200/320 → 240/320/400
-const PT_EXP = [240, 320, 400, 500, 950];
+const PT_EXP = [300, 800, 1200, 1500, 2850];
 const PT_FREE = 4, PT_STEP = 1.0;
 const ptNeed = sd => Math.round(PT_EXP[sd.age] * (1 + PT_STEP * Math.max(0, sd.got - (PT_FREE - 1))));
 const ERA_PTS = 4;                                // 进入新时代要花的科技点
-const BASE_HP = [1000, 1600, 2600, 4100, 6600];
+const BASE_HP = [2000, 3200, 4800, 7200, 10000];
 // 每秒自动金币，随时代提高。2026-11-12：后期金币增速太快，第 4、5 个时代 13/20 → 12/16
 const INCOME = [3, 5, 8, 12, 16];
 const START_GOLD = 150;
-const KILL_EXP = 2;                              // 经验只来自击杀：敌兵价格 ×2
+const KILL_EXP = 2;                              // 击杀经验：敌兵价格 ×2
 // 防御塔打死的兵，击杀金币和经验都只给这个比例。塔打不掉、不花维护费，全额奖励会让"只修塔不出兵"滚雪球
 const TOWER_KILL_REWARD = 0.5;
 // 大招炸死的兵同理：大招不花钱、冷却一好就能清一波，全额奖励会让"不出兵、靠大招清兵"也能滚雪球
 const SPECIAL_KILL_REWARD = 0.5;
-// AI 落后时代时的追赶倍数（exp：击杀经验；gold：自动金币；evolve：跃迁金币）
-// evolve：跃迁金币打折
-// pt：保底被动经验——落后 1 个时代时，每 pt 秒白拿 1 个科技点的经验；落后 n 个时代就快 n 倍。
-//     经验原本只来自击杀，玩家不出兵（只修塔 + 大招）时 AI 一点经验都拿不到，会永远卡在部落纪。
-const CATCH_UP = { easy: { exp: 2, gold: 1.15, evolve: 0.8, pt: 110 }, normal: { exp: 3, gold: 1.3, evolve: 0.65, pt: 80 }, hard: { exp: 3, gold: 1.4, evolve: 0.6, pt: 65 } };
+// AI 落后时的额外追赶：击杀经验倍率和自动金币倍率。
+const CATCH_UP = { easy: { exp: 2, gold: 1.15 }, normal: { exp: 3, gold: 1.3 }, hard: { exp: 3, gold: 1.4 } };
 const DIFF_NAME = { easy: '简单', normal: '普通', hard: '困难' };
 // TapTap 广告总开关，SDK 接入见 js/ui/ads.js。
 const ADS_ON = true;
 const SLOT_COST = [0, 300, 800, 1600];
 // 采矿场（设计文档 6.5）：3 级，每级自动金币 +15%
 const MINE_COST = [150, 400, 900], MINE_BONUS = 0.15;
+// 练兵场（design/quick-specs/training-ground.md）：3 级，每级让之后训练的兵生命和攻击各 +6%；升时代保留
+const DRILL_COST = [200, 500, 1000], DRILL_BONUS = 0.06;
+const AI_DRILL_T = 60;   // 普通 AI：开局多少秒后开始为练兵场 Lv1 存钱（js/core/ai.js）
 // 防御塔强化（6.3）：每座塔 2 级，花费 = 塔价 ×0.6 / ×1.0，每级攻击 +30%、射程 +10%
 const TOWER_UPG = [0.6, 1.0];         // 解锁第 n+1 个塔位的价格
 const SPECIAL_CD = 60, SPECIAL_SHELLS = 20, SPECIAL_TIME = 3, SPECIAL_RADIUS = 60;
@@ -199,10 +197,10 @@ const AI_TOWER_MAX = 4, AI_TOWER_KEEP = 2;   // AI 按时代保持的塔数上�
 // dir：atk 进攻 / eco 经济 / def 防守（科技树卡片颜色）；bad：代价（红字显示）
 const PERKS = [
   { id: 'hunt', era: 0, cost: 1, group: 'e0', dir: 'atk', name: '狩猎号角', desc: '步兵和骑兵攻击 +20%', ap: m => { m.atk[0] *= 1.2; m.atk[2] *= 1.2; } },
-  { id: 'income', era: 0, cost: 1, group: 'e0', dir: 'eco', name: '火种矿脉', desc: '自动金币 +15%', bad: '击杀金币 −30%', ap: m => { m.income *= 1.15; m.bounty *= 0.7; } },   // 代价放在青铜纪科技碰不到的击杀金币上（原来训练 +20% 会被流水线抵消）
+  { id: 'income', era: 0, cost: 1, group: 'e0', dir: 'eco', name: '火种矿脉', desc: '自动金币 +10%', ap: m => { m.income *= 1.1; } },   // 三选一里只有经济项带代价玩家会绕开，改为无代价、小加成（early-tech-routes-ads.md 第 9 节）
   { id: 'inf', era: 0, cost: 1, group: 'e0', dir: 'def', name: '盾墙', desc: '步兵生命 +40%', ap: m => { m.hp[0] *= 1.4; } },
   { id: 'train', era: 1, cost: 1, group: 'e1', dir: 'atk', name: '流水线', desc: '所有兵训练时间 −25%', ap: m => { m.train *= 0.75; } },
-  { id: 'price', era: 1, cost: 1, group: 'e1', dir: 'eco', name: '精打细算', desc: '所有兵价格 −15%', bad: '兵生命 −10%', ap: m => { m.price *= 0.85; for (let i = 0; i < UNIT_BASE.length; i++) m.hp[i] *= 0.9; } },
+  { id: 'price', era: 1, cost: 1, group: 'e1', dir: 'eco', name: '精打细算', desc: '所有兵价格 −10%', ap: m => { m.price *= 0.9; } },
   { id: 'hold', era: 1, cost: 1, group: 'e1', dir: 'def', name: '坚守', desc: '自家门口的兵受伤再 −15%', ap: m => { m.home *= 0.85; } },
   { id: 'tower', era: 2, cost: 1, name: '要塞工程', desc: '防御塔攻击 +30%，射程 +15%', ap: m => { m.towerAtk *= 1.3; m.towerRange *= 1.15; } },
   { id: 'hvy', era: 2, cost: 2, name: '铁壁', desc: '重装生命 +35%，攻击 +15%', ap: m => { m.hp[3] *= 1.35; m.atk[3] *= 1.15; } },
@@ -252,9 +250,9 @@ const COUNTER_BONUS = 1.6;
 const TYPE_DESC = [
   '步兵：便宜耐打，克制骑兵，怕射手',
   '射手：远程，能对空，克制步兵和空军，怕重装',
-  '骑兵：移动很快，克制炮兵，怕步兵',
+  '骑兵：移动快、攻击高，克制炮兵，怕步兵',
   '重装：血厚，克制射手，怕炮兵',
-  '炮兵：超远射程、范围伤害，克制重装，怕骑兵',
+  '炮兵：远程溅射，有贴身盲区，克制重装，怕骑兵',
   '空军：独立飞行队列，能打地面兵和敌方空军；怕射手、防御塔和大招，攻基地伤害减半',
 ];
 const TOWER_DESC = ['轻塔：射速快、伤害低', '中塔：均衡', '重塔：慢速、范围伤害'];
@@ -301,12 +299,20 @@ const rand = (a, b) => a + Math.random() * (b - a);
 
 // sd 可选：传入一方时叠加它的科技卡效果
 // age 参数是时代编号（0–8），数值强度按它是第几个时代算
-function unitStats(type, era, sd) {
+/**
+ * 某一方在某时代训练出的兵的属性（含科技和练兵场加成）。
+ * @param {number} type 兵种下标；@param {number} era 时代；@param {object} [sd] 所属一方，省略时为基础属性
+ * @param {number} [drill] 练兵场等级，默认取 sd.drill（预览下一级时传入）
+ */
+function unitStats(type, era, sd, drill = sd ? sd.drill || 0 : 0) {
   const b = UNIT_BASE[type], m = sd ? sd.mod : null, age = ERA_TIER[era];
   const k = (key, v) => m ? v * m[key][type] : v;
+  const dr = 1 + DRILL_BONUS * drill;
+  const atk = k('atk', b.atk * pow22(age)) * dr;
   return {
-    name: UNIT_NAMES[era][type], price: roundPrice(b.price * pow2(age) * (m ? m.price : 1)), hp: Math.round(k('hp', b.hp * pow22(age))),
-    atk: Math.round(k('atk', b.atk * pow22(age))), range: Math.round(k('range', b.range)), rate: b.rate, speed: k('speed', b.speed),
+    name: UNIT_NAMES[era][type], price: roundPrice(b.price * pow2(age) * (m ? m.price : 1)), hp: Math.round(k('hp', b.hp * pow22(age)) * dr),
+    atk: type === 4 ? Math.round(atk * 10) / 10 : Math.round(atk), range: Math.round(k('range', b.range)),
+    minRange: b.minRange || 0, rate: b.rate, speed: k('speed', b.speed),
     train: b.train * (m ? m.train : 1),
     w: b.w, h: (type === 3 && ERA_ART[era][3] === 4) ? 64 : b.h, ranged: !!b.ranged, air: !!b.air, splash: (b.splash || 0) * (m ? m.splash : 1),
   };

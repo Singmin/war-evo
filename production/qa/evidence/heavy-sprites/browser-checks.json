@@ -1,0 +1,623 @@
+{
+  "battle": {
+    "0": {
+      "spawned": {
+        "name": "猛犸骑手",
+        "w": 46,
+        "h": 44,
+        "air": false,
+        "altitude": 0,
+        "x": 185.91666666666666,
+        "drawn": true
+      },
+      "iconFrame": 1,
+      "walked": {
+        "distance": 34.83333333333297,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "attack": {
+        "frames": [
+          4,
+          5,
+          6
+        ],
+        "hpLoss": 28,
+        "blits": [
+          [
+            6,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "recovery": 7,
+      "hit": {
+        "hpLoss": 21,
+        "flash": 0.12,
+        "blits": [
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "death": {
+        "death": {
+          "kind": "die",
+          "x": 440.74999999999966,
+          "y": -22,
+          "alt": 0,
+          "t": 0.15,
+          "dur": 1,
+          "col": "#e99a2e",
+          "type": 3,
+          "era": 0,
+          "side": 0
+        },
+        "blits": [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      },
+      "wreck": [
+        [
+          2,
+          1
+        ],
+        [
+          11,
+          0
+        ]
+      ]
+    },
+    "2": {
+      "spawned": {
+        "name": "蒸汽坦克",
+        "w": 46,
+        "h": 44,
+        "air": false,
+        "altitude": 0,
+        "x": 185.91666666666666,
+        "drawn": true
+      },
+      "iconFrame": 1,
+      "walked": {
+        "distance": 34.83333333333297,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "attack": {
+        "frames": [
+          4,
+          5,
+          6
+        ],
+        "hpLoss": 72,
+        "blits": [
+          [
+            6,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "recovery": 7,
+      "hit": {
+        "hpLoss": 54,
+        "flash": 0.12,
+        "blits": [
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "death": {
+        "death": {
+          "kind": "die",
+          "x": 440.74999999999966,
+          "y": -22,
+          "alt": 0,
+          "t": 0.15,
+          "dur": 1,
+          "col": "#e99a2e",
+          "type": 3,
+          "era": 2,
+          "side": 0
+        },
+        "blits": [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      },
+      "wreck": [
+        [
+          1,
+          1
+        ],
+        [
+          11,
+          0
+        ]
+      ]
+    },
+    "4": {
+      "spawned": {
+        "name": "机甲",
+        "w": 46,
+        "h": 64,
+        "air": false,
+        "altitude": 0,
+        "x": 185.91666666666666,
+        "drawn": true
+      },
+      "iconFrame": 1,
+      "walked": {
+        "distance": 34.83333333333297,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "attack": {
+        "frames": [
+          4,
+          5,
+          6
+        ],
+        "hpLoss": 184,
+        "blits": [
+          [
+            6,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "recovery": 7,
+      "hit": {
+        "hpLoss": 138,
+        "flash": 0.12,
+        "blits": [
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "death": {
+        "death": {
+          "kind": "die",
+          "x": 440.74999999999966,
+          "y": -32,
+          "alt": 0,
+          "t": 0.15,
+          "dur": 1,
+          "col": "#e99a2e",
+          "type": 3,
+          "era": 4,
+          "side": 0
+        },
+        "blits": [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      },
+      "wreck": [
+        [
+          1,
+          1
+        ],
+        [
+          11,
+          0
+        ]
+      ]
+    },
+    "6": {
+      "spawned": {
+        "name": "巨兽",
+        "w": 46,
+        "h": 44,
+        "air": false,
+        "altitude": 0,
+        "x": 185.91666666666666,
+        "drawn": true
+      },
+      "iconFrame": 1,
+      "walked": {
+        "distance": 34.83333333333297,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "attack": {
+        "frames": [
+          4,
+          5,
+          6
+        ],
+        "hpLoss": 115,
+        "blits": [
+          [
+            6,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "recovery": 7,
+      "hit": {
+        "hpLoss": 86.25,
+        "flash": 0.12,
+        "blits": [
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "death": {
+        "death": {
+          "kind": "die",
+          "x": 440.74999999999966,
+          "y": -22,
+          "alt": 0,
+          "t": 0.15,
+          "dur": 1,
+          "col": "#e99a2e",
+          "type": 3,
+          "era": 6,
+          "side": 0
+        },
+        "blits": [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      },
+      "wreck": [
+        [
+          1,
+          1
+        ],
+        [
+          11,
+          0
+        ]
+      ]
+    },
+    "12": {
+      "spawned": {
+        "name": "雷霆巨兽",
+        "w": 46,
+        "h": 44,
+        "air": false,
+        "altitude": 0,
+        "x": 185.91666666666666,
+        "drawn": true
+      },
+      "iconFrame": 1,
+      "walked": {
+        "distance": 34.83333333333297,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "attack": {
+        "frames": [
+          4,
+          5,
+          6
+        ],
+        "hpLoss": 184,
+        "blits": [
+          [
+            6,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "recovery": 7,
+      "hit": {
+        "hpLoss": 138,
+        "flash": 0.12,
+        "blits": [
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "death": {
+        "death": {
+          "kind": "die",
+          "x": 440.74999999999966,
+          "y": -22,
+          "alt": 0,
+          "t": 0.15,
+          "dur": 1,
+          "col": "#e99a2e",
+          "type": 3,
+          "era": 12,
+          "side": 0
+        },
+        "blits": [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      },
+      "wreck": [
+        [
+          0,
+          1
+        ],
+        [
+          11,
+          0
+        ]
+      ]
+    },
+    "15": {
+      "spawned": {
+        "name": "轰炸飞艇",
+        "w": 46,
+        "h": 44,
+        "air": false,
+        "altitude": 0,
+        "x": 185.91666666666666,
+        "drawn": true
+      },
+      "iconFrame": 1,
+      "walked": {
+        "distance": 34.83333333333297,
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "attack": {
+        "frames": [
+          4,
+          5,
+          6
+        ],
+        "hpLoss": 184,
+        "blits": [
+          [
+            6,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "recovery": 7,
+      "hit": {
+        "hpLoss": 138,
+        "flash": 0.12,
+        "blits": [
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
+      "death": {
+        "death": {
+          "kind": "die",
+          "x": 440.74999999999966,
+          "y": -22,
+          "alt": 0,
+          "t": 0.15,
+          "dur": 1,
+          "col": "#e99a2e",
+          "type": 3,
+          "era": 15,
+          "side": 0
+        },
+        "blits": [
+          [
+            7,
+            1
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      },
+      "wreck": [
+        [
+          1,
+          1
+        ],
+        [
+          11,
+          0
+        ]
+      ]
+    }
+  },
+  "archive": {
+    "0": {
+      "title": "部落纪 · 猛犸骑手",
+      "frames": 12,
+      "unique": 12
+    },
+    "1": {
+      "title": "青铜纪 · 战车",
+      "frames": 12,
+      "unique": 12
+    },
+    "2": {
+      "title": "蒸汽纪 · 蒸汽坦克",
+      "frames": 12,
+      "unique": 12
+    },
+    "3": {
+      "title": "电气纪 · 电磁战车",
+      "frames": 12,
+      "unique": 12
+    },
+    "4": {
+      "title": "机甲纪 · 机甲",
+      "frames": 12,
+      "unique": 12
+    },
+    "5": {
+      "title": "驯兽纪 · 驯象",
+      "frames": 12,
+      "unique": 12
+    },
+    "6": {
+      "title": "生化纪 · 巨兽",
+      "frames": 12,
+      "unique": 12
+    },
+    "7": {
+      "title": "火药纪 · 盾车",
+      "frames": 12,
+      "unique": 12
+    },
+    "8": {
+      "title": "帆船纪 · 登陆炮艇",
+      "frames": 12,
+      "unique": 12
+    },
+    "9": {
+      "title": "核能纪 · 反应堆坦克",
+      "frames": 12,
+      "unique": 12
+    },
+    "10": {
+      "title": "智械纪 · 守卫巨像",
+      "frames": 12,
+      "unique": 12
+    },
+    "11": {
+      "title": "共生纪 · 树人",
+      "frames": 12,
+      "unique": 12
+    },
+    "12": {
+      "title": "巨兽纪 · 雷霆巨兽",
+      "frames": 12,
+      "unique": 12
+    },
+    "13": {
+      "title": "蜂群纪 · 甲虫盾",
+      "frames": 12,
+      "unique": 12
+    },
+    "14": {
+      "title": "铁甲舰纪 · 装甲列车",
+      "frames": 12,
+      "unique": 12
+    },
+    "15": {
+      "title": "航空纪 · 轰炸飞艇",
+      "frames": 12,
+      "unique": 12
+    },
+    "16": {
+      "title": "远征纪 · 堡垒车",
+      "frames": 12,
+      "unique": 12
+    }
+  },
+  "atlasVersion": "08b7d92dae",
+  "bootErrors": [],
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+  "consoleErrors": []
+}

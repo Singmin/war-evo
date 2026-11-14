@@ -8,15 +8,16 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>文明跃迁</title>
 <!-- 改了 css/js 之后把下面所有 ?v= 的版本号一起改掉，玩家浏览器才会拿新文件（不然会用缓存里的旧版） -->
-<link rel="stylesheet" href="css/theme.css?v=20261112-tech8-tree-wide">
-<link rel="stylesheet" href="css/layout.css?v=20261112-tech8-tree-wide">
-<link rel="stylesheet" href="css/hud.css?v=20261112-tech8-tree-wide">
-<link rel="stylesheet" href="css/bar.css?v=20261112-tech8-tree-wide">
-<link rel="stylesheet" href="css/screens.css?v=20261112-tech8-tree-wide">
-<link rel="stylesheet" href="css/menu.css?v=20261112-tech8-tree-wide">
-<link rel="stylesheet" href="css/overlay.css?v=20261112-tech8-tree-wide">
-<link rel="stylesheet" href="css/tree.css?v=20261112-tech8-tree-wide">
-<link rel="stylesheet" href="css/skins.css?v=20261112-tech8-tree-wide">
+<link rel="stylesheet" href="css/theme.css?v=20261114-ai-resist">
+<link rel="stylesheet" href="css/layout.css?v=20261114-ai-resist">
+<link rel="stylesheet" href="css/hud.css?v=20261114-ai-resist">
+<link rel="stylesheet" href="css/bar.css?v=20261114-ai-resist">
+<link rel="stylesheet" href="css/screens.css?v=20261114-ai-resist">
+<link rel="stylesheet" href="css/menu.css?v=20261114-ai-resist">
+<link rel="stylesheet" href="css/overlay.css?v=20261114-ai-resist">
+<link rel="stylesheet" href="css/tree.css?v=20261114-ai-resist">
+<link rel="stylesheet" href="css/skins.css?v=20261114-ai-resist">
+<link rel="stylesheet" href="css/guide.css?v=20261114-ai-resist">
 </head>
 <body>
 <div class="ad" id="adTop" hidden><span>广告</span><button type="button" aria-label="关闭顶部广告">×</button></div>
@@ -27,12 +28,17 @@
   <div id="info"></div>
   <div id="topR">
     <button class="tb" id="btnSpeed">×1</button>
-    <button class="tb" id="btnPause">❚❚</button>
+    <button class="tb" id="btnPause" aria-label="暂停">❚❚</button>
   </div>
   <!-- 激励广告：领取金币 / 基地血少时回血 -->
   <div id="adBtns">
     <button class="adb" id="btnAdGold" style="display:none"></button>
     <button class="adb hp" id="btnAdHp" style="display:none"></button>
+  </div>
+  <!-- 大招：右上角敌方血条下面，就绪时闪烁（js/ui/bar.js spDef） -->
+  <div id="sideActions" style="visibility:hidden">
+    <button type="button" id="btnSpecial" aria-label="释放大招（Q）"></button>
+    <button type="button" id="btnGameGuide">游戏图解</button>
   </div>
   <div id="bar"></div>
 
@@ -43,7 +49,7 @@
     <div class="mplate">
       <div class="mdiff">
         <button class="mm s" data-diff="easy">简单</button>
-        <button class="mm s on" data-diff="normal">普通</button>
+        <button class="mm s" data-diff="normal">普通</button>
         <button class="mm s" data-diff="hard">困难</button>
       </div>
       <div class="mrow">
@@ -69,29 +75,27 @@
   <!-- 科技树 -->
   <div class="scr" id="scrTree" role="dialog" aria-modal="true" aria-labelledby="treeTitle" tabindex="-1">
     <header id="treeHead">
+      <button type="button" id="btnTreeClose" aria-label="关闭科技树">✕</button>
       <h2 id="treeTitle">科技树</h2>
       <span class="treeResource treePoints">科技点 <strong id="treePts"></strong></span>
       <span class="treeResource treeGold">金币 <strong id="treeGold"></strong></span>
       <span id="treeExp"><span id="treeExpTxt"></span><i><em id="treeExpFill"></em></i></span>
       <span id="treeNote"></span>
+      <span id="treeScrollHint">上下拖动浏览</span>
       <span id="treeHint">游戏已暂停</span>
-      <button type="button" id="btnTreeClose" aria-label="关闭科技树">✕</button>
     </header>
-    <div id="treeBody">
-      <nav id="treeMap" aria-labelledby="treeMapTitle">
-        <header class="treeMapHead"><h3 id="treeMapTitle">时代路线</h3><span>← 左右滑动 →</span></header>
-        <div id="treeMapScroll"><div id="treeMapCanvas"></div></div>
-      </nav>
+    <nav id="treeMap" aria-label="时代路线与科技">
+      <div id="treeMapScroll"><div id="treeMapCanvas"></div></div>
+    </nav>
+    <div id="treeBar">
       <section id="treeDetails" aria-labelledby="treeDetailTitle">
         <div id="treeInfo"></div>
-        <footer id="treeFooter">
-          <div id="treeAction" hidden>
-            <div id="treeReason" role="status"></div>
-            <button type="button" id="btnTreeBuy" aria-describedby="treeReason"></button>
-          </div>
-          <button type="button" class="adb" id="btnTreeAd" hidden></button>
-        </footer>
+        <div id="treeReason" role="status" hidden></div>
       </section>
+      <footer id="treeFooter">
+        <button type="button" id="btnTreeBuy" aria-describedby="treeReason"></button>
+        <button type="button" class="adb" id="btnTreeAd" hidden></button>
+      </footer>
     </div>
   </div>
 
@@ -116,8 +120,16 @@
         </select>
       </label>
       <p id="spritePackStatus" role="status" aria-live="polite">默认使用 Q 版改造前的老像素角色。</p>
+      <label>新手指引 <button type="button" class="chip" id="btnGuideReset">重新显示</button></label>
     </div>
     <button class="big" id="btnSetBack">返回</button>
+  </div>
+
+  <!-- 新手指引：第一次玩时开局先看的一页图解（js/ui/guide.js） -->
+  <div class="scr ovl" id="scrGuide" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
+    <h2 id="guideTitle">怎么玩</h2>
+    <div class="panel" id="guideIntro"></div>
+    <button class="big pri" id="btnGuideGo">知道了，开打</button>
   </div>
 
   <!-- 战绩 -->
@@ -146,33 +158,34 @@
 <div id="rotate"><div class="ph"></div><div>请把手机横过来玩</div></div>
 
 <!-- 脚本按角色拆分（见 README「代码结构」），顺序不能乱：数据 → 规则 → 画面 → 界面 → 主循环 -->
-<script src="js/boot.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/core/data.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/core/save.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/core/audio.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/core/state.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/core/sim.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/core/ai.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/ui/theme.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/view.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/sprite_meta.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/sprites.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/fx_meta.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/fx.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/base_meta.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/bases.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/backdrop.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/world.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/render/arms.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/ui/hud.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/ui/skins.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/ui/icons.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/ui/bar.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/input.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/ui/screens.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/ui/tree.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/ui/ads.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/ui/attract.js?v=20261112-tech8-tree-wide"></script>
-<script src="js/main.js?v=20261112-tech8-tree-wide"></script>
+<script src="js/boot.js?v=20261114-ai-resist"></script>
+<script src="js/core/data.js?v=20261114-ai-resist"></script>
+<script src="js/core/save.js?v=20261114-ai-resist"></script>
+<script src="js/core/audio.js?v=20261114-ai-resist"></script>
+<script src="js/core/state.js?v=20261114-ai-resist"></script>
+<script src="js/core/sim.js?v=20261114-ai-resist"></script>
+<script src="js/core/ai.js?v=20261114-ai-resist"></script>
+<script src="js/ui/theme.js?v=20261114-ai-resist"></script>
+<script src="js/render/view.js?v=20261114-ai-resist"></script>
+<script src="js/render/sprite_meta.js?v=20261114-ai-resist"></script>
+<script src="js/render/sprites.js?v=20261114-ai-resist"></script>
+<script src="js/render/fx_meta.js?v=20261114-ai-resist"></script>
+<script src="js/render/fx.js?v=20261114-ai-resist"></script>
+<script src="js/render/base_meta.js?v=20261114-ai-resist"></script>
+<script src="js/render/bases.js?v=20261114-ai-resist"></script>
+<script src="js/render/backdrop.js?v=20261114-ai-resist"></script>
+<script src="js/render/world.js?v=20261114-ai-resist"></script>
+<script src="js/render/arms.js?v=20261114-ai-resist"></script>
+<script src="js/ui/hud.js?v=20261114-ai-resist"></script>
+<script src="js/ui/skins.js?v=20261114-ai-resist"></script>
+<script src="js/ui/icons.js?v=20261114-ai-resist"></script>
+<script src="js/ui/bar.js?v=20261114-ai-resist"></script>
+<script src="js/input.js?v=20261114-ai-resist"></script>
+<script src="js/ui/screens.js?v=20261114-ai-resist"></script>
+<script src="js/ui/tree.js?v=20261114-ai-resist"></script>
+<script src="js/ui/ads.js?v=20261114-ai-resist"></script>
+<script src="js/ui/guide.js?v=20261114-ai-resist"></script>
+<script src="js/ui/attract.js?v=20261114-ai-resist"></script>
+<script src="js/main.js?v=20261114-ai-resist"></script>
 </body>
 </html>

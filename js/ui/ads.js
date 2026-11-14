@@ -10,8 +10,8 @@ let adIntroDone = false;
 try { adIntroDone = localStorage.getItem(AD_FIRST_LAUNCH_KEY) === 'done'; } catch (e) {}
 
 // 局内激励广告（设计文档 12）：看广告拿金币 / 给基地回血。
-// 金币：当前每秒收入 × AD_GOLD_SEC 秒，不低于按时代的下限 AD_GOLD，冷却 60 秒；回血：基地低于 60% 时出现，回 30% 最大生命，冷却 90 秒
-const AD_GOLD = [120, 200, 340, 580, 1000], AD_GOLD_CD = 60, AD_GOLD_SEC = 45;
+// 金币：当前每秒收入 × AD_GOLD_SEC 秒，不低于按时代的下限 AD_GOLD，不设冷却和次数上限（作者决定 2026-11-12）；回血：基地低于 60% 时出现，回 30% 最大生命，冷却 90 秒
+const AD_GOLD = [120, 200, 340, 580, 1000], AD_GOLD_CD = 0, AD_GOLD_SEC = 45;
 /** 看一次广告给多少金币（按 5 取整）：收入越高给得越多 */
 const adGoldAmount = sd => Math.max(AD_GOLD[sd.age], Math.round(incomeOf(sd) * AD_GOLD_SEC / 5) * 5);
 const AD_HP = 0.3, AD_HP_SHOW = 0.6, AD_HP_CD = 90;
@@ -43,7 +43,7 @@ function updateAdBtns() {
   adBtnState = st;
   const bg = $('btnAdGold'), bh = $('btnAdHp');
   // 两行：上面是奖励（大字），下面是"看广告"；左边一个播放键
-  const play = '<i class="play"><svg viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z"/></svg></i>';
+  const play = `<i class="play">${iconSvg('play')}</i>`;
   bg.disabled = bh.disabled = Boolean(note);
   bg.style.display = g ? '' : 'none'; bg.innerHTML = `${play}<span><b>+${amt} 金</b><small>${note || '看完广告领取'}</small></span>`;
   bh.style.display = h ? '' : 'none'; bh.innerHTML = `${play}<span><b>基地 +30%</b><small>${note || '看完广告回血'}</small></span>`;
@@ -67,9 +67,11 @@ function showAdStatus(message) {
 async function playRewardedAd(screen, allowOver) {
   if (rewardedAdHint()) return false;
   const game = G;
-  show('ad');
+  show('ad');   // 'ad' 页：主循环停止模拟和绘制（js/main.js），把内存和 GPU 让给广告视频
+  audioPause();
   showAdStatus('正在打开广告…');
   const result = await Ads.showRewarded();
+  audioInit();   // 恢复 AudioContext
   if (G !== game || S.screen !== 'ad') return false;
   lastT = performance.now();
   show(screen);
@@ -77,44 +79,59 @@ async function playRewardedAd(screen, allowOver) {
   return result === true && (allowOver || !game.over);
 }
 
-let rewardedAd = null, rewardedRequest = null;
+// 广告实例生命周期（玩家反馈"看完广告直接退出"的修复）：
+// - 广告可能还显示在屏幕上时绝不调用 destroy()——宿主对正在显示的已销毁广告会直接关掉游戏。
+// - 超时只表示"这次不发奖励"，把实例标记为 stale；下次要播时（广告早已不在屏幕上）再销毁重建。
+// - 每次 onClose 后销毁并重建实例，不复用播过的实例。
+const AD_OPEN_TIMEOUT_MS = 20000, AD_CLOSE_TIMEOUT_MS = 180000;
+let rewardedAd = null, rewardedStale = false, rewardedRequest = null;
 function initRewardedAd() {
   if (rewardedAd || typeof (window.tap && window.tap.createRewardedVideoAd) !== 'function') return rewardedAd;
   try {
     const ad = window.tap.createRewardedVideoAd({ adUnitId: TAP_AD_UNIT_ID });
     ad.onClose(res => {
       if (rewardedRequest && rewardedRequest.ad === ad) rewardedRequest.finish(!!res && res.isEnded === true);
+      // 已关闭，可以安全销毁；放到下一轮事件循环，不在 SDK 回调里销毁自己
+      setTimeout(() => recycleRewardedAd(ad), 0);
     });
     ad.onError(() => {
-      if (rewardedRequest && rewardedRequest.ad === ad && rewardedRequest.shown) rewardedRequest.finish(null);
+      if (rewardedRequest && rewardedRequest.ad === ad) rewardedRequest.finish(null);
+      if (rewardedAd === ad) rewardedStale = true;
     });
-    rewardedAd = ad;
+    rewardedAd = ad; rewardedStale = false;
     Promise.resolve(ad.load()).catch(() => {});
   } catch (error) {
     console.warn('TapTap 激励视频初始化失败', error);
   }
   return rewardedAd;
 }
+/** 销毁 ad（必须确定它已不在屏幕上）并预加载一个新实例 */
+function recycleRewardedAd(ad) {
+  if (rewardedAd !== ad) return;
+  if (rewardedRequest && rewardedRequest.ad === ad) return;   // 正在被使用
+  rewardedAd = null; rewardedStale = false;
+  try { ad.destroy(); } catch (e) {}
+  initRewardedAd();
+}
 
 // 仅使用 SDK 的关闭事件发放奖励。show() 成功只表示广告已打开。
 const Ads = {
   showRewarded() {
+    if (rewardedRequest) return Promise.resolve(null);
+    if (rewardedAd && rewardedStale) recycleRewardedAd(rewardedAd);
     const ad = initRewardedAd();
-    if (!ad || rewardedRequest) return Promise.resolve(null);
+    if (!ad) return Promise.resolve(null);
     return new Promise(resolve => {
       let timer;
       const request = { ad, shown: false, finish(result) {
         if (rewardedRequest !== request) return;
         rewardedRequest = null;
         clearTimeout(timer);
-        if (result === null) {
-          rewardedAd = null;
-          try { ad.destroy(); } catch (e) {}
-        }
+        if (result === null && rewardedAd === ad) rewardedStale = true;   // 不在这里 destroy
         resolve(result);
       } };
       rewardedRequest = request;
-      timer = setTimeout(() => request.finish(null), 20000);
+      timer = setTimeout(() => request.finish(null), AD_OPEN_TIMEOUT_MS);
       (async () => {
         try {
           await ad.show();
@@ -128,7 +145,8 @@ const Ads = {
         request.shown = true;
         showAdStatus('');
         clearTimeout(timer);
-        timer = setTimeout(() => request.finish(null), 120000);
+        // 兜底：宿主一直不回调 onClose 时别让玩家永远卡在广告页；只放弃奖励，不销毁实例
+        timer = setTimeout(() => request.finish(null), AD_CLOSE_TIMEOUT_MS);
       })().catch(() => request.finish(null));
     });
   },

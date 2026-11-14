@@ -1,60 +1,46 @@
-/* 时代皮肤：底栏和按钮的材质（顶栏是画布画的，见 js/ui/skins.js）
-   js/ui/skins.js 换时代时在 #game 上设置：
-     class "skinned"           —— 有材质图时加上，下面的通用样式才生效（没有就是 css/bar.css 的默认木质）
-     --skin-tex / --btn-img / --btn-img-s —— 当前材质的平铺纹理、按钮图、返回按钮窄图
-     data-skin="<材质名>"      —— 个别材质的特别装饰（缝线、铆钉排）按这个写
-   新加时代一般不用改这个文件 */
+/* 时代底栏材质，由 js/ui/skins.js 设置 --skin-tex、--btn-img 和 data-skin。 */
+#game.skin-swap #bar { animation: skinSwap .7s steps(3, end); }
+@keyframes skinSwap { from { transform: translateY(6px); } to { transform: none; } }
+#game.skin-swap #bar::after {
+  content: ''; position: absolute; inset: 0; background: #fff6d8; pointer-events: none;
+  animation: skinSwapFlash .7s steps(4, end) forwards;
+}
+@keyframes skinSwapFlash { from { opacity: .5; } to { opacity: 0; } }
 
-/* 换皮肤时的闪光 */
-#game.skin-swap #bar { animation: skinSwap .7s ease-out; }
-@keyframes skinSwap { 0% { filter: brightness(2.2) saturate(.6); transform: translateY(6px); } 100% { filter: none; transform: none; } }
-
-/* ---------- 底栏：压暗的凹槽托盘，按钮比它亮，所以按钮"浮"出来 ---------- */
 #game.skinned #bar {
-  background: linear-gradient(rgba(8,7,6,.62), rgba(5,4,3,.78)), var(--skin-tex);
-  border-top: 3px solid rgba(0,0,0,.7);
-  box-shadow: inset 0 2px 0 rgba(255,255,255,.08); }
+  background: linear-gradient(#090806a8, #090806a8), var(--skin-tex);
+  background-color: var(--hud-skin-base);
+  image-rendering: pixelated;
+}
 
-/* ---------- 按钮：整张实物图（含顶面、倒角、底下的侧面厚度）---------- */
+/* 保留每个时代的按钮图和原有占位，补齐硬边框和投影。 */
 #game.skinned .mb {
-  border: none; border-radius: 0; box-shadow: none; padding-bottom: 7px;
-  background: var(--btn-img) center / 100% 100% no-repeat;
-  color: #fff6e6; text-shadow: 0 1px 0 #000, 0 0 3px #000, 0 0 5px rgba(0,0,0,.8);
-  transform: translateY(-3px); transition: transform .06s, filter .06s;
-  filter: drop-shadow(0 4px 3px rgba(0,0,0,.7)); }
+  border: none; padding-bottom: 7px; transform: translateY(-3px);
+  background: var(--btn-img) center / 100% 100% no-repeat, var(--hud-skin-base);
+  box-shadow: inset 0 0 0 2px var(--hud-ink), var(--hud-bevel), 0 4px 0 var(--hud-shadow);
+  image-rendering: pixelated; color: #fff6e6;
+}
 #game.skinned .mb.back { background-image: var(--btn-img-s); }
 #game.skinned .mb small { color: #f6d98e; }
-/* 按下：往下沉，影子变短 */
-#game.skinned .mb:active { transform: translateY(2px); filter: drop-shadow(0 1px 1px rgba(0,0,0,.7)) brightness(.92); }
-/* 选中 / 可升级：沿按钮形状发金光 */
-#game.skinned .mb.sel { box-shadow: none; filter: drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 6px #ffd34d99) drop-shadow(0 4px 3px rgba(0,0,0,.7)); }
-/* 可升级：金光是固定的，只让按钮轻轻"呼吸"（缩放）。
-   以前是逐帧改 drop-shadow 滤镜，浏览器每帧都要重画整个按钮，手机上会卡；缩放只在合成层做，不重画 */
-#game.skinned .mb.ready { filter: drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 8px var(--gold)) drop-shadow(0 4px 3px rgba(0,0,0,.7));
-  animation: breatheImg 0.8s ease-in-out infinite alternate; will-change: transform; }
-@keyframes breatheImg { from { transform: translateY(-3px) scale(1); } to { transform: translateY(-3px) scale(1.04); } }
-#game.skinned .mb.off { filter: grayscale(.7) brightness(.7) drop-shadow(0 4px 3px rgba(0,0,0,.7)); }
+#game.skinned .mb:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 0 0 2px var(--hud-ink), var(--hud-bevel), 0 2px 0 var(--hud-shadow);
+}
+#game.skinned .mb .ic { width: 43px; height: 43px; background: #1a120b99; }
+#game.skinned .mb.sel::after, #game.skinned .mb.ready::after { inset: 2px; }
 
-/* ---------- 图标：嵌金，做进材质里 ----------
-   圆槽是浅浅凹下去的圆章，图标是填在刻槽里的金线：金线四周一圈深色槽边，上沿一点反光 */
-#game.skinned .mb .ic {
-  width: 43px; height: 43px; border: none; color: #e0b65c;
-  background: radial-gradient(circle at 50% 40%, rgba(0,0,0,.08), rgba(0,0,0,.24) 70%, rgba(0,0,0,0) 72%);
-  box-shadow: inset 0 3px 4px rgba(0,0,0,.45), inset 0 -2px 1px rgba(255,255,255,.22), 0 1px 0 rgba(255,255,255,.15); }
-#game.skinned .mb .ic svg { width: 29px; height: 29px; stroke-width: 2.7;
-  filter: drop-shadow(0 0 .8px rgba(0,0,0,.95)) drop-shadow(0 1.3px 0 rgba(0,0,0,.55)) drop-shadow(0 -.8px 0 rgba(255,244,205,.45)); }
-#game.skinned .mb.sel .ic, #game.skinned .mb.ready .ic { color: #ffe08a; }
-#game.skinned .mb.sel .ic svg, #game.skinned .mb.ready .ic svg { filter: drop-shadow(0 0 3px rgba(255,211,77,.8)) drop-shadow(0 1px 0 #000); }
-
-/* ---------- 个别材质的特别装饰 ---------- */
-/* 兽皮：底栏上沿一道缝线；图标带一圈烙痕焦边 */
+/* 材质标记：像素缝线、铆钉排和合金亮边。 */
 #game[data-skin=hide] #bar::before {
-  content: ''; position: absolute; left: 10px; right: 10px; top: 5px; border-top: 2px dashed #e6cfa4; opacity: .6;
-  filter: drop-shadow(0 1px 0 rgba(0,0,0,.6)); pointer-events: none; }
-#game[data-skin=hide] .mb .ic svg { filter: drop-shadow(0 0 .8px rgba(0,0,0,.95)) drop-shadow(0 0 2px rgba(70,28,6,.8)) drop-shadow(0 -.8px 0 rgba(255,244,205,.45)); }
-/* 铁板、舰体：底栏上沿一排铆钉 */
+  content: ''; position: absolute; left: 10px; right: 10px; top: 4px; border-top: 2px dashed #e6cfa4; opacity: .6;
+  pointer-events: none;
+}
 #game[data-skin=rivet] #bar::before, #game[data-skin=hull] #bar::before {
-  content: ''; position: absolute; left: 0; right: 0; top: 4px; height: 8px; pointer-events: none;
-  background: radial-gradient(circle at 35% 35%, #c8ced4 0 1px, #8a939b 1.5px 3px, #2b3035 3.5px, transparent 4px) 12px 0 / 48px 8px repeat-x; }
-/* 远征：底栏上沿一道青色光 */
-#game[data-skin=alloy] #bar { border-top-color: #49d8f0; box-shadow: 0 -2px 10px rgba(73,216,240,.45); }
+  content: ''; position: absolute; left: 0; right: 0; top: 4px; height: 4px; pointer-events: none;
+  background: repeating-linear-gradient(90deg, transparent 0 12px, #c8ced4 12px 14px, #78818a 14px 18px, transparent 18px 48px);
+}
+#game[data-skin=alloy] #bar { border-top-color: #49d8f0; }
+
+@media (prefers-reduced-motion: reduce) {
+  #game.skin-swap #bar { animation: none; }
+  #game.skin-swap #bar::after { content: none; }
+}

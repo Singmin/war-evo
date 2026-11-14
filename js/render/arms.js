@@ -439,25 +439,34 @@ function drawCastBanner() {
   const inK = Math.min(1, e / 0.18), outK = Math.min(1, c.t / 0.35);
   const mine = c.side === 0, y = 250, h = 74;   // 在两边基地血条下面、地面上方的天空里
   ctx.globalAlpha = outK;
-  // 横向的条带：中间实、两头渐隐
-  const band = ctx.createLinearGradient(0, 0, W, 0);
-  const tint = mine ? '20,14,6' : '26,8,20';
-  band.addColorStop(0, `rgba(${tint},0)`); band.addColorStop(0.25, `rgba(${tint},.86)`); band.addColorStop(0.75, `rgba(${tint},.86)`); band.addColorStop(1, `rgba(${tint},0)`);
-  const sy0 = y - h / 2 * inK;
-  ctx.fillStyle = band; ctx.fillRect(0, sy0, W, h * inK);
-  const edge = mine ? '#d8a64a' : '#c35aa0';
-  const eg = ctx.createLinearGradient(0, 0, W, 0);
-  eg.addColorStop(0, 'rgba(0,0,0,0)'); eg.addColorStop(0.3, edge); eg.addColorStop(0.7, edge); eg.addColorStop(1, 'rgba(0,0,0,0)');
-  ctx.fillStyle = eg; ctx.fillRect(0, sy0, W, 3); ctx.fillRect(0, sy0 + h * inK - 3, W, 3);
+  // 横幅按 4px 展开，两端用硬边色块收尾。
+  const half = Math.floor(h * inK / 8) * 4;
+  if (half >= 4) {
+    const y0 = y - half;
+    const height = half * 2;
+    if (half >= 8) {
+      ctx.fillStyle = mine ? '#35231840' : '#381d3340';
+      ctx.fillRect(0, y0 + 8, 128, height - 16);
+      ctx.fillRect(W - 128, y0 + 8, 128, height - 16);
+      ctx.fillStyle = mine ? '#352318a6' : '#381d33a6';
+      ctx.fillRect(128, y0 + 4, 128, height - 8);
+      ctx.fillRect(W - 256, y0 + 4, 128, height - 8);
+    }
+    ctx.fillStyle = '#1a120b';
+    ctx.fillRect(256, y0, W - 512, height);
+    ctx.fillStyle = mine ? '#21160e' : '#291224';
+    ctx.fillRect(258, y0 + 2, W - 516, height - 4);
+    ctx.fillStyle = mine ? '#d8a64a' : '#c35aa0';
+    ctx.fillRect(258, y0 + 2, W - 516, 2);
+    ctx.fillRect(258, y + half - 4, W - 516, 2);
+  }
   if (inK >= 1) {
-    const slide = (1 - Math.min(1, (e - 0.18) / 0.22)) * (mine ? -60 : 60);
+    const slide = Math.round((1 - Math.min(1, (e - 0.18) / 0.22)) * (mine ? -15 : 15)) * 4;
     ctx.textAlign = 'center';
     ctx.font = UI.font(UI.fs.s, true);
-    outlined(mine ? `${SIDE_COL[0].name} · 大招` : `⚠ ${SIDE_COL[1].name}释放大招`, W / 2 + slide * 0.5, y - 14, mine ? '#f6d98e' : '#ffb0d8', 3);
+    outlined(mine ? `${SIDE_COL[0].name} · 大招` : `⚠ ${SIDE_COL[1].name}释放大招`, W / 2 + slide * 0.5, y - 14, mine ? '#f6d98e' : '#ffb0d8');
     ctx.font = UI.font(40, true);
-    const g = ctx.createLinearGradient(0, y - 6, 0, y + 30);
-    g.addColorStop(0, mine ? '#fff4c8' : '#ffe0f0'); g.addColorStop(0.55, mine ? '#f0b850' : '#ff7ab8'); g.addColorStop(1, mine ? '#9a5a1c' : '#8a2a60');
-    outlined(SPECIAL_NAMES[c.era] + '！', W / 2 + slide, y + 26, g, 6);
+    outlined(SPECIAL_NAMES[c.era] + '！', W / 2 + slide, y + 26, mine ? '#ffdc86' : '#ffb5d8');
     ctx.textAlign = 'left';
   }
   ctx.globalAlpha = 1;

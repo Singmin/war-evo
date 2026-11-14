@@ -97,14 +97,14 @@ function aiNextEra(me) {
   me.aiNext = pick;
   return pick;
 }
-// AI 点科技：普通 / 困难每个时代先点 1 个便宜的；点数有富余（不影响下次跃迁）时再点
+// AI 点科技：先留足跃迁点数。有富余时，普通 / 困难优先点当前时代的科技。
 function aiTech(me) {
   const want = { easy: 0, normal: 1, hard: 1 }[G.diff];
   const avail = PERKS.filter(pk => !perkBlock(me, pk.id)).sort((a, b) => a.cost - b.cost);
   if (!avail.length) return;
   const here = me.perks.filter(id => perkById(id).era === me.era).length;
   const keep = me.age < 4 ? ERA_PTS : 0;
-  const locals = avail.filter(pk => pk.era === me.era);
+  const locals = avail.filter(pk => pk.era === me.era && me.pts - pk.cost >= keep);
   let local = locals[0];
   if (locals.some(pk => pk.group)) {
     // 三选一：困难看局势（没被压选经济，兵力占优选进攻，否则防守）；普通 / 简单随机
@@ -117,6 +117,12 @@ function aiTech(me) {
   if (here < want && local) { actPerk(me, local.id); return; }
   if (me.pts - avail[0].cost >= keep) actPerk(me, avail[0].id);
 }
+function aiReadyToPayEvolve(me) {
+  return me.age < EVOLVE.length && me.evolveT <= 0 && me.pts >= ERA_PTS;
+}
+function aiTryEvolve(me) {
+  if (aiReadyToPayEvolve(me) && me.gold >= evolveGold(me)) actEvolve(me, aiNextEra(me));
+}
 function aiThink(s = 1) {
   if (G.over) return;
   const me = G.sides[s], op = G.sides[1 - s];
@@ -125,27 +131,13 @@ function aiThink(s = 1) {
   const threat = theirs.filter(inMyHalf).length;          // 已经打到我方半场的敌兵
   const opFront = theirs.reduce((a, u) => (!a || (s === 1 ? u.x > a.x : u.x < a.x)) ? u : a, null);
   const smart = G.diff !== 'easy', hard = G.diff === 'hard';
-  const power = arr => arr.reduce((a, u) => a + u.price * u.hp / u.maxHp, 0);
   const recruitment = aiRecruitState(me, mine);
   const emergency = threat >= (smart ? 3 : 4) || (threat > 0 && mine.length === 0) ||
     (op.age > me.age && threat >= 2) || (smart && recruitment.airAtGate && recruitment.antiAir === 0) ||
     (smart && recruitment.groundAtGate && recruitment.front === 0);
 
-  // ---- 跃迁优先：经验够了就攒钱，钱够了立刻跃迁 ----
-  // 困难：只在安全窗口跃迁（没被压，或我方兵力不比对方弱）；等太久也会硬跃迁
-  let saving = false;
+  // 跃迁由 stepSide 检查。科技研究只花超出跃迁所需的点数。
   if (me.evolveT <= 0) aiTech(me);
-  if (me.age < 4 && me.evolveT <= 0) {
-    if (me.pts >= ERA_PTS) {
-      const safe = !emergency && (!hard || threat === 0 || power(mine) >= power(theirs) * 0.9 || (me.waitEvo = (me.waitEvo || 0) + 0.5) > 15);
-      if (safe && !actEvolve(me, aiNextEra(me))) { me.waitEvo = 0; return; }
-      saving = true;
-    } else if (smart && me.pts + me.exp / ptNeed(me) >= ERA_PTS * 0.75 && me.gold < evolveGold(me)) {
-      saving = true;                        // 普通难度：经验快够了就提前存钱
-    }
-  }
-  // 只有被压得很紧时才动用存款
-  if (emergency) saving = false;
   // 困难：对方跃迁期（训练暂停）就全力压上
   const punish = hard && op.evolveT > 0;
 
@@ -166,6 +158,16 @@ function aiThink(s = 1) {
     if (fire && !actSpecial(me)) me.spReady = 0;
   }
 
+  // 只差金币时把收入留给跃迁，但不再一停到底：有敌兵打进半场就照常出兵抵抗，
+  // 没被打时也只投能加速攒钱的采矿场（不出兵、不建塔）。已入队训练和大招照常。
+  if (aiReadyToPayEvolve(me) && me.gold < evolveGold(me)) {
+    if (threat === 0) {
+      if (me.mine < (hard ? 3 : 1) && G.t > (hard ? 20 : 40) && me.gold > MINE_COST[me.mine] + (hard ? 60 : 120)) actMine(me);
+      return;
+    }
+    // threat > 0：不 return，继续走下面的补塔 / 出兵逻辑，正常还手
+  }
+
   // ---- 被堵门时补塔 ----
   // 塔打不掉、能对空、也不会给对方送金币和经验，比不停往门口送兵划算。有空塔位就优先补上：
   // 买得起中塔直接建；一座塔都没有时先建轻塔；门口有前排顶着、几秒内攒得出轻塔时，这几秒先不出兵。
@@ -178,7 +180,7 @@ function aiThink(s = 1) {
   }
 
   // ---- 按时代保持塔数：普通 1 + ⌊第几个时代 / 2⌋，困难 1 + ⌈第几个时代 / 2⌉，最多 AI_TOWER_MAX 座 ----
-  // 塔数不够时先攒钱建塔（塔位不够先扩建），优先于为跃迁存钱；场上只留最少 AI_TOWER_KEEP 个兵；告急、对方跃迁期不这样做
+  // 塔数不够时先攒钱建塔（塔位不够先扩建）；场上只留最少 AI_TOWER_KEEP 个兵；告急、对方跃迁期不这样做
   let towerSave = false;
   if (smart && !emergency && !punish && G.t > (hard ? 30 : 45)) {
     const want = Math.min(AI_TOWER_MAX, 1 + (hard ? Math.ceil(me.age / 2) : Math.floor(me.age / 2)));
@@ -195,24 +197,30 @@ function aiThink(s = 1) {
     }
   }
 
+  // ---- 练兵场（普通）：开局 AI_DRILL_T 秒后为 Lv1 存钱，不要求先有采矿场（告急由 emergency 判断） ----
+  const drillSave = smart && !hard && !emergency && !towerSave && me.drill < 1 && G.t > AI_DRILL_T;
+  if (drillSave && me.gold >= DRILL_COST[0]) { actDrill(me); return; }
+
   // ---- 出兵 ----
   // 存钱时也不断兵：每秒拿出一部分收入当"出兵预算"，告急时预算翻倍
   me.drip = Math.min((me.drip || 0) + INCOME[me.age] * (emergency ? 1.2 : 0.6) * 0.5, 400 * pow2(me.age));
-  const qMax = punish ? QUEUE_MAX : emergency || saving ? 1 : AI_RECRUIT[G.diff].queue;
+  const qMax = punish ? QUEUE_MAX : emergency || drillSave ? 1 : AI_RECRUIT[G.diff].queue;
   const towerHold = towerSave && mine.length + me.queue.length >= AI_TOWER_KEEP;   // 攒塔钱时，兵够数就先不出
   if (!towerHold && me.queue.length < qMax && (smart || Math.random() < 0.6)) {
     const t = aiPickUnit(me, mine, opFront, smart);
     if (t >= 0) {
       const price = unitStats(t, me.era, me).price;
-      if (!saving || punish) actTrain(me, t);
+      if (!drillSave || punish) actTrain(me, t);
       else if (price <= me.drip || mine.length + me.queue.length === 0) { if (!actTrain(me, t)) me.drip = Math.max(0, me.drip - price); }
     }
   }
-  // 困难：采矿场是长期投资，攒钱跃迁之前先挖（只在没被压时）
+  // 困难：采矿场是长期投资，只在没被压时建。
   if (hard && threat === 0 && me.mine < 3 && me.age >= me.mine && me.gold > MINE_COST[me.mine] + 40) { actMine(me); return; }
+  // 困难：练兵场跟着采矿场交替升，等级不超过采矿场
+  if (hard && threat === 0 && me.drill < me.mine && me.drill < DRILL_COST.length && me.gold > DRILL_COST[me.drill] + 60) { actDrill(me); return; }
   // 机械线：普通 / 困难没被压、钱有富余时强化大招
-  { const c = spUpgCost(me); if (smart && !saving && threat === 0 && c !== null && me.gold > c + 200) { actSpUpg(me); return; } }
-  if (saving || me.aiTrainPlan) return;
+  { const c = spUpgCost(me); if (smart && !drillSave && threat === 0 && c !== null && me.gold > c + 200) { actSpUpg(me); return; } }
+  if (drillSave || me.aiTrainPlan) return;
 
   // ---- 塔 ----
   if (!smart) {

@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-12",
+  "method": "浏览器内注入假 window.tap SDK（不是真机、不是真广告）",
+  "A_watched": {"screenDuringAd": "ad", "simFrozenDuringAd": true, "audioDuringAd": "suspended", "after": {"screen": "play", "goldGained": 135, "audio": "running"}},
+  "B_skipped": {"screen": "play", "goldGained": 0},
+  "C_showRejected": {"screen": "play", "stale": true},
+  "D_nextAfterError": {"goldGained": 135},
+  "E_lateOpenAfter20sTimeout": {"afterTimeout": {"screen": "play", "gold": 0, "stale": true}, "lateAdDestroyedWhileShowing": false, "destroyedOnlyAfterClose": true, "nextAd": {"gold": 135}},
+  "log_A_to_D": ["create#1","show#1","destroy#1","create#2","show#2","destroy#2","create#3","show#3","show#3","destroy#3","create#4","show#4","destroy#4","create#5"],
+  "log_E": ["create#1","show#1","late-open#1","destroy#1","create#2","show#2","destroy#2","create#3"],
+  "consoleErrors": 0
+}

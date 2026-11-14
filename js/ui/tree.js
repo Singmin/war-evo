@@ -2,10 +2,12 @@
 // 科技树界面。路线图只用于浏览，解锁和扣费由对局规则处理。
 const TREE_ROUTES = Object.keys(ROUTES);
 const TREE_SHARED_ERAS = AGES.flatMap((_, era) => ERA_ROUTE[era] ? [] : [era]);
-const TREE_TECH_DIR = { atk: '进攻', eco: '经济', def: '防守' };
-const TREE_MAP_W = 932, TREE_MAP_H = 516, TREE_NODE_W = 136;
-const TREE_MAP_COLS = [18, 178, 393, 565, 778];
-const TREE_LANE_TOP = 42, TREE_LANE_H = 156;
+const TREE_MAP_W = 1212, TREE_NODE_W = 184, TREE_FINAL_W = 140;
+const TREE_MAP_COLS = [16, 220, 424, 628, 832];
+const TREE_LANE_TOP = 42, TREE_LANE_H = 190, TREE_LANE_GAP = 12;
+const TREE_PERK_W = 88, TREE_FINAL_PERK_W = 103, TREE_PERK_H = 47;
+const treeLaneY = i => TREE_LANE_TOP + i * (TREE_LANE_H + TREE_LANE_GAP);
+const TREE_MAP_H = treeLaneY(TREE_ROUTES.length);
 const treeDialog = $('scrTree');
 const treeMapScroll = $('treeMapScroll');
 const treeMapCanvas = $('treeMapCanvas');
@@ -26,6 +28,9 @@ function openTree() {
   show('tree');
   const current = treeMapCanvas.querySelector('[aria-current="step"]');
   treeMapScroll.scrollLeft = current.offsetLeft - (treeMapScroll.clientWidth - current.offsetWidth) / 2;
+  const currentBottom = current.offsetTop + current.offsetHeight;
+  treeMapScroll.scrollTop = currentBottom + 12 <= treeMapScroll.clientHeight ? 0
+    : current.offsetTop - (treeMapScroll.clientHeight - current.offsetHeight) / 2;
   treeDialog.focus({ preventScroll: true });
   return null;
 }
@@ -34,7 +39,7 @@ function openTree() {
 function closeTree() {
   lastT = performance.now();
   show('play');
-  if (treeOpener?.isConnected) treeOpener.focus();
+  if (treeOpener && treeOpener.isConnected) treeOpener.focus();
   treeOpener = null;
 }
 
@@ -47,11 +52,16 @@ function treeEraStatus(sd, era) {
   return { style: 'locked', label: '未解锁' };
 }
 
-function treeEraCard(sd, era, selectedEra, pos) {
+function treeEraFrame(skin) {
+  return skin.tex ? `url(${texUrl('btn_' + skin.tex)})` : 'none';
+}
+
+function treeEraCard(sd, era, pos) {
   const state = treeEraStatus(sd, era);
+  const frame = treeEraFrame(SKINS[skinOf(era)]);
   return `<button type="button" class="treeEra ${state.style}" data-tree-pick="e${era}"
-    style="left:${pos.x}px;top:${pos.y}px;width:${TREE_NODE_W}px;height:${pos.h}px"
-    aria-pressed="${era === selectedEra}"${era === sd.era ? ' aria-current="step"' : ''}>
+    style="left:${pos.x}px;top:${pos.y}px;width:${pos.w}px;height:${pos.h}px;--tree-era-frame:${frame}"
+    aria-pressed="${treeSelection === 'e' + era}"${era === sd.era ? ' aria-current="step"' : ''}>
     <strong>${AGES[era]}</strong><span>${state.label}</span>
   </button>`;
 }
@@ -59,29 +69,39 @@ function treeEraCard(sd, era, selectedEra, pos) {
 function treeEraPosition(era) {
   const tier = ERA_TIER[era];
   const lane = TREE_ROUTES.indexOf(ERA_ROUTE[era] || 'bio');
-  const laneTop = TREE_LANE_TOP + lane * TREE_LANE_H;
+  const laneTop = treeLaneY(lane);
   if (tier === 4) {
     const row = FINAL_ERAS.filter(final => ERA_ROUTE[final] === ERA_ROUTE[era]).indexOf(era);
-    return { x: TREE_MAP_COLS[tier], y: laneTop + 5 + row * 50, h: 48 };
+    return { x: TREE_MAP_COLS[tier], y: laneTop + 9 + row * 62, w: TREE_FINAL_W, h: 48 };
   }
-  return { x: TREE_MAP_COLS[tier], y: laneTop + (TREE_LANE_H - 66) / 2, h: 66 };
+  return { x: TREE_MAP_COLS[tier], y: laneTop + (tier < 2 ? 38 : 53), w: TREE_NODE_W, h: 62 };
 }
 
-function renderTreeMap(sd, selectedEra) {
+function renderTreeMap(sd) {
   const positions = AGES.map((_, era) => treeEraPosition(era));
-  const eraCard = era => treeEraCard(sd, era, selectedEra, positions[era]);
+  const eraGroup = era => {
+    const pos = positions[era], final = ERA_TIER[era] === 4;
+    const perks = PERKS.filter(pk => pk.era === era).map((pk, i) => {
+      const x = final ? pos.x + pos.w + 9 + i * (TREE_FINAL_PERK_W + 8)
+        : pos.x + (i < 2 ? i * (TREE_PERK_W + 8) : (pos.w - TREE_PERK_W) / 2);
+      const y = final ? pos.y : pos.y + pos.h + 8 + Math.floor(i / 2) * (TREE_PERK_H + 7);
+      return treePerkCard(sd, pk, x, y, final ? TREE_FINAL_PERK_W : TREE_PERK_W, final ? pos.h : TREE_PERK_H);
+    }).join('');
+    const groupLabel = ERA_TIER[era] < 2 ? `<span class="treeGroupLabel" style="left:${pos.x}px;top:${pos.y - 27}px;width:${pos.w}px">三选一</span>` : '';
+    return groupLabel + treeEraCard(sd, era, pos) + perks;
+  };
   const routeStart = TREE_MAP_COLS[2] - 12;
-  const headings = TREE_MAP_COLS.map((x, i) => `<span class="treeMapColumn" style="left:${x}px">
+  const headings = TREE_MAP_COLS.map((x, i) => `<span class="treeMapColumn" style="left:${x}px;width:${i === 4 ? TREE_MAP_W - x - 14 : TREE_NODE_W}px">
     ${i === 4 ? '最终时代 · 三选一' : '第 ' + (i + 1) + ' 时代'}</span>`).join('');
-  const lanes = TREE_ROUTES.map((rt, i) => `<rect x="${routeStart}" y="${TREE_LANE_TOP + i * TREE_LANE_H}"
-    width="${TREE_MAP_W - routeStart - 7}" height="${TREE_LANE_H - 2}" rx="10"
+  const lanes = TREE_ROUTES.map((rt, i) => `<rect x="${routeStart}" y="${treeLaneY(i)}"
+    width="${TREE_MAP_W - routeStart - 7}" height="${TREE_LANE_H}" rx="10"
     fill="${ROUTES[rt].col}" fill-opacity="${sd.route === rt ? '.12' : '.07'}"/>`).join('');
   const links = ERA_PARENTS.flatMap((parents, era) => parents.map(parent => {
     const a = positions[parent], b = positions[era];
-    const x1 = a.x + TREE_NODE_W, x2 = b.x;
+    const x1 = a.x + a.w, x2 = b.x;
     const y1 = a.y + a.h / 2, y2 = b.y + b.h / 2, mid = (x1 + x2) / 2;
     const traveled = sd.path.includes(parent) && sd.path.includes(era);
-    const color = traveled ? '#e2af69' : ROUTES[ERA_ROUTE[era]]?.col || '#917453';
+    const color = traveled ? '#e2af69' : (ROUTES[ERA_ROUTE[era]] && ROUTES[ERA_ROUTE[era]].col) || '#917453';
     return `<path d="M${x1} ${y1} C${mid} ${y1} ${mid} ${y2} ${x2} ${y2}"
       fill="none" stroke="${color}" stroke-width="${traveled ? 3 : 2}" opacity="${traveled ? 1 : .68}"/>`;
   })).join('');
@@ -91,46 +111,55 @@ function renderTreeMap(sd, selectedEra) {
     const finals = FINAL_ERAS.filter(era => ERA_ROUTE[era] === rt);
     return `<button type="button" class="treeRouteLabel" data-tree-pick="r${rt}"
       aria-pressed="${treeSelection === 'r' + rt}" aria-label="${route.name} · ${route.mech}"
-      style="--route-color:${route.col};left:${TREE_MAP_COLS[2]}px;top:${TREE_LANE_TOP + i * TREE_LANE_H + 4}px">
+      style="--route-color:${route.col};left:${TREE_MAP_COLS[2]}px;top:${treeLaneY(i) + 10}px">
       <strong>${route.name}</strong><span>${route.mech}</span>
-    </button>${[...eras, ...finals].map(eraCard).join('')}`;
+    </button>${[...eras, ...finals].map(eraGroup).join('')}`;
   });
   treeMapCanvas.style.width = TREE_MAP_W + 'px';
   treeMapCanvas.style.height = TREE_MAP_H + 'px';
   treeMapCanvas.innerHTML = `<svg class="treeMapLines" width="${TREE_MAP_W}" height="${TREE_MAP_H}" aria-hidden="true">
-    ${lanes}${links}</svg>${headings}${TREE_SHARED_ERAS.map(eraCard).join('')}${routes.join('')}`;
+    ${lanes}${links}</svg><div class="treeMapColumns">${headings}</div>${TREE_SHARED_ERAS.map(eraGroup).join('')}${routes.join('')}`;
 }
 
-function treePerkCard(sd, perk) {
+function treePerkCard(sd, perk, x, y, width, height) {
   const err = perkBlock(sd, perk.id), own = sd.perks.includes(perk.id);
   const style = own ? 'owned' : err ? 'locked' : 'ready';
-  const label = own ? '已研究' : !err ? '可研究' : err.startsWith('已锁') ? '互斥锁定'
-    : sd.path.includes(perk.era) ? '缺科技点' : '未解锁';
-  return `<button type="button" class="treePerk ${style}${perk.dir ? ' grouped' : ''}" data-tree-pick="p${perk.id}"
+  const rival = Boolean(err) && err.startsWith('已锁');
+  const cost = own ? '已研究' : rival ? '已锁' : perk.cost + ' 点';
+  const state = own || rival ? '' : err || '可研究';
+  return `<button type="button" class="treePerk ${style}${perk.dir ? ' ' + perk.dir : ''}" data-tree-pick="p${perk.id}"
+    style="left:${x}px;top:${y}px;width:${width}px;height:${height}px"
     aria-pressed="${treeSelection === 'p' + perk.id}">
-    ${perk.dir ? `<span class="treePerkDir ${perk.dir}">${TREE_TECH_DIR[perk.dir]}</span>` : ''}
-    <span class="treePerkCopy"><strong>${perk.name}</strong><span>${perk.desc}</span>
-      ${perk.bad ? `<span class="treeBad">代价：${perk.bad}</span>` : ''}
-    </span>
-    <span class="treePerkCost"><strong>${perk.cost} 点</strong><span>${label}</span></span>
+    <strong>${perk.name}</strong><span class="treePerkCost">${cost}</span>
+    ${state ? `<span class="treePerkState">${state}</span>` : ''}
   </button>`;
 }
 
 function renderTreeDetails(sd, era, perk) {
-  const info = $('treeInfo'), buy = $('btnTreeBuy'), action = $('treeAction'), reason = $('treeReason');
+  const info = $('treeInfo'), buy = $('btnTreeBuy'), reason = $('treeReason');
   const rt = treeSelection[0] === 'r' ? treeSelection.slice(1) : ERA_ROUTE[era];
   const route = ROUTES[rt];
-  let err = '', label = '', cost = '';
-  if (era === null) {
+  const previewEra = era != null ? era : ERA_ROUTE.findIndex((key, e) => key === rt && ERA_TIER[e] === 2);
+  const skin = SKINS[skinOf(previewEra)], details = $('treeDetails');
+  details.style.setProperty('--tree-detail-tex', skin.tex ? `url(${texUrl(skin.tex)})` : 'none');
+  details.scrollTop = 0;
+  let err = '', label = '先选一个节点', cost = '', enabled = false;
+  if (perk) {
+    err = perkBlock(sd, perk.id);
+    const owned = sd.perks.includes(perk.id);
+    label = owned ? '已研究' : '研究科技';
+    cost = owned ? '' : perk.cost + ' 科技点';
+    enabled = !err;
+    info.innerHTML = `<header class="treeDetailHead"><h3 id="treeDetailTitle">${perk.name}</h3>
+      <span class="treeDetailState">${AGES[era]}科技${perk.group ? ' · 三选一' : ''}</span></header>
+      <p class="treeFacts">${perk.desc}${perk.bad ? ` <span class="treeBad">代价：${perk.bad}</span>` : ''}</p>`;
+  } else if (era === null) {
     info.innerHTML = `<header class="treeDetailHead"><h3 id="treeDetailTitle">${route.name}</h3>
       ${sd.route ? `<span class="treeDetailState">${sd.route === rt ? '已选择' : '未选择'}</span>` : ''}</header>
-      <div class="treeRouteDetail" style="--route-color:${route.col}">
-        <h4>${route.mech}</h4><p>${route.desc}</p>
-        <p class="treeRouteRule">进入这条路线的第一个时代后生效，整局保留。</p>
-      </div>`;
+      <p class="treeFacts"><b>${route.mech}</b> ${route.desc}</p>
+      <p class="treeFacts">进入这条路线的第一个时代后生效，整局保留。</p>`;
   } else {
     const state = treeEraStatus(sd, era);
-    const perks = PERKS.filter(pk => pk.era === era);
     const owned = sd.path.includes(era);
     const next = ERA_PARENTS[era].includes(sd.era);
     const bonus = ERA_BONUS[era];
@@ -139,41 +168,35 @@ function renderTreeDetails(sd, era, perk) {
         <h3 id="treeDetailTitle">${AGES[era]}</h3><span class="treeDetailState ${state.style}">${state.label}</span>
       </header>
       <p class="treeFacts"><b>兵种</b> ${units.map((name, i) => `<span class="treeUnit">${name}${i < units.length - 1 ? '、' : ''}</span>`).join('')}</p>
-      ${bonus ? `<p class="treeFacts treeBonus"><b>时代加成</b> ${bonus.desc}</p>` : ''}
-      <div class="treeTechHead"><h4>时代科技</h4>${perks.some(pk => pk.group) ? '<span>三选一</span>' : ''}
-        <span class="treeTechPoints">可用 ${sd.pts} 科技点</span></div>
-      <div class="treePerks">${perks.map(pk => treePerkCard(sd, pk)).join('')}</div>`;
-    if (perk) {
-      err = perkBlock(sd, perk.id);
-      label = sd.perks.includes(perk.id) ? '已研究「' + perk.name + '」' : '研究「' + perk.name + '」';
-      if (!sd.perks.includes(perk.id)) cost = perk.cost + ' 科技点';
-    } else if (next) {
+      ${bonus ? `<p class="treeFacts treeBonus"><b>时代加成</b> ${bonus.desc}</p>`
+        : owned ? '<p class="treeFacts">点科技查看效果，点下一时代查看跃迁花费。</p>' : ''}`;
+    if (next) {
       err = eraBlock(sd, era);
       label = '进入' + AGES[era];
+      enabled = !err;
       // 正在跃迁的目标已经付费，保留状态说明即可。
       if (!(sd.evolveT > 0 && sd.nextEra === era)) cost = `${ERA_PTS} 科技点 + ${evolveGold(sd)} 金币`;
     } else if (!owned) {
+      label = '尚不能跃迁';
       if (sd.route && rt && sd.route !== rt) err = '本局已选择' + ROUTES[sd.route].name;
       else if (bonus && ERA_TIER[sd.era] === 4) err = '本局已进入' + AGES[sd.era];
       else err = eraBlock(sd, era);
     }
   }
-  action.hidden = !label && !err;
   reason.textContent = err || '';
   reason.hidden = !err;
-  buy.hidden = !label;
-  buy.disabled = !label || !!err;
+  buy.disabled = !enabled;
   buy.innerHTML = label + (cost ? `<small>${cost}</small>` : '');
 }
 
 function renderTree() {
   const sd = G.sides[0];
   const focused = document.activeElement;
-  const focusKey = focused?.dataset.treePick;
+  const focusKey = focused && focused.dataset ? focused.dataset.treePick : undefined;
   const type = treeSelection[0], value = treeSelection.slice(1);
   const perk = type === 'p' ? perkById(value) : null;
   const era = perk ? perk.era : type === 'e' ? Number(value) : null;
-  renderTreeMap(sd, era);
+  renderTreeMap(sd);
   renderTreeDetails(sd, era, perk);
 
   const need = ptNeed(sd);
@@ -186,14 +209,17 @@ function renderTree() {
 
   // 刷新卡片后，把键盘焦点留在同一个选项。
   const restoreKey = focusKey || (focused === $('btnTreeBuy') && $('btnTreeBuy').disabled ? treeSelection : '');
-  if (restoreKey) treeDialog.querySelector(`[data-tree-pick="${restoreKey}"]`)?.focus({ preventScroll: true });
+  const restoreEl = restoreKey ? treeDialog.querySelector(`[data-tree-pick="${restoreKey}"]`) : null;
+  if (restoreEl) restoreEl.focus({ preventScroll: true });
 }
 
 /** 更新 TapTap 激励广告入口及宿主提示。 */
 function updateTreeAdButton() {
   const button = $('btnTreeAd'), note = rewardedAdHint();
-  button.innerHTML = `<strong>看广告 +1 科技点</strong>${note ? `<span>${note}</span>` : ''}`;
+  button.innerHTML = '<i class="play"><svg viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z"/></svg></i>'
+    + `<span><b>+1 科技点</b><small>${note || '看完广告领取'}</small></span>`;
   button.hidden = !ADS_ON;
+  $('treeFooter').classList.toggle('noAd', !ADS_ON);
   button.disabled = Boolean(note);
 }
 
@@ -225,27 +251,32 @@ async function treeAd() {
 }
 
 treeDialog.addEventListener('click', e => {
-  const key = e.target.closest('[data-tree-pick]')?.dataset.treePick;
+  const pick = e.target.closest('[data-tree-pick]'), key = pick ? pick.dataset.treePick : '';
   if (!key) return;
   treeSelection = key;
   renderTree();
+});
+
+treeMapScroll.addEventListener('focusin', e => {
+  if (e.target.matches('button:focus-visible')) e.target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 });
 
 // 触屏和触控板由浏览器滚动，鼠标也可抓住路线图拖动。
 let treeMouseDrag = null;
 treeMapScroll.addEventListener('pointerdown', e => {
   if (e.pointerType !== 'mouse' || e.button !== 0) return;
-  treeMouseDrag = { id: e.pointerId, x: e.clientX, left: treeMapScroll.scrollLeft };
+  treeMouseDrag = { id: e.pointerId, x: e.clientX, y: e.clientY, left: treeMapScroll.scrollLeft, top: treeMapScroll.scrollTop };
 });
 treeMapScroll.addEventListener('pointermove', e => {
-  if (treeMouseDrag?.id !== e.pointerId) return;
-  const dx = e.clientX - treeMouseDrag.x;
+  if (!treeMouseDrag || treeMouseDrag.id !== e.pointerId) return;
+  const dx = e.clientX - treeMouseDrag.x, dy = e.clientY - treeMouseDrag.y;
   if (!treeMapScroll.hasPointerCapture(e.pointerId)) {
-    if (Math.abs(dx) < 6) return;
+    if (Math.hypot(dx, dy) < 6) return;
     treeMapScroll.setPointerCapture(e.pointerId);
     treeMapScroll.classList.add('dragging');
   }
   treeMapScroll.scrollLeft = treeMouseDrag.left - dx / scale;
+  treeMapScroll.scrollTop = treeMouseDrag.top - dy / scale;
 });
 function stopTreeDrag() {
   treeMouseDrag = null;
@@ -257,13 +288,6 @@ treeMapScroll.addEventListener('lostpointercapture', stopTreeDrag);
 treeMapScroll.addEventListener('pointerleave', e => {
   if (!treeMapScroll.hasPointerCapture(e.pointerId)) stopTreeDrag();
 });
-treeMapScroll.addEventListener('wheel', e => {
-  if (e.ctrlKey || e.shiftKey || Math.abs(e.deltaX) >= Math.abs(e.deltaY)) return;
-  const step = e.deltaMode === 1 ? 24 : e.deltaMode === 2 ? treeMapScroll.clientWidth : 1;
-  treeMapScroll.scrollLeft += e.deltaY * step;
-  e.preventDefault();
-}, { passive: false });
-
 treeDialog.addEventListener('keydown', e => {
   if (e.key !== 'Tab') return;
   const controls = [...treeDialog.querySelectorAll('button:not(:disabled)')].filter(button => button.offsetWidth);

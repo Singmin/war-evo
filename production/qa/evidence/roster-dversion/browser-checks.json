@@ -1,0 +1,1916 @@
+{
+  "viewport": {
+    "width": 1366,
+    "height": 768,
+    "deviceScaleFactor": 1,
+    "mobile": false
+  },
+  "battle": {
+    "0": {
+      "spawn": {
+        "units": [
+          [
+            1,
+            0,
+            20,
+            42,
+            0
+          ],
+          [
+            2,
+            0,
+            36,
+            48,
+            0
+          ],
+          [
+            4,
+            0,
+            34,
+            34,
+            0
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 3,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 3,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 0
+          }
+        ]
+      },
+      "walk": [
+        {
+          "distance": 58.66666666666583,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 102.66666666666833,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 40.333333333331666,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "attack": {
+        "frames": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 2
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 1
+          }
+        ],
+        "projs": 2,
+        "mountedHit": true
+      },
+      "hit": [
+        {
+          "type": 1,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 2,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 1,
+          "frame": 1,
+          "row": 1
+        },
+        {
+          "type": 2,
+          "frame": 1,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 1,
+          "row": 1
+        }
+      ],
+      "death": {
+        "frames": [
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 2,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 4,
+            "frame": 0,
+            "row": 1
+          },
+          {
+            "type": 1,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 11,
+            "row": 0
+          }
+        ]
+      }
+    },
+    "2": {
+      "spawn": {
+        "units": [
+          [
+            1,
+            2,
+            20,
+            42,
+            0
+          ],
+          [
+            2,
+            2,
+            36,
+            48,
+            0
+          ],
+          [
+            4,
+            2,
+            34,
+            34,
+            0
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 3,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 0
+          }
+        ]
+      },
+      "walk": [
+        {
+          "distance": 58.66666666666583,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 102.66666666666833,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 40.333333333331666,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "attack": {
+        "frames": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 2
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 1
+          }
+        ],
+        "projs": 2,
+        "mountedHit": true
+      },
+      "hit": [
+        {
+          "type": 1,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 2,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 1,
+          "frame": 1,
+          "row": 1
+        },
+        {
+          "type": 2,
+          "frame": 1,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 1,
+          "row": 1
+        }
+      ],
+      "death": {
+        "frames": [
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 3,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 4,
+            "frame": 2,
+            "row": 1
+          },
+          {
+            "type": 1,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 11,
+            "row": 0
+          }
+        ]
+      }
+    },
+    "4": {
+      "spawn": {
+        "units": [
+          [
+            1,
+            4,
+            20,
+            42,
+            0
+          ],
+          [
+            2,
+            4,
+            36,
+            48,
+            0
+          ],
+          [
+            4,
+            4,
+            34,
+            34,
+            0
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 0,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 3,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 2,
+            "row": 0
+          }
+        ]
+      },
+      "walk": [
+        {
+          "distance": 58.66666666666583,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 102.66666666666833,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 40.333333333331666,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "attack": {
+        "frames": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 2
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 1
+          }
+        ],
+        "projs": 2,
+        "mountedHit": true
+      },
+      "hit": [
+        {
+          "type": 1,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 2,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 1,
+          "frame": 1,
+          "row": 1
+        },
+        {
+          "type": 2,
+          "frame": 1,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 1,
+          "row": 1
+        }
+      ],
+      "death": {
+        "frames": [
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 3,
+            "row": 1
+          },
+          {
+            "type": 4,
+            "frame": 0,
+            "row": 1
+          },
+          {
+            "type": 1,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 11,
+            "row": 0
+          }
+        ]
+      }
+    },
+    "6": {
+      "spawn": {
+        "units": [
+          [
+            1,
+            6,
+            20,
+            42,
+            0
+          ],
+          [
+            2,
+            6,
+            36,
+            48,
+            0
+          ],
+          [
+            4,
+            6,
+            34,
+            34,
+            0
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 3,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 0
+          }
+        ]
+      },
+      "walk": [
+        {
+          "distance": 58.66666666666583,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 102.66666666666833,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 40.333333333331666,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "attack": {
+        "frames": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 2
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 1
+          }
+        ],
+        "projs": 2,
+        "mountedHit": true
+      },
+      "hit": [
+        {
+          "type": 1,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 2,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 1,
+          "frame": 1,
+          "row": 1
+        },
+        {
+          "type": 2,
+          "frame": 1,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 1,
+          "row": 1
+        }
+      ],
+      "death": {
+        "frames": [
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 3,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 3,
+            "row": 1
+          },
+          {
+            "type": 4,
+            "frame": 0,
+            "row": 1
+          },
+          {
+            "type": 1,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 11,
+            "row": 0
+          }
+        ]
+      }
+    },
+    "10": {
+      "spawn": {
+        "units": [
+          [
+            1,
+            10,
+            20,
+            42,
+            0
+          ],
+          [
+            2,
+            10,
+            36,
+            48,
+            0
+          ],
+          [
+            4,
+            10,
+            34,
+            34,
+            0
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 0,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 2,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 0
+          }
+        ]
+      },
+      "walk": [
+        {
+          "distance": 58.66666666666583,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 102.66666666666833,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 40.333333333331666,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "attack": {
+        "frames": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 2
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 1
+          }
+        ],
+        "projs": 2,
+        "mountedHit": true
+      },
+      "hit": [
+        {
+          "type": 1,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 2,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 1,
+          "frame": 1,
+          "row": 1
+        },
+        {
+          "type": 2,
+          "frame": 1,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 1,
+          "row": 1
+        }
+      ],
+      "death": {
+        "frames": [
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 3,
+            "row": 1
+          },
+          {
+            "type": 4,
+            "frame": 0,
+            "row": 1
+          },
+          {
+            "type": 1,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 11,
+            "row": 0
+          }
+        ]
+      }
+    },
+    "12": {
+      "spawn": {
+        "units": [
+          [
+            1,
+            12,
+            20,
+            42,
+            0
+          ],
+          [
+            2,
+            12,
+            36,
+            48,
+            0
+          ],
+          [
+            4,
+            12,
+            34,
+            34,
+            0
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 2,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 0,
+            "row": 0
+          }
+        ]
+      },
+      "walk": [
+        {
+          "distance": 58.66666666666583,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 102.66666666666833,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 40.333333333331666,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "attack": {
+        "frames": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 2
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 1
+          }
+        ],
+        "projs": 2,
+        "mountedHit": true
+      },
+      "hit": [
+        {
+          "type": 1,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 2,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 1,
+          "frame": 1,
+          "row": 1
+        },
+        {
+          "type": 2,
+          "frame": 1,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 1,
+          "row": 1
+        }
+      ],
+      "death": {
+        "frames": [
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 3,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 0,
+            "row": 1
+          },
+          {
+            "type": 4,
+            "frame": 2,
+            "row": 1
+          },
+          {
+            "type": 1,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 11,
+            "row": 0
+          }
+        ]
+      }
+    },
+    "13": {
+      "spawn": {
+        "units": [
+          [
+            1,
+            13,
+            20,
+            42,
+            0
+          ],
+          [
+            2,
+            13,
+            36,
+            48,
+            0
+          ],
+          [
+            4,
+            13,
+            34,
+            34,
+            0
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 3,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 3,
+            "row": 0
+          }
+        ]
+      },
+      "walk": [
+        {
+          "distance": 58.66666666666583,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 102.66666666666833,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 40.333333333331666,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "attack": {
+        "frames": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 2
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 1
+          }
+        ],
+        "projs": 2,
+        "mountedHit": true
+      },
+      "hit": [
+        {
+          "type": 1,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 2,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 1,
+          "frame": 1,
+          "row": 1
+        },
+        {
+          "type": 2,
+          "frame": 1,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 1,
+          "row": 1
+        }
+      ],
+      "death": {
+        "frames": [
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 0,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 0,
+            "row": 1
+          },
+          {
+            "type": 4,
+            "frame": 0,
+            "row": 1
+          },
+          {
+            "type": 1,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 11,
+            "row": 0
+          }
+        ]
+      }
+    },
+    "15": {
+      "spawn": {
+        "units": [
+          [
+            1,
+            15,
+            20,
+            42,
+            0
+          ],
+          [
+            2,
+            15,
+            36,
+            48,
+            0
+          ],
+          [
+            4,
+            15,
+            34,
+            34,
+            0
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 2,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 2,
+            "row": 0
+          }
+        ]
+      },
+      "walk": [
+        {
+          "distance": 58.66666666666583,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 102.66666666666833,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "distance": 40.333333333331666,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "attack": {
+        "frames": [
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 6,
+            "row": 0
+          },
+          {
+            "type": 1,
+            "frame": 1,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 1,
+            "row": 2
+          },
+          {
+            "type": 4,
+            "frame": 1,
+            "row": 1
+          }
+        ],
+        "projs": 2,
+        "mountedHit": true
+      },
+      "hit": [
+        {
+          "type": 1,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 2,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 6,
+          "row": 2
+        },
+        {
+          "type": 1,
+          "frame": 1,
+          "row": 1
+        },
+        {
+          "type": 2,
+          "frame": 1,
+          "row": 2
+        },
+        {
+          "type": 4,
+          "frame": 1,
+          "row": 1
+        }
+      ],
+      "death": {
+        "frames": [
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        "draws": [
+          {
+            "type": 1,
+            "frame": 0,
+            "row": 1
+          },
+          {
+            "type": 2,
+            "frame": 2,
+            "row": 1
+          },
+          {
+            "type": 4,
+            "frame": 3,
+            "row": 1
+          },
+          {
+            "type": 1,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 2,
+            "frame": 11,
+            "row": 0
+          },
+          {
+            "type": 4,
+            "frame": 11,
+            "row": 0
+          }
+        ]
+      }
+    }
+  },
+  "archive": {
+    "0-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "0-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "0-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "1-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "1-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "1-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "2-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "2-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "2-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "3-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "3-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "3-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "4-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "4-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "4-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "5-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "5-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "5-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "6-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "6-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "6-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "7-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "7-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "7-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "8-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "8-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "8-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "9-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "9-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "9-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "10-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "10-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "10-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "11-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "11-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "11-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "12-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "12-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "12-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "13-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "13-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "13-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "14-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "14-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "14-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "15-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "15-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "15-4": {
+      "frames": 12,
+      "played": 12
+    },
+    "16-1": {
+      "frames": 12,
+      "played": 12
+    },
+    "16-2": {
+      "frames": 12,
+      "played": 12
+    },
+    "16-4": {
+      "frames": 12,
+      "played": 12
+    }
+  },
+  "version": "58e30d3a38",
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+  "bootErrors": [],
+  "consoleErrors": []
+}

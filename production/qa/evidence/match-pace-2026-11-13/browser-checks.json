@@ -1,0 +1,151 @@
+{
+  "init": {
+    "diff": "easy",
+    "selected": "easy",
+    "w": 812,
+    "h": 375
+  },
+  "mine": {
+    "saved": 1,
+    "elapsed": 0.10680000000000019
+  },
+  "frozen": {
+    "screen": "guide",
+    "t": 22.666666666666572,
+    "age": 0,
+    "text": "知道了"
+  },
+  "resumed": {
+    "screen": "play",
+    "t": 23.433333333333195,
+    "age": 0,
+    "speed": 3,
+    "focus": "btnGameGuide"
+  },
+  "shifted": {
+    "top": 129.6875,
+    "capsuleBottom": 124,
+    "bar": 320.83331298828125,
+    "guideBottom": 201.56248474121094
+  },
+  "rules": {
+    "caps": [
+      {
+        "spawned": 15,
+        "next": false
+      },
+      {
+        "spawned": 15,
+        "next": false
+      }
+    ],
+    "hudText": [
+      "骨棒战士",
+      "骨棒战士",
+      "骨棒战士",
+      "骨棒战士",
+      "骨棒战士",
+      "场上已满 15 人",
+      "场上已满 15 人",
+      "场上已满 15 人",
+      "场上已满 15 人",
+      "场上已满 15 人",
+      "步"
+    ],
+    "blocked": "金币不足（还差 1）",
+    "allowed": null,
+    "playerGold": 0,
+    "instant": {
+      "t": 3,
+      "gold": 0.05,
+      "pts": 0
+    },
+    "tooClose": {
+      "shots": 0,
+      "hp": 60,
+      "gunMoved": false
+    },
+    "boundaryShots": 0,
+    "targetFar": true,
+    "atk": 16.5,
+    "cavalry": {
+      "hp": 60,
+      "atk": 28,
+      "price": 40,
+      "speed": 140
+    },
+    "baseHp": [
+      2000,
+      3200,
+      4800,
+      7200,
+      10000
+    ]
+  },
+  "adaptive": {
+    "first": {
+      "streak": -1,
+      "adjustment": 0,
+      "loss": 1
+    },
+    "second": {
+      "streak": -2,
+      "adjustment": -1,
+      "loss": 2
+    },
+    "saved": {
+      "win": 0,
+      "loss": 2,
+      "best": null,
+      "maxAge": 0,
+      "streak": -2,
+      "aiAdjustment": -1
+    },
+    "revived": true,
+    "afterRevive": {
+      "streak": -1,
+      "adjustment": 0,
+      "loss": 1
+    },
+    "flip": {
+      "streak": 1,
+      "adjustment": 0,
+      "loss": 1
+    },
+    "hard": {
+      "streak": 1,
+      "adjustment": 0,
+      "loss": 1
+    },
+    "high": {
+      "streak": 13,
+      "adjustment": 3,
+      "loss": 1
+    },
+    "low": {
+      "streak": -16,
+      "adjustment": -3,
+      "loss": 17
+    },
+    "behind": {
+      "exp": 2.4,
+      "gold": 1.21,
+      "pt": 114.28571428571429
+    },
+    "rate": -0.3,
+    "hardRate": 0
+  },
+  "old": {
+    "diff": "normal",
+    "selected": "normal",
+    "normal": {
+      "win": 0,
+      "loss": 0,
+      "best": null,
+      "maxAge": 0,
+      "streak": 0,
+      "aiAdjustment": 0
+    },
+    "bootErrors": []
+  }
+}

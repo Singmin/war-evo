@@ -1,0 +1,1541 @@
+{
+  "backup": "C:\\Users\\Singmin\\Desktop\\code\\wenming-yueqian\\production\\backups\\roster-dversion-20261113-131524",
+  "protected": {
+    "frames": 1836,
+    "pixels": 8283600
+  },
+  "new": [
+    {
+      "era": 0,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [
+        [
+          2,
+          11,
+          17
+        ]
+      ],
+      "colorCounts": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "attackVsIdleIoU": 0.428,
+      "idleWorldBounds": [
+        29.9,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 0,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.551,
+      "idleWorldBounds": [
+        73.9,
+        61.6
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 0,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [
+        [
+          1,
+          13,
+          19
+        ],
+        [
+          2,
+          13,
+          19
+        ]
+      ],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        5,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "attackVsIdleIoU": 0.404,
+      "idleWorldBounds": [
+        33.4,
+        58.1
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 1,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "attackVsIdleIoU": 0.734,
+      "idleWorldBounds": [
+        28.2,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 1,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.592,
+      "idleWorldBounds": [
+        70.4,
+        66.9
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 1,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.612,
+      "idleWorldBounds": [
+        66.9,
+        54.6
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 2,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [
+        [
+          2,
+          18,
+          24
+        ]
+      ],
+      "colorCounts": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "attackVsIdleIoU": 0.595,
+      "idleWorldBounds": [
+        42.2,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 2,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "attackVsIdleIoU": 0.612,
+      "idleWorldBounds": [
+        70.4,
+        59.8
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 2,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        7,
+        7,
+        8,
+        7,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.677,
+      "idleWorldBounds": [
+        72.2,
+        51.0
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 3,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [
+        [
+          2,
+          19,
+          24
+        ]
+      ],
+      "colorCounts": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "attackVsIdleIoU": 0.588,
+      "idleWorldBounds": [
+        42.2,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 3,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "attackVsIdleIoU": 0.59,
+      "idleWorldBounds": [
+        68.6,
+        58.1
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 3,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "attackVsIdleIoU": 0.565,
+      "idleWorldBounds": [
+        52.8,
+        52.8
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 4,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        6,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.604,
+      "idleWorldBounds": [
+        38.7,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 4,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.576,
+      "idleWorldBounds": [
+        68.6,
+        52.8
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 4,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "attackVsIdleIoU": 0.744,
+      "idleWorldBounds": [
+        81.0,
+        38.7
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 5,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [
+        [
+          2,
+          18,
+          23
+        ]
+      ],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.603,
+      "idleWorldBounds": [
+        40.5,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 5,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.517,
+      "idleWorldBounds": [
+        70.4,
+        63.4
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 5,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        8
+      ],
+      "attackVsIdleIoU": 0.628,
+      "idleWorldBounds": [
+        72.2,
+        52.8
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 6,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        5,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "attackVsIdleIoU": 0.628,
+      "idleWorldBounds": [
+        38.7,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 6,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.632,
+      "idleWorldBounds": [
+        72.2,
+        63.4
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 6,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "attackVsIdleIoU": 0.696,
+      "idleWorldBounds": [
+        61.6,
+        54.6
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 7,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.615,
+      "idleWorldBounds": [
+        45.8,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 7,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "attackVsIdleIoU": 0.594,
+      "idleWorldBounds": [
+        70.4,
+        66.9
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 7,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7,
+        8
+      ],
+      "attackVsIdleIoU": 0.664,
+      "idleWorldBounds": [
+        68.6,
+        52.8
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 8,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "attackVsIdleIoU": 0.616,
+      "idleWorldBounds": [
+        44.0,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 8,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.601,
+      "idleWorldBounds": [
+        70.4,
+        65.1
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 8,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.686,
+      "idleWorldBounds": [
+        73.9,
+        52.8
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 9,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        6,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.622,
+      "idleWorldBounds": [
+        38.7,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 9,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "attackVsIdleIoU": 0.632,
+      "idleWorldBounds": [
+        73.9,
+        58.1
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 9,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.719,
+      "idleWorldBounds": [
+        75.7,
+        52.8
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 10,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [
+        [
+          2,
+          21,
+          26
+        ]
+      ],
+      "colorCounts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "attackVsIdleIoU": 0.55,
+      "idleWorldBounds": [
+        45.8,
+        61.6
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 10,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "attackVsIdleIoU": 0.605,
+      "idleWorldBounds": [
+        68.6,
+        49.3
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 10,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "attackVsIdleIoU": 0.762,
+      "idleWorldBounds": [
+        77.4,
+        52.8
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 11,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [
+        [
+          2,
+          12,
+          17
+        ]
+      ],
+      "colorCounts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "attackVsIdleIoU": 0.748,
+      "idleWorldBounds": [
+        29.9,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 11,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.573,
+      "idleWorldBounds": [
+        68.6,
+        75.7
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 11,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "attackVsIdleIoU": 0.718,
+      "idleWorldBounds": [
+        61.6,
+        54.6
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 12,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.495,
+      "idleWorldBounds": [
+        35.2,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 12,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.616,
+      "idleWorldBounds": [
+        75.7,
+        65.1
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 12,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "attackVsIdleIoU": 0.673,
+      "idleWorldBounds": [
+        73.9,
+        51.0
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 13,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "attackVsIdleIoU": 0.588,
+      "idleWorldBounds": [
+        54.6,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 13,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.566,
+      "idleWorldBounds": [
+        63.4,
+        63.4
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 13,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "attackVsIdleIoU": 0.659,
+      "idleWorldBounds": [
+        63.4,
+        51.0
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 14,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [
+        [
+          2,
+          19,
+          25
+        ]
+      ],
+      "colorCounts": [
+        7,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "attackVsIdleIoU": 0.593,
+      "idleWorldBounds": [
+        44.0,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 14,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        7
+      ],
+      "attackVsIdleIoU": 0.592,
+      "idleWorldBounds": [
+        70.4,
+        66.9
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 14,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.709,
+      "idleWorldBounds": [
+        81.0,
+        52.8
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 15,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "attackVsIdleIoU": 0.627,
+      "idleWorldBounds": [
+        45.8,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 15,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "attackVsIdleIoU": 0.617,
+      "idleWorldBounds": [
+        72.2,
+        54.6
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 15,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "attackVsIdleIoU": 0.679,
+      "idleWorldBounds": [
+        68.6,
+        58.1
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    },
+    {
+      "era": 16,
+      "kind": 1,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.585,
+      "idleWorldBounds": [
+        45.8,
+        52.8
+      ],
+      "hitbox": [
+        20,
+        42
+      ]
+    },
+    {
+      "era": 16,
+      "kind": 2,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "attackVsIdleIoU": 0.601,
+      "idleWorldBounds": [
+        70.4,
+        65.1
+      ],
+      "hitbox": [
+        36,
+        48
+      ]
+    },
+    {
+      "era": 16,
+      "kind": 4,
+      "actionsUnique": true,
+      "widthOver": [],
+      "colorCounts": [
+        8,
+        8,
+        8,
+        8,
+        7,
+        8,
+        7,
+        8,
+        8,
+        7,
+        7,
+        7
+      ],
+      "attackVsIdleIoU": 0.712,
+      "idleWorldBounds": [
+        84.5,
+        54.6
+      ],
+      "hitbox": [
+        34,
+        34
+      ]
+    }
+  ]
+}

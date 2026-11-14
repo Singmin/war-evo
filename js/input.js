@@ -67,6 +67,7 @@ window.addEventListener('keydown', e => {
   } else if (k === 't') { towerKeyT = 1.5; }
   else if (k === 'b') err = actExpand(me());
   else if (k === 'g') err = actMine(me());
+  else if (k === 'r') err = actDrill(me());
   else if (k === 'e') err = openTree();
   else if (k === 'q') err = actSpecial(me());
   else if (k === 'f') cycleSpeed();

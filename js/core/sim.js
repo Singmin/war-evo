@@ -17,11 +17,6 @@ function step(dt) {
   for (const tx of G.texts) tx.t += dt;
   G.texts = G.texts.filter(tx => tx.t < 1.1);
   stepFinal(dt);
-  // 新手提示：开局 25 秒还没建采矿场，提示一次
-  if (!G.mineHint && G.t > 25 && G.sides[0].mine === 0 && !G.toast) {
-    G.mineHint = true;
-    G.toast = { str: `金币不够花？建一座采矿场，每秒金币 +15%（${MINE_COST[0]} 金）`, t: 2.5, side: 0 };
-  }
   G.aiT -= dt;
   if (G.aiT <= 0) { G.aiT = 0.5; aiThink(); }
   if (!G.over) {
@@ -44,10 +39,7 @@ function incomeOf(sd, mine = sd.mine) {
   return INCOME[sd.age] * sd.mod.income * (1 + MINE_BONUS * mine) * (behind ? behind.gold : 1);
 }
 function stepSide(sd, dt) {
-  const behind = aiBehind(sd);
   sd.gold += incomeOf(sd) * dt;
-  // 落后的 AI 有保底经验（见 data.js CATCH_UP.pt），不再完全依赖击杀
-  if (behind && behind.pt) addExp(sd, ptNeed(sd) * (G.sides[0].age - sd.age) / behind.pt * dt);
   sd.specialCd = Math.max(0, sd.specialCd - dt);
   sd.flash = Math.max(0, sd.flash - dt);
   // 跃迁期：训练暂停
@@ -57,6 +49,7 @@ function stepSide(sd, dt) {
       sd.evolveT = 0;
       const pct = sd.baseHp / BASE_HP[sd.age];
       sd.age++; sd.era = sd.nextEra; sd.path.push(sd.era); sd.exp = 0; sd.got = 0;
+      sd.eraStartedAt = G.t;
       sd.baseHp = pct * BASE_HP[sd.age];
       const rt = ERA_ROUTE[sd.era];
       if (rt && !sd.route) { sd.route = rt; ROUTES[rt].ap(sd.mod); }
@@ -65,10 +58,16 @@ function stepSide(sd, dt) {
       sfx('evolve');
       if (sd.s === 0) { G.freeze = 1; G.echo = { str: ECHO_LINES[sd.era], t: 3 }; }
     }
-  } else if (sd.queue.length) {
-    const q = sd.queue[0], st = unitStats(q.type, q.age, sd);
-    sd.trainT = Math.min(st.train, sd.trainT + dt);
-    if (sd.trainT >= st.train && trySpawn(sd, q)) { sd.queue.shift(); sd.trainT = 0; }
+  } else {
+    if (!G.over && isAiSide(sd)) {
+      grantAiTechPoint(sd);
+      aiTryEvolve(sd);
+    }
+    if (sd.evolveT <= 0 && sd.queue.length) {
+      const q = sd.queue[0], st = unitStats(q.type, q.age, sd);
+      sd.trainT = Math.min(st.train, sd.trainT + dt);
+      if (sd.trainT >= st.train && trySpawn(sd, q)) { sd.queue.shift(); sd.trainT = 0; }
+    }
   }
   // 大招弹幕
   const sp = sd.special;
@@ -106,7 +105,7 @@ function trySpawn(sd, q) {
   }
   G.units.push({
     id: G.nextId++, side: sd.s, type: q.type, age: q.age, st: ERA_ART[q.age][q.type], x, w: st.w, h: st.h, hp: st.hp, maxHp: st.hp,
-    atk: st.atk, range: st.range, rate: st.rate, speed: st.speed, price: st.price, ranged: st.ranged, air: st.air, splash: st.splash,
+    atk: st.atk, range: st.range, minRange: st.minRange, rate: st.rate, speed: st.speed, price: st.price, ranged: st.ranged, air: st.air, splash: st.splash,
     cd: 0.3, anim: Math.random() * 6,
     walking: false, hit: 0, swing: 0, dead: false,
   });
@@ -139,7 +138,14 @@ function moveLine(line, foes, dir, dt, airFoes = []) {
     if (rg && u.hp < u.maxHp) u.hp = Math.min(u.maxHp, u.hp + u.maxHp * rg * dt);
     const front = foes.find(f => !f.dead); // 只有地面敌兵能挡路
     const eDist = front ? edgeDist(u, front) : Infinity;
+    // 贴近的敌兵仍会挡路。炮兵越过它寻找射程内的地面目标。
     let target = front;
+    if (u.minRange) {
+      target = foes.find(f => {
+        const d = edgeDist(u, f);
+        return !f.dead && d > u.minRange && d <= u.range;
+      });
+    }
     if (canHitAir(u.type)) {
       // 敌方空军可能已经飞过去：按实际边缘距离找最近的一架，不用前进方向判断。
       let air = null;
@@ -152,7 +158,7 @@ function moveLine(line, foes, dir, dt, airFoes = []) {
     if (target && edgeDist(u, target) <= u.range) {
       u.aiming = true;
       if (u.cd <= 0) { attackUnit(u, target); u.cd = u.rate; }
-    } else if (baseDist <= u.range) {
+    } else if (baseDist <= u.range && (!u.minRange || baseDist > u.minRange)) {
       u.aiming = true;
       if (u.cd <= 0) { attackBase(u, dir); u.cd = u.rate; }
     } else {
@@ -333,10 +339,15 @@ function stepSpores(dt) {
 
 function endGame(winner) {
   G.over = true; G.winner = winner; G.overT = 1.6;
+  if (G.demo) return;
   const me = G.sides[0];
   const st = save.stats[G.diff];
   if (winner === 0) { st.win++; if (st.best === null || G.t < st.best) st.best = Math.round(G.t); sfx('win'); }
   else { st.loss++; sfx('lose'); }
+  if (G.diff === 'normal') {
+    if (winner === 1 && !G.revived) G.beforeLoss = { streak: st.streak, aiAdjustment: st.aiAdjustment };
+    recordNormalStreak(winner === 0);
+  }
   st.maxAge = Math.max(st.maxAge, me.age);
   persist();
 }
@@ -348,7 +359,9 @@ function endGame(winner) {
 function reviveBase(frac) {
   if (!G || !G.over || G.winner !== 1 || G.revived) return false;
   const me = G.sides[0], st = save.stats[G.diff];
-  st.loss = Math.max(0, st.loss - 1); persist();
+  st.loss = Math.max(0, st.loss - 1);
+  if (G.beforeLoss) Object.assign(st, G.beforeLoss);
+  persist();
   G.over = false; G.winner = -1; G.overT = 0; G.revived = true;
   me.baseHp = Math.round(BASE_HP[me.age] * frac); me.flash = 0.4;
   for (const u of G.units) if (u.side === 1 && !u.dead && u.x < BASE_L + REVIVE_CLEAR) u.dead = true;
